@@ -33,7 +33,7 @@ const useFirebase = () => {
     const handleGoogleLogin = () => {
         signInUsingGoogle()
             .then((result) => {
-                setUser(result?.user?.email);
+                setUser(result?.user);
             })
             .catch((error) => {
                 console.log(error);
@@ -45,7 +45,7 @@ const useFirebase = () => {
     useEffect(() => {
         const unSubscribed = onAuthStateChanged(auth, (myUser) => {
             if (myUser) {
-                setUser(myUser?.email);
+                setUser(myUser);
             } else {
                 setUser(null);
             }

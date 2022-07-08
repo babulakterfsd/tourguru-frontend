@@ -4,6 +4,8 @@ import About from '../pages/About';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
 import NotFound from '../pages/NotFound';
+import Dashboard from './Dashboard';
+import PrivateOutlet from './PrivateOutlet';
 
 function AllRoutes() {
     return (
@@ -12,6 +14,9 @@ function AllRoutes() {
             <Route path="/home" element={<Navigate to="/" replace />} />
             <Route path="/about" element={<About />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/*" element={<PrivateOutlet />}>
+                <Route path="dashboard" element={<Dashboard />} />
+            </Route>
             <Route path="*" element={<NotFound />} />
         </Routes>
     );
