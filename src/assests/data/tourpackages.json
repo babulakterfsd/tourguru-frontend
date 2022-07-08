@@ -1,0 +1,211 @@
+[
+  {
+    "location": {
+      "city": "Mumbai",
+      "country": "india"
+    },
+    "duration": "5 days / 6 nights",
+    "price": 8000,
+    "img": "https://i.ibb.co/dj3qqMj/sorrento.jpg",
+    "services": ["Hotel Room", "Food", "Tour Guide", "Travel Zeep", "Security"],
+    "description": "A planned visit to several places in a country or area made for a special purpose, such as one made by a politician, sports team, or group."
+  },
+  {
+    "location": {
+      "city": "Chicago",
+      "country": "America"
+    },
+    "duration": "3 days / 4 nights",
+    "price": 7500,
+    "img": "https://i.ibb.co/Fw0YKb2/chicago.jpg",
+    "services": ["Hotel Room", "Food", "Tour Guide", "Security"],
+    "description": "A planned visit to several places in a country or area made for a special purpose, such as one made by a politician, sports team, or group."
+  },
+  {
+    "location": {
+      "city": "Rajsthan",
+      "country": "India"
+    },
+    "duration": "5 days / 6 nights",
+    "price": 8000,
+    "img": "https://i.ibb.co/kgfqFVH/rajsthan.jpg",
+    "services": ["Hotel Room", "Food", "Tour Guide", "Travel Zeep", "Security"],
+    "description": "A planned visit to several places in a country or area made for a special purpose, such as one made by a politician, sports team, or group."
+  },
+  {
+    "location": {
+      "city": "London",
+      "country": "England"
+    },
+    "duration": "7 days / 8 nights",
+    "price": 12000,
+    "img": "https://i.ibb.co/2s0QJ9Z/london.jpg",
+    "services": ["Hotel Room", "Food", "Tour Guide", "Travel Zeep", "Security"],
+    "description": "A planned visit to several places in a country or area made for a special purpose, such as one made by a politician, sports team, or group."
+  },
+  {
+    "location": {
+      "city": "Kualalampur",
+      "country": "Malaysia"
+    },
+    "duration": "5 days / 6 nights",
+    "price": 9000,
+    "img": "https://i.ibb.co/s9mQK1N/kualalampur.jpg",
+    "services": ["Hotel Room", "Food", "Tour Guide", "Travel Zeep", "Security"],
+    "description": "A planned visit to several places in a country or area made for a special purpose, such as one made by a politician, sports team, or group."
+  },
+  {
+    "location": {
+      "city": "Barcelona",
+      "country": "Spain"
+    },
+    "duration": "5 days / 6 nights",
+    "price": 8000,
+    "img": "https://i.ibb.co/br840X7/barcelona.jpg",
+    "services": ["Hotel Room", "Food", "Tour Guide", "Travel Zeep", "Security"],
+    "description": "A planned visit to several places in a country or area made for a special purpose, such as one made by a politician, sports team, or group."
+  },
+  {
+    "location": {
+      "city": "Kolkata",
+      "country": "India"
+    },
+    "duration": "5 days / 6 nights",
+    "price": 8000,
+    "img": "https://i.ibb.co/K60yTPY/kolkata.jpg",
+    "services": ["Hotel Room", "Food", "Tour Guide", "Travel Zeep", "Security"],
+    "description": "A planned visit to several places in a country or area made for a special purpose, such as one made by a politician, sports team, or group."
+  },
+  {
+    "location": {
+      "city": "Istanbul",
+      "country": "turkey"
+    },
+    "duration": "5 days / 6 nights",
+    "price": 8000,
+    "img": "https://i.ibb.co/QjWGB86/istanbul.jpg",
+    "services": ["Hotel Room", "Food", "Tour Guide", "Security"],
+    "description": "A planned visit to several places in a country or area made for a special purpose, such as one made by a politician, sports team, or group."
+  },
+  {
+    "location": {
+      "city": "Miami",
+      "country": "America"
+    },
+    "duration": "5 days / 6 nights",
+    "price": 15000,
+    "img": "https://i.ibb.co/sK88gmd/miami.jpg",
+    "services": ["Hotel Room", "Food", "Tour Guide", "Travel Zeep", "Security"],
+    "description": "A planned visit to several places in a country or area made for a special purpose, such as one made by a politician, sports team, or group."
+  },
+  {
+    "location": {
+      "city": "Dhaka",
+      "country": "Bangaldesh"
+    },
+    "duration": "2 days / 3 nights",
+    "price": 700,
+    "img": "https://i.ibb.co/gg0QxBp/dhaka.jpg",
+    "services": ["Hotel Room", "Food", "Tour Guide", "Travel Zeep"],
+    "description": "A planned visit to several places in a country or area made for a special purpose, such as one made by a politician, sports team, or group."
+  },
+  {
+    "location": {
+      "city": "Los Angels",
+      "country": "America"
+    },
+    "duration": "5 days / 6 nights",
+    "price": 8000,
+    "img": "https://i.ibb.co/GWWqHfm/los-angles.jpg",
+    "services": ["Hotel Room", "Food", "Tour Guide", "Travel Zeep", "Security"],
+    "description": "A planned visit to several places in a country or area made for a special purpose, such as one made by a politician, sports team, or group."
+  },
+  {
+    "location": {
+      "city": "Moscow",
+      "country": "Russia"
+    },
+    "duration": "3 days / 4 nights",
+    "price": 3000,
+    "img": "https://i.ibb.co/Z8S9K4K/moscow.jpg",
+    "services": ["Hotel Room", "Food", "Tour Guide"],
+    "description": "A planned visit to several places in a country or area made for a special purpose, such as one made by a politician, sports team, or group."
+  },
+  {
+    "location": {
+      "city": "Venice",
+      "country": "Greece"
+    },
+    "duration": "5 days / 6 nights",
+    "price": 8000,
+    "img": " https://i.ibb.co/JpQL9Sv/venice.jpg",
+    "services": ["Hotel Room", "Food", "Tour Guide", "Travel Zeep", "Security"],
+    "description": "A planned visit to several places in a country or area made for a special purpose, such as one made by a politician, sports team, or group."
+  },
+  {
+    "location": {
+      "city": "New York",
+      "country": "America"
+    },
+    "duration": "5 days / 6 nights",
+    "price": 8000,
+    "img": "https://i.ibb.co/3hj5LnS/new-york.jpg",
+    "services": ["Hotel Room", "Food", "Tour Guide", "Travel Zeep", "Security"],
+    "description": "A planned visit to several places in a country or area made for a special purpose, such as one made by a politician, sports team, or group."
+  },
+  {
+    "location": {
+      "city": "Chittagong",
+      "country": "Bangladesh"
+    },
+    "duration": "5 days / 6 nights",
+    "price": 3000,
+    "img": "https://i.ibb.co/0ZDf89B/chittagong.jpg",
+    "services": ["Hotel Room", "Food", "Tour Guide", "Travel Zeep"],
+    "description": "A planned visit to several places in a country or area made for a special purpose, such as one made by a politician, sports team, or group."
+  },
+  {
+    "location": {
+      "city": "Sylhet",
+      "country": "bangladesh"
+    },
+    "duration": "5 days / 6 nights",
+    "price": 8000,
+    "img": "https://i.ibb.co/FzCN5Wm/sylhet.jpg",
+    "services": ["Hotel Room", "Food", "Tour Guide", "Travel Zeep"],
+    "description": "A planned visit to several places in a country or area made for a special purpose, such as one made by a politician, sports team, or group."
+  },
+  {
+    "location": {
+      "city": "Rajshahi",
+      "country": "bangladesh"
+    },
+    "duration": "5 days / 6 nights",
+    "price": 20000,
+    "img": "https://i.ibb.co/t8r02rL/rajshahi.jpg",
+    "services": ["Hotel Room", "Food", "Tour Guide", "Travel Zeep"],
+    "description": "A planned visit to several places in a country or area made for a special purpose, such as one made by a politician, sports team, or group."
+  },
+  {
+    "location": {
+      "city": "Sorrent",
+      "country": "Germany"
+    },
+    "duration": "5 days / 6 nights",
+    "price": 9500,
+    "img": "https://i.ibb.co/dj3qqMj/sorrento.jpg",
+    "services": ["Hotel Room", "Food", "Tour Guide", "Travel Zeep", "Security"],
+    "description": "A planned visit to several places in a country or area made for a special purpose, such as one made by a politician, sports team, or group."
+  },
+  {
+    "img": "https://i.ibb.co/0ZDf89B/chittagong.jpg",
+    "location": {
+      "city": "Sylhet",
+      "country": "Bangladesh"
+    },
+    "services": ["Hotel Room", "Food", "Tour Guide", "Travel Zeep", "Security"],
+    "duration": "3 days / 4 nights",
+    "price": 4500,
+    "description": "A planned visit to several places in a country or area made for a special purpose, such as one made by a politician, sports team, or group."
+  }
+]
