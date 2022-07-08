@@ -8,12 +8,6 @@ const colors = {
 
 const CustomizedTheme = createTheme({
     palette: {
-        primary: {
-            main: colors.primary,
-        },
-        secondary: {
-            main: colors.secondary,
-        },
         beguni: {
             main: colors.beguni,
         },
