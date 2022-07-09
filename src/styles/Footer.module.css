@@ -1,0 +1,22 @@
+.footer {
+    background: #1a213d;
+    padding: 50px;
+    color: #fff;
+    margin-top: 65vh
+}
+.boxStyler {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;
+     padding: 0px 30px;
+}
+
+@media only screen and (max-width: 475px) {
+    .footer {
+        padding: 25px;
+    }
+    .boxStyler {
+     padding: 0px 0px;
+}
+}

@@ -7,6 +7,9 @@ const colors = {
     pinkShell: '#E8AA9B',
     plumViolet: '#DCD5DC',
     primary: '#3b5',
+    bluishDark: '#283a5e',
+    white: '#fff',
+    dark: '#000',
 };
 
 const CustomizedTheme = createTheme({
@@ -32,6 +35,15 @@ const CustomizedTheme = createTheme({
         },
         primary: {
             main: colors.primary,
+        },
+        bluishDark: {
+            main: colors.bluishDark,
+        },
+        white: {
+            main: colors.white,
+        },
+        dark: {
+            main: colors.dark,
         },
     },
     neutral: {

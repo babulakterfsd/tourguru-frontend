@@ -1,9 +1,12 @@
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import About from '../pages/About';
+import Blog from '../pages/Blog';
+import Contact from '../pages/Contact';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
 import NotFound from '../pages/NotFound';
+import Products from '../pages/Products';
 import Dashboard from './Dashboard';
 import PrivateOutlet from './PrivateOutlet';
 
@@ -13,11 +16,14 @@ function AllRoutes() {
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Navigate to="/" replace />} />
             <Route path="/about" element={<About />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
+            <Route path="*" element={<NotFound />} />
             <Route path="/*" element={<PrivateOutlet />}>
                 <Route path="dashboard" element={<Dashboard />} />
             </Route>
-            <Route path="*" element={<NotFound />} />
         </Routes>
     );
 }
