@@ -6,7 +6,6 @@ const colors = {
     tomatoOrange: '#E46F44',
     pinkShell: '#E8AA9B',
     plumViolet: '#DCD5DC',
-    primary: '#3b5',
     bluishDark: '#283a5e',
     white: '#fff',
     dark: '#000',
@@ -32,9 +31,6 @@ const CustomizedTheme = createTheme({
         },
         plumViolet: {
             main: colors.plumViolet,
-        },
-        primary: {
-            main: colors.primary,
         },
         bluishDark: {
             main: colors.bluishDark,
