@@ -1,24 +1,25 @@
 .banner {
-    background-image: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url('https://i.ibb.co/48N5brm/bg.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    min-height: 90vh;
-    background-position: center center;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('https://i.ibb.co/48N5brm/bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 90vh;
+  background-position: center center;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .mainBanner {
-    padding: 0px 150px
+  padding: 0px 150px;
 }
 
 @media only screen and (max-width: 475px) {
-    .mainBanner {
-      padding: 30px 15px
-    }
-    .bannerTitle {
-        font-weight: 400;
-        font-size: 32px !important;
-    }
+  .mainBanner {
+    padding: 30px 15px;
+  }
+  .bannerTitle {
+    font-weight: 400;
+    font-size: 32px !important;
+  }
 }

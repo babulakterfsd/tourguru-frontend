@@ -18,7 +18,6 @@ function Navbar() {
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
     const { user, logOut } = useAuth();
-    console.log(user?.photoURL);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);

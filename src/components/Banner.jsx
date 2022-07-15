@@ -12,7 +12,7 @@ function Banner() {
     return (
         <div>
             <div className={`${Styles.banner}`}>
-                <Grid container xs={12}>
+                <Grid container>
                     <Grid item xs={12} className={`${Styles.mainBanner}`}>
                         <Typography
                             variant="h1"
