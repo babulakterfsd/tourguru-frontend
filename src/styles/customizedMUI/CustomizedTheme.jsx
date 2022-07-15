@@ -9,12 +9,22 @@ const colors = {
     bluishDark: '#283a5e',
     white: '#fff',
     dark: '#000',
+    primary: '#f3680b',
 };
 
 const CustomizedTheme = createTheme({
     typography: {
         abril: ['Abril Fatface', 'cursive'].join(','),
         poppins: ['Poppins', 'sans-serif'].join(','),
+    },
+    breakpoints: {
+        values: {
+            xs: 0,
+            sm: 475,
+            md: 768,
+            lg: 1200,
+            xl: 1399,
+        },
     },
     palette: {
         atomicSteelBlue: {
@@ -40,6 +50,9 @@ const CustomizedTheme = createTheme({
         },
         dark: {
             main: colors.dark,
+        },
+        primary: {
+            main: colors.primary,
         },
     },
     neutral: {

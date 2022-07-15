@@ -18,7 +18,7 @@ function Navbar() {
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
     const { user, logOut } = useAuth();
-    console.log(user);
+    console.log(user?.photoURL);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -206,7 +206,7 @@ function Navbar() {
                             <Tooltip title="settings">
                                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                                     <img
-                                        src={user.photoURL}
+                                        src={user?.photoURL}
                                         alt="userImage"
                                         style={{
                                             height: '40px',
