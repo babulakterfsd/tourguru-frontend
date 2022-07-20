@@ -9,7 +9,10 @@ function Banner() {
     const { mobile, tablet, desktop } = useAuth();
     return (
         <div>
-            <div className={`${Styles.banner}`}>
+            <div
+                className={`${Styles.banner}`}
+                style={{ alignItems: mobile ? `flex-start` : `center` }}
+            >
                 <Grid container>
                     <Grid
                         item
