@@ -16,7 +16,7 @@
 
 @media only screen and (max-width: 475px) {
   .mainBanner {
-    padding: 30px 15px;
+    padding: 10px 15px;
   }
   .bannerTitle {
     font-weight: 400;
