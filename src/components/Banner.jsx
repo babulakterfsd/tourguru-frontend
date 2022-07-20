@@ -33,7 +33,7 @@ function Banner() {
                             }}
                             className={`${Styles.bannerTitle}`}
                         >
-                            Explore The World With TourGuru...
+                            Explore The World With TourGuru.
                         </Typography>
                         <Typography
                             variant="p"
