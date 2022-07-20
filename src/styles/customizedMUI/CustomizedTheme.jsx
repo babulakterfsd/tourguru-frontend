@@ -6,7 +6,7 @@ const colors = {
     tomatoOrange: '#E46F44',
     pinkShell: '#E8AA9B',
     plumViolet: '#DCD5DC',
-    bluishDark: '#283a5e',
+    bluishDark: '#1a213d',
     white: '#fff',
     dark: '#000',
     primary: '#f3680b',

@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-vars */
 import { Button, Grid, Typography } from '@mui/material';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 import Styles from '../styles/Banner.module.css';
 
@@ -52,16 +53,18 @@ function Banner() {
                         <div
                             style={{ display: mobile ? `flex` : `block`, justifyContent: `center` }}
                         >
-                            <Button
-                                variant="contained"
-                                style={{
-                                    padding: mobile ? `12px 6px` : '14px 12px',
-                                    marginTop: '25px',
-                                    fontWeight: '600',
-                                }}
-                            >
-                                See Our Packages
-                            </Button>
+                            <Link to="/packages" style={{ textDecoration: `none` }}>
+                                <Button
+                                    variant="contained"
+                                    style={{
+                                        padding: mobile ? `12px 6px` : '14px 12px',
+                                        marginTop: '25px',
+                                        fontWeight: '600',
+                                    }}
+                                >
+                                    See Our Packages
+                                </Button>
+                            </Link>
                         </div>
                     </Grid>
                 </Grid>

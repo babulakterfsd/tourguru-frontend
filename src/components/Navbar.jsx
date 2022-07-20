@@ -103,9 +103,9 @@ function Navbar() {
                                 onClick={handleCloseNavMenu}
                                 style={{ borderBottom: '1px solid #ccc' }}
                             >
-                                <Link to="/products" style={{ textDecoration: 'none' }}>
+                                <Link to="/packages" style={{ textDecoration: 'none' }}>
                                     <Typography textAlign="center" color="#000">
-                                        Products
+                                        Packages
                                     </Typography>
                                 </Link>
                             </MenuItem>
@@ -158,7 +158,7 @@ function Navbar() {
                     {/* desktop */}
                     <Box
                         sx={{ display: { xs: 'none', md: 'flex' } }}
-                        style={{ margin: '0px auto' }}
+                        style={{ margin: '30px auto' }}
                     >
                         <MenuItem onClick={handleCloseNavMenu}>
                             <Link to="/about" style={{ textDecoration: 'none' }}>
@@ -168,9 +168,9 @@ function Navbar() {
                             </Link>
                         </MenuItem>
                         <MenuItem onClick={handleCloseNavMenu}>
-                            <Link to="/products" style={{ textDecoration: 'none' }}>
+                            <Link to="/packages" style={{ textDecoration: 'none' }}>
                                 <Typography textAlign="center" color="#fff">
-                                    Products
+                                    Packages
                                 </Typography>
                             </Link>
                         </MenuItem>
