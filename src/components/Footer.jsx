@@ -92,7 +92,7 @@ function Footer() {
                             <Typography style={{ marginBottom: '32px', fontWeight: '700' }}>
                                 Subscribe Newsletter
                             </Typography>
-                            <Typography>
+                            <Typography style={{ textAlign: mobile ? `center` : `left` }}>
                                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores
                                 qui ducimus illo facere ut architecto. Lorem ipsum dolor sit, amet
                                 consectetur adipisicing elit. Enim, minima eos itaque non expedita

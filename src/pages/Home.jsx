@@ -1,14 +1,14 @@
 import React from 'react';
 import Banner from '../components/Banner';
 import CheckIn from '../components/CheckIn';
-import Packages from './Packages';
+import PopularPackages from '../components/PopularPackages';
 
 function Home() {
     return (
         <div>
             <Banner />
             <CheckIn />
-            <Packages />
+            <PopularPackages />
         </div>
     );
 }

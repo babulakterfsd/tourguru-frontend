@@ -8,6 +8,7 @@ import useFirebase from './useFirebase';
 const AllStates = () => {
     // states
     const [allPackages, setAllPackages] = useState([]);
+    const [popularPackages, setPopularPackages] = useState([]);
 
     // firebase
     const { user, handleGoogleLogin, logOut, isLoading, setIsLoading } = useFirebase();
@@ -18,17 +19,23 @@ const AllStates = () => {
     const desktop = useMediaQuery('(min-width:1199px)');
 
     // variables
-    const limit = 19;
-    const getAllPackageURL = `http://localhost:5000/packages?limit=${limit}`;
+    const getAllPackageURL = `http://localhost:5000/packages?limit=19`;
+    const getPopularPackageURL = `http://localhost:5000/packages?limit=6`;
 
     // axios
-    const getData = () => {
+    const getAllPackages = () => {
         axios.get(getAllPackageURL).then((response) => setAllPackages(response?.data));
+    };
+    const getPopularPackages = () => {
+        axios.get(getPopularPackageURL).then((response) => setPopularPackages(response?.data));
     };
 
     // api calls
     useEffect(() => {
-        getData();
+        getAllPackages();
+    }, []);
+    useEffect(() => {
+        getPopularPackages();
     }, []);
 
     return {
@@ -41,6 +48,7 @@ const AllStates = () => {
         tablet,
         desktop,
         allPackages,
+        popularPackages,
     };
 };
 
