@@ -7,6 +7,7 @@ import Home from '../pages/Home';
 import Login from '../pages/Login';
 import NotFound from '../pages/NotFound';
 import Packages from '../pages/Packages';
+import Register from '../pages/Register';
 import Dashboard from './Dashboard';
 import PrivateOutlet from './PrivateOutlet';
 
@@ -20,6 +21,7 @@ function AllRoutes() {
             <Route path="/blog" element={<Blog />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
             <Route path="*" element={<NotFound />} />
             <Route path="/*" element={<PrivateOutlet />}>
                 <Route path="dashboard" element={<Dashboard />} />
