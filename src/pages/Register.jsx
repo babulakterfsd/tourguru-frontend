@@ -89,7 +89,7 @@ function Register() {
                         <div style={{display: `flex`, justifyContent: `center`, alignItems: `center`, marginTop: mobile ? `30px` : `50px`}}>
                             <div style={{textAlign: mobile ? `center` : `left`}}>
                                 <Typography variant='p' mr={1}> Already have an account?</Typography>
-                                <Link to="/login" style={{textDecoration: `none`}}>
+                                <Link to="/login" style={{textDecoration: `none`, color: `#f3680b`}}>
                                     LogIn Here!
                                 </Link>
                             </div>

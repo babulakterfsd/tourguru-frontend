@@ -97,7 +97,7 @@ function Login() {
                         <div style={{display: `flex`, justifyContent: `center`, alignItems: `center`, marginTop: mobile ? `30px` : `50px`}}>
                             <div>
                                 <Typography variant='p' mr={1}> Dont have an account?</Typography>
-                                <Link to="/register" style={{textDecoration: `none`}}>
+                                <Link to="/register" style={{textDecoration: `none`, color: `#f3680b`}}>
                                     Sign Up!
                                 </Link>
                             </div>
