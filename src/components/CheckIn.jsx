@@ -16,7 +16,7 @@ function CheckIn() {
                     padding: mobile ? `30px 10px` : `50px 10px`,
                     boxShadow: `rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px`,
                     display: `flex`,
-                    flexDirection: mobile ? `column` : `row`,
+                    flexDirection: mobile ? `column` : tablet ? `column` : `row`,
                     justifyContent: `space-around`,
                     alignItems: `center`,
                 }}
@@ -54,7 +54,6 @@ function CheckIn() {
                             fontWeight: `900`,
                             marginTop: mobile ? `7px` : `15px`,
                             textAlign: `center`,
-                            color: `#283a5e`,
                             border: `1px solid #ccc`,
                             borderRadius: mobile ? `5px` : `0px`,
                         }}
@@ -93,7 +92,6 @@ function CheckIn() {
                             fontWeight: `700`,
                             marginTop: mobile ? `7px` : `15px`,
                             textAlign: `center`,
-                            color: `#283a5e`,
                             border: `1px solid #ccc`,
                             borderRadius: mobile ? `5px` : `0px`,
                         }}
