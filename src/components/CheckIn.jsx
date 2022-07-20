@@ -10,7 +10,7 @@ import useAuth from '../hooks/useAuth';
 function CheckIn() {
     const { mobile, tablet, desktop } = useAuth();
     return (
-        <div style={{ padding: mobile ? `50px 15px` : `180px 50px`, background: `#fff` }}>
+        <div style={{ padding: mobile ? `50px 15px` : `120px 50px`, background: `#fff` }}>
             <Container
                 style={{
                     padding: mobile ? `30px 10px` : `50px 10px`,
