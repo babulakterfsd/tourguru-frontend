@@ -1,14 +1,12 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable no-unused-vars */
-import { Button, Grid, Typography, useMediaQuery } from '@mui/material';
+import { Button, Grid, Typography } from '@mui/material';
 import React from 'react';
+import useAuth from '../hooks/useAuth';
 import Styles from '../styles/Banner.module.css';
 
 function Banner() {
-    const mobile = useMediaQuery('(max-width:475px)');
-    const tablet = useMediaQuery('(max-width:992px)');
-    const desktop = useMediaQuery('(min-width:1199px)');
-
+    const { mobile, tablet, desktop } = useAuth();
     return (
         <div>
             <div className={`${Styles.banner}`}>
@@ -17,11 +15,11 @@ function Banner() {
                         item
                         xs={12}
                         className={`${Styles.mainBanner}`}
-                        sx={{
-                            display: mobile ? `flex` : `block`,
-                            justifyContent: `center`,
-                            flexDirection: 'column',
-                        }}
+                        // sx={{
+                        //     display: mobile ? `flex` : `block`,
+                        //     justifyContent: `center`,
+                        //     flexDirection: 'column',
+                        // }}
                     >
                         <Typography
                             variant="h1"
@@ -48,16 +46,20 @@ function Banner() {
                             itaque nobis totam exercitationem?
                         </Typography>
                         <br />
-                        <Button
-                            variant="contained"
-                            style={{
-                                padding: mobile ? `12px 6px` : '14px 12px',
-                                marginTop: '25px',
-                                fontWeight: '600',
-                            }}
+                        <div
+                            style={{ display: mobile ? `flex` : `block`, justifyContent: `center` }}
                         >
-                            See Our Packages
-                        </Button>
+                            <Button
+                                variant="contained"
+                                style={{
+                                    padding: mobile ? `12px 6px` : '14px 12px',
+                                    marginTop: '25px',
+                                    fontWeight: '600',
+                                }}
+                            >
+                                See Our Packages
+                            </Button>
+                        </div>
                     </Grid>
                 </Grid>
             </div>

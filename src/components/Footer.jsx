@@ -5,9 +5,11 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import { Box, Container, Grid, Typography } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useAuth from '../hooks/useAuth';
 import Styles from '../styles/Footer.module.css';
 
 function Footer() {
+    const { mobile } = useAuth();
     return (
         <div className={`${Styles.footer}`}>
             <Box sx={{ flexGrow: 1 }} style={{ color: '#fff' }}>
@@ -92,7 +94,8 @@ function Footer() {
                             </Typography>
                             <Typography>
                                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores
-                                qui ducimus illo facere ut architecto.
+                                qui ducimus illo facere ut architecto. Lorem ipsum dolor sit, amet
+                                consectetur adipisicing elit. Enim, minima eos itaque non expedita
                             </Typography>
                             <input
                                 type="email"
@@ -120,7 +123,7 @@ function Footer() {
                     borderTop: '1px dotted #fff',
                 }}
             >
-                <Box style={{ marginTop: '12px' }}>
+                <Box style={{ marginTop: '12px', textAlign: mobile ? `center` : `left` }}>
                     <Typography>Developed by Babul Akter | copyright 2023 &copy;</Typography>
                 </Box>
             </Container>

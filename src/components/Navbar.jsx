@@ -136,7 +136,7 @@ function Navbar() {
                     </Box>
 
                     {/* mobile logo */}
-                    <Box style={{ marginLeft: 'auto' }}>
+                    <Box style={{ margin: '0px auto' }}>
                         <Link to="/" style={{ textDecoration: 'none' }}>
                             <Typography
                                 variant="h6"
