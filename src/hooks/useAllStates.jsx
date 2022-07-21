@@ -11,7 +11,25 @@ const AllStates = () => {
     const [popularPackages, setPopularPackages] = useState([]);
 
     // firebase
-    const { user, handleGoogleLogin, logOut, isLoading, setIsLoading } = useFirebase();
+    const {
+        user,
+        handleGoogleLogin,
+        logOut,
+        isLoading,
+        setIsLoading,
+        userEmail,
+        setUserEmail,
+        userPassword,
+        setUserPassword,
+        setName,
+        updateUser,
+        registerWithEmail,
+        setResponse,
+        name,
+        setUser,
+        auth,
+        signInWithEmailAndPassword,
+    } = useFirebase();
 
     // responsive check
     const mobile = useMediaQuery('(max-width:475px)');
@@ -49,6 +67,18 @@ const AllStates = () => {
         desktop,
         allPackages,
         popularPackages,
+        userEmail,
+        setUserEmail,
+        userPassword,
+        setUserPassword,
+        updateUser,
+        name,
+        setName,
+        registerWithEmail,
+        setResponse,
+        setUser,
+        auth,
+        signInWithEmailAndPassword,
     };
 };
 

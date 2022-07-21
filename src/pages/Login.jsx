@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-unused-vars */
 import { LockOutlined } from '@mui/icons-material';
@@ -12,21 +13,51 @@ import {
     Typography
 } from '@mui/material';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import useAuth from '../hooks/useAuth';
 import Styles from '../styles/Login.module.css';
 
 function Login() {
-    const { mobile, handleGoogleLogin } = useAuth();
+    const { mobile, tablet, user, handleGoogleLogin, userEmail, setUserEmail, userPassword, setUserPassword, signInWithEmailAndPassword, auth, setUser, setResponse, } = useAuth();
+    const location = useLocation();
+    const targetURL = location.state || '/dashboard';
+    const navigate = useNavigate()
+
+    if(user) {
+        return <Navigate to="/" replace/>
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
-    };
+        // login(userEmail, userPassword)
+    signInWithEmailAndPassword(auth, userEmail, userPassword)
+    .then((result) => {
+      const myUser = result.user;
+      setUser(myUser)
+      setResponse("Login Successful");
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: `LoggedIn Successfully !`,
+        showConfirmButton: false,
+        timer: 2500
+      })
+      navigate(targetURL)
+      setResponse('')
+    })
+    .catch((error) => {
+      setResponse(error.message);
+      console.log(error);
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: `Login Failed, Try Again!`,
+        showConfirmButton: false,
+        timer: 2500
+      })
+    });
+    }; 
 
     return (
         <div
@@ -36,7 +67,7 @@ function Login() {
                 display: `flex`,
                 justifyContent: `center`,
                 alignItems: `center`,
-                height: mobile ? `auto`: `100vh`,
+                height: mobile ? `auto`: tablet ? `auto` : `100vh`,
             }}
         >
             <Container component="main" maxWidth="xs" style={{background: `#fff`, borderRadius: `5px`}}> 
@@ -54,17 +85,17 @@ function Login() {
                     <Typography component="h1" variant="h5" fontFamily='abril' color="#283A5E">
                         Please, LogIn !
                     </Typography>
-                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                    <Box component="form" noValidate sx={{ mt: 1 }}>
                         <TextField
                             margin="normal"
                             required
                             fullWidth
-                            id="email"
                             label="Email Address"
                             name="email"
                             autoComplete="email"
                             autoFocus
                             className={Styles.customTextField}
+                            onChange={(e) => setUserEmail(e.target.value)}
                         />
                         <TextField
                             margin="normal"
@@ -76,6 +107,7 @@ function Login() {
                             id="password"
                             autoComplete="current-password"
                             className={Styles.customTextField}
+                            onChange={(e) => setUserPassword(e.target.value)}
                         />
                         <div style={{display: `flex`, justifyContent: `space-between`, alignItems: `center`}}>
                         <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me"/>
@@ -83,7 +115,7 @@ function Login() {
                                 Forgot password?
                           </Link>
                         </div>
-                        <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+                        <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} onClick={handleSubmit}>
                             Sign In
                         </Button>
                         <div style={{display: `flex`, justifyContent: `center`, alignItems: `center`}}>
@@ -95,7 +127,7 @@ function Login() {
                             </div>
                         </div>
                         <div style={{display: `flex`, justifyContent: `center`, alignItems: `center`, marginTop: mobile ? `30px` : `50px`}}>
-                            <div>
+                            <div style={{textAlign: mobile ? `center` : `left`}}>
                                 <Typography variant='p' mr={1}> Dont have an account?</Typography>
                                 <Link to="/register" style={{textDecoration: `none`, color: `#f3680b`}}>
                                     Sign Up!
@@ -107,6 +139,6 @@ function Login() {
             </Container>
         </div>
     );
-}
+   }
 
 export default Login;

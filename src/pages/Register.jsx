@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-unused-vars */
 import Google from '@mui/icons-material/Google';
@@ -9,21 +10,58 @@ import {
     Typography
 } from '@mui/material';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import useAuth from '../hooks/useAuth';
 import Styles from '../styles/Login.module.css';
 
 function Register() {
-    const { mobile, handleGoogleLogin } = useAuth();
+    const { mobile, tablet, handleGoogleLogin,userEmail, userPassword, setUserEmail, setUserPassword, registerWithEmail, setUser, setResponse,name, setName, updateUser, response, user } = useAuth();
+
+    const location = useLocation();
+    const targetURL = location.state || '/dashboard';
+    const navigate = useNavigate()
+
+    if(user) {
+        return navigate('/')
+      }
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
+        // register function
+        registerWithEmail(userEmail, userPassword)
+        .then((result) => {
+         updateUser()
+          const myUser = result.user;
+          setUser(myUser);
+          setResponse("Registration Successful");
+        //   saveUser(userEmail)
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: `Registration Successful !`,
+            showConfirmButton: false,
+            timer: 1000
+          })
+        //   history.push(redirect);
+          setResponse("");
+        //   setTimeout(() => navigate('/'), 3000);
+           navigate(targetURL)
+        })
+        .catch((error) => {
+          setResponse(error.message);
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: `Something Error Happened, Try Again!`,
+            showConfirmButton: false,
+            timer: 2500
+          })
+          console.log(error);
         });
     };
+
+    
 
     return (
         <div
@@ -33,7 +71,7 @@ function Register() {
                 display: `flex`,
                 justifyContent: `center`,
                 alignItems: `center`,
-                height: mobile ? `auto`: `100vh`,
+                height: mobile ? `auto`: tablet ? `auto` : `100vh`,
             }}
         >
             <Container component="main" maxWidth="xs" style={{background: `#fff`, borderRadius: `5px`}}> 
@@ -52,16 +90,28 @@ function Register() {
                         Create Your Account !
                     </Typography>
                     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                    <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="nameofuser"
+                            label="Your Name"
+                            name="nameofuser"
+                            autoComplete="nameofuser"
+                            autoFocus
+                            className={Styles.customTextField}
+                            onChange={(e) => setName(e.target.value)}
+                        />
                         <TextField
                             margin="normal"
                             required
                             fullWidth
-                            id="email"
+                            id="mymail"
                             label="Email Address"
                             name="email"
                             autoComplete="email"
-                            autoFocus
                             className={Styles.customTextField}
+                            onChange={(e) => setUserEmail(e.target.value)}
                         />
                         <TextField
                             margin="normal"
@@ -73,6 +123,7 @@ function Register() {
                             id="password"
                             autoComplete="current-password"
                             className={Styles.customTextField}
+                            onChange={(e) => setUserPassword(e.target.value)}
                         />
                         
                         <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>

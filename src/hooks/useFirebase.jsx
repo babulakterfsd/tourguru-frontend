@@ -1,10 +1,8 @@
 /* eslint-disable prettier/prettier */
 import {
-    getAuth,
+    createUserWithEmailAndPassword, getAuth,
     GoogleAuthProvider,
-    onAuthStateChanged,
-    signInWithPopup,
-    signOut
+    onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile
 } from 'firebase/auth';
 import { useEffect, useState } from 'react';
 import initializeAuthentication from '../firebase/firebase.init';
@@ -16,6 +14,10 @@ const auth = getAuth();
 const useFirebase = () => {
     const [user, setUser] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [userEmail, setUserEmail] = useState(null);
+    const [userPassword, setUserPassword] = useState('');
+    const [response, setResponse] = useState('');
+    const [name, setName] = useState('');
 
     const googleProvider = new GoogleAuthProvider();
 
@@ -30,6 +32,7 @@ const useFirebase = () => {
         setIsLoading(false);
     };
 
+    // signin using google
     const handleGoogleLogin = () => {
         signInUsingGoogle()
             .then((result) => {
@@ -40,6 +43,23 @@ const useFirebase = () => {
             });
         setIsLoading(false);
     };
+
+     // update user info
+  const updateUser = () => {
+    updateProfile(auth.currentUser, {
+      displayName: name,
+    })
+  };
+
+    // register with email and password
+  const registerWithEmail = (email, password) => {
+    if (userPassword.length < 6) {
+      setResponse("Password is Less than 6 character, update it!");
+      return createUserWithEmailAndPassword(auth, email, password);
+    } 
+      setResponse("account created successfully !");
+      return createUserWithEmailAndPassword(auth, email, password);
+  };
 
     // firebase observer if user is logged in or not, checking user state
     useEffect(() => {
@@ -56,11 +76,19 @@ const useFirebase = () => {
     }, []);
 
     return {
+        auth,
         handleGoogleLogin,
         user,
+        setUser,
         logOut,
         isLoading,
         setIsLoading,
+        userEmail,
+        setUserEmail,
+        userPassword,
+        setUserPassword,
+        response,
+        registerWithEmail,updateUser,name, setName, setResponse, signInWithEmailAndPassword
     };
 };
 
