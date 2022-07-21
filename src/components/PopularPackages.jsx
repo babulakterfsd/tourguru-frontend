@@ -59,8 +59,7 @@ function Packages() {
                         <Button
                             variant="contained"
                             style={{
-                                width: mobile ? `150px` : `250px`,
-                                height: mobile ? `40px` : `50px`,
+                                padding: mobile ? `12px 6px` : '14px 12px',
                                 fontWeight: `700`,
                                 fontFamily: `abril`,
                             }}

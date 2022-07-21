@@ -1,6 +1,7 @@
 import React from 'react';
 import Banner from '../components/Banner';
 import CheckIn from '../components/CheckIn';
+import Motivation from '../components/Motivation';
 import PopularPackages from '../components/PopularPackages';
 import ScrollToTop from '../components/ScrollToTop';
 
@@ -11,6 +12,7 @@ function Home() {
             <Banner />
             <CheckIn />
             <PopularPackages />
+            <Motivation />
         </div>
     );
 }

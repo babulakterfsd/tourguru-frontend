@@ -12,7 +12,7 @@ function SinglePackageCard({ singlePackage }) {
     const { location, duration, price, img, services, description } = singlePackage;
 
     return (
-        <Card style={{ height: mobile ? `420px` : `450px` }}>
+        <Card style={{ height: mobile ? `430px` : `450px` }}>
             <Box style={{ cursor: `default` }}>
                 <CardMedia component="img" height="auto" image={img} alt="view of the location" />
                 <CardContent>
