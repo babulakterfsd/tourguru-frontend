@@ -4,6 +4,7 @@ import { Container, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import React from 'react';
+import ScrollToTop from '../components/ScrollToTop';
 import SinglePackageCard from '../components/SinglePackageCard';
 import useAuth from '../hooks/useAuth';
 
@@ -18,6 +19,7 @@ function Packages() {
                 padding: mobile ? `50px 10px` : `80px 10px`,
             }}
         >
+            <ScrollToTop />
             <Container>
                 <Typography color="primary" style={{ textAlign: `center` }}>
                     All Packages

@@ -12,6 +12,7 @@ import {
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import ScrollToTop from '../components/ScrollToTop';
 import useAuth from '../hooks/useAuth';
 import Styles from '../styles/Login.module.css';
 
@@ -61,8 +62,6 @@ function Register() {
         });
     };
 
-    
-
     return (
         <div
             className={Styles.loginPage}
@@ -74,6 +73,7 @@ function Register() {
                 height: mobile ? `auto`: tablet ? `auto` : `100vh`,
             }}
         >
+            <ScrollToTop />
             <Container component="main" maxWidth="xs" style={{background: `#fff`, borderRadius: `5px`}}> 
                 <Box
                     sx={{
