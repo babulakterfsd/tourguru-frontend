@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-no-useless-fragment */
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
