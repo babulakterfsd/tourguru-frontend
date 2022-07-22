@@ -13,7 +13,6 @@ const AllStates = () => {
     // firebase
     const {
         user,
-        handleGoogleLogin,
         logOut,
         isLoading,
         setIsLoading,
@@ -29,6 +28,8 @@ const AllStates = () => {
         setUser,
         auth,
         signInWithEmailAndPassword,
+        response,
+        signInUsingGoogle,
     } = useFirebase();
 
     // responsive check
@@ -42,10 +43,10 @@ const AllStates = () => {
 
     // axios
     const getAllPackages = () => {
-        axios.get(getAllPackageURL).then((response) => setAllPackages(response?.data));
+        axios.get(getAllPackageURL).then((result) => setAllPackages(result?.data));
     };
     const getPopularPackages = () => {
-        axios.get(getPopularPackageURL).then((response) => setPopularPackages(response?.data));
+        axios.get(getPopularPackageURL).then((result) => setPopularPackages(result?.data));
     };
 
     // api calls
@@ -58,7 +59,6 @@ const AllStates = () => {
 
     return {
         user,
-        handleGoogleLogin,
         logOut,
         isLoading,
         setIsLoading,
@@ -79,6 +79,8 @@ const AllStates = () => {
         setUser,
         auth,
         signInWithEmailAndPassword,
+        response,
+        signInUsingGoogle,
     };
 };
 

@@ -32,18 +32,6 @@ const useFirebase = () => {
         setIsLoading(false);
     };
 
-    // signin using google
-    const handleGoogleLogin = () => {
-        signInUsingGoogle()
-            .then((result) => {
-                setUser(result?.user);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-        setIsLoading(false);
-    };
-
      // update user info
   const updateUser = () => {
     updateProfile(auth.currentUser, {
@@ -77,7 +65,6 @@ const useFirebase = () => {
 
     return {
         auth,
-        handleGoogleLogin,
         user,
         setUser,
         logOut,
@@ -88,7 +75,7 @@ const useFirebase = () => {
         userPassword,
         setUserPassword,
         response,
-        registerWithEmail,updateUser,name, setName, setResponse, signInWithEmailAndPassword
+        registerWithEmail,updateUser,name, setName, setResponse, signInWithEmailAndPassword, signInUsingGoogle
     };
 };
 

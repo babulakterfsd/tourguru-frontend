@@ -20,7 +20,7 @@ import useAuth from '../hooks/useAuth';
 import Styles from '../styles/Login.module.css';
 
 function Login() {
-    const { mobile, tablet, user, handleGoogleLogin, userEmail, setUserEmail, userPassword, setUserPassword, signInWithEmailAndPassword, auth, setUser, setResponse, } = useAuth();
+    const { mobile, tablet, user, userEmail, setUserEmail, userPassword, setUserPassword, signInWithEmailAndPassword, auth, setUser, setResponse, response, signInUsingGoogle, setIsLoading } = useAuth();
     const location = useLocation();
     const targetURL = location.state || '/dashboard';
     const navigate = useNavigate()
@@ -29,6 +29,17 @@ function Login() {
         return <Navigate to="/" replace/>
     }
 
+    const saveUser = (email) => {
+        const myUser = { email};
+        fetch("http://localhost:5000/users", {
+          method: 'PUT',
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(myUser),
+        }).then().catch(err => console.log(err.message))
+      };
+
     const handleSubmit = (event) => {
         event.preventDefault();
         // login(userEmail, userPassword)
@@ -36,11 +47,11 @@ function Login() {
     .then((result) => {
       const myUser = result.user;
       setUser(myUser)
-      setResponse("Login Successful");
+      setResponse("Login Successfull");
       Swal.fire({
         position: 'center',
         icon: 'success',
-        title: `LoggedIn Successfully !`,
+        title: `Login Successfull`,
         showConfirmButton: false,
         timer: 2500
       })
@@ -48,17 +59,31 @@ function Login() {
       setResponse('')
     })
     .catch((error) => {
-      setResponse(error.message);
-      console.log(error);
-      Swal.fire({
-        position: 'center',
-        icon: 'error',
-        title: `Login Failed, Try Again!`,
-        showConfirmButton: false,
-        timer: 2500
-      })
+      setResponse('Error happened !');
+        Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: `Login Failed!`,
+            showConfirmButton: false,
+            timer: 2500
+          })
     });
     }; 
+
+    // signin using google
+    const handleGoogleLogin = () => {
+        signInUsingGoogle()
+            .then((result) => {
+                setUser(result?.user);
+                Swal.fire(`Login Successfull !`)
+                saveUser(result?.user?.email)
+            })
+            .catch((error) => {
+                console.log(error);
+                Swal.fire(`Login Failed !`)
+            });
+        setIsLoading(false);
+    };
 
     return (
         <div

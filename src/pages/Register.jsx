@@ -27,6 +27,18 @@ function Register() {
         return navigate('/')
       }
 
+      // save user data to the mongodb database
+  const saveUser = (email) => {
+    const myUser = {email};
+    fetch("http://localhost:5000/users", {
+      method: 'PUT',
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(myUser),
+    }).then().catch(err => console.log(err))
+  };
+
     const handleSubmit = (event) => {
         event.preventDefault();
         // register function
@@ -47,6 +59,7 @@ function Register() {
         //   history.push(redirect);
           setResponse("");
         //   setTimeout(() => navigate('/'), 3000);
+           saveUser(userEmail)
            navigate(targetURL)
         })
         .catch((error) => {
@@ -61,6 +74,7 @@ function Register() {
           console.log(error);
         });
     };
+
 
     return (
         <div
