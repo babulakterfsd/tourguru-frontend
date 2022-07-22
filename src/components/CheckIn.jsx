@@ -51,11 +51,11 @@ function CheckIn() {
                             width: `250px`,
                             height: `40px`,
                             padding: `8px 20px`,
-                            fontWeight: `900`,
                             marginTop: mobile ? `7px` : `15px`,
                             textAlign: `center`,
                             border: `1px solid #ccc`,
                             borderRadius: mobile ? `5px` : `0px`,
+                            fontSize: `16px`,
                         }}
                     />
                 </div>
@@ -89,7 +89,7 @@ function CheckIn() {
                             width: `250px`,
                             height: `40px`,
                             padding: `8px 20px`,
-                            fontWeight: `700`,
+                            fontSize: `16px`,
                             marginTop: mobile ? `7px` : `15px`,
                             textAlign: `center`,
                             border: `1px solid #ccc`,
