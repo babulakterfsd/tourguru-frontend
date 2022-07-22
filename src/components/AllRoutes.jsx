@@ -2,6 +2,7 @@ import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import About from '../pages/About';
 import Blog from '../pages/Blog';
+import Checkout from '../pages/checkout/Checkout';
 import Contact from '../pages/Contact';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
@@ -18,6 +19,7 @@ function AllRoutes() {
             <Route path="/home" element={<Navigate to="/" replace />} />
             <Route path="/about" element={<About />} />
             <Route path="/packages" element={<Packages />} />
+            <Route path="/packages/:packageid" element={<Checkout />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />

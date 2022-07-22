@@ -10,6 +10,28 @@ const AllStates = () => {
     const [allPackages, setAllPackages] = useState([]);
     const [popularPackages, setPopularPackages] = useState([]);
 
+    // variables
+    const getAllPackageURL = `http://localhost:5000/packages`;
+    const getPopularPackageURL = `http://localhost:5000/packages?limit=6`;
+
+    // get data
+    const getAllPackages = () => {
+        axios.get(getAllPackageURL).then((result) => setAllPackages(result?.data));
+    };
+
+    const getPopularPackages = () => {
+        axios.get(getPopularPackageURL).then((result) => setPopularPackages(result?.data));
+    };
+
+    // function calls
+    useEffect(() => {
+        getPopularPackages();
+    }, []);
+
+    useEffect(() => {
+        getAllPackages();
+    }, []);
+
     // firebase
     const {
         user,
@@ -38,24 +60,8 @@ const AllStates = () => {
     const desktop = useMediaQuery('(min-width:1199px)');
 
     // variables
-    const getAllPackageURL = `http://localhost:5000/packages?limit=19`;
-    const getPopularPackageURL = `http://localhost:5000/packages?limit=6`;
-
-    // axios
-    const getAllPackages = () => {
-        axios.get(getAllPackageURL).then((result) => setAllPackages(result?.data));
-    };
-    const getPopularPackages = () => {
-        axios.get(getPopularPackageURL).then((result) => setPopularPackages(result?.data));
-    };
 
     // api calls
-    useEffect(() => {
-        getAllPackages();
-    }, []);
-    useEffect(() => {
-        getPopularPackages();
-    }, []);
 
     return {
         user,
@@ -65,8 +71,6 @@ const AllStates = () => {
         mobile,
         tablet,
         desktop,
-        allPackages,
-        popularPackages,
         userEmail,
         setUserEmail,
         userPassword,
@@ -81,6 +85,8 @@ const AllStates = () => {
         signInWithEmailAndPassword,
         response,
         signInUsingGoogle,
+        allPackages,
+        popularPackages,
     };
 };
 

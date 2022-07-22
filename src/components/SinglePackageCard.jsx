@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
 import { Box, Button } from '@mui/material';
 import Card from '@mui/material/Card';
@@ -5,6 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 
 function SinglePackageCard({ singlePackage }) {
@@ -37,18 +39,23 @@ function SinglePackageCard({ singlePackage }) {
                         {description.slice(0, 150)}
                     </Typography>
                     <Box style={{ textAlign: `center` }}>
-                        <Button
-                            variant="contained"
-                            style={{
-                                margin: `25px 0px 0px 0px`,
-                                width: `150px`,
-                                height: `40px`,
-                                fontWeight: `700`,
-                                fontFamily: `abril`,
-                            }}
+                        <Link
+                            to={`/packages/${singlePackage?._id}`}
+                            style={{ textDecoration: `none` }}
                         >
-                            Buy Package
-                        </Button>
+                            <Button
+                                variant="contained"
+                                style={{
+                                    margin: `25px 0px 0px 0px`,
+                                    width: `150px`,
+                                    height: `40px`,
+                                    fontWeight: `700`,
+                                    fontFamily: `abril`,
+                                }}
+                            >
+                                Buy Package
+                            </Button>
+                        </Link>
                     </Box>
                 </CardContent>
             </Box>
