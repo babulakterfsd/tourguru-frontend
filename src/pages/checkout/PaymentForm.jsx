@@ -5,8 +5,10 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import React from 'react';
 import ScrollToTop from '../../components/ScrollToTop';
+import useAuth from '../../hooks/useAuth';
 
 export default function PaymentForm() {
+    const { setOrderData } = useAuth();
     return (
         <>
             <ScrollToTop />
@@ -22,6 +24,12 @@ export default function PaymentForm() {
                         fullWidth
                         autoComplete="cc-name"
                         variant="standard"
+                        onChange={(e) => {
+                            setOrderData((prevState) => ({
+                                ...prevState,
+                                nameOnCard: e.target.value,
+                            }));
+                        }}
                     />
                 </Grid>
                 <Grid item xs={12} md={6}>
@@ -32,6 +40,12 @@ export default function PaymentForm() {
                         fullWidth
                         autoComplete="cc-number"
                         variant="standard"
+                        onChange={(e) => {
+                            setOrderData((prevState) => ({
+                                ...prevState,
+                                cardNumber: e.target.value,
+                            }));
+                        }}
                     />
                 </Grid>
                 <Grid item xs={12} md={6}>
@@ -42,6 +56,12 @@ export default function PaymentForm() {
                         fullWidth
                         autoComplete="cc-exp"
                         variant="standard"
+                        onChange={(e) => {
+                            setOrderData((prevState) => ({
+                                ...prevState,
+                                expiryDate: e.target.value,
+                            }));
+                        }}
                     />
                 </Grid>
                 <Grid item xs={12} md={6}>
@@ -53,6 +73,12 @@ export default function PaymentForm() {
                         fullWidth
                         autoComplete="cc-csc"
                         variant="standard"
+                        onChange={(e) => {
+                            setOrderData((prevState) => ({
+                                ...prevState,
+                                cvv: e.target.value,
+                            }));
+                        }}
                     />
                 </Grid>
                 <Grid item xs={12}>

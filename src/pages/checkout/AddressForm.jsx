@@ -9,40 +9,7 @@ import ScrollToTop from '../../components/ScrollToTop';
 import useAuth from '../../hooks/useAuth';
 
 export default function AddressForm() {
-    const {
-        mobile,
-        shippingAddress,
-        setShippingAddress,
-        firstName,
-        setFirstName,
-        lastName,
-        setLastName,
-        address1,
-        setAddress1,
-        address2,
-        setAddress2,
-        city,
-        setCity,
-        state,
-        setState,
-        zip,
-        setZip,
-        country,
-        setCountry,
-        isShippingAddressSaved,
-        setIsShippingAddressSaved,
-    } = useAuth();
-
-    const userAddress = {
-        firstName,
-        lastName,
-        address1,
-        address2,
-        city,
-        state,
-        zip,
-        country,
-    };
+    const { mobile, orderData, setOrderData } = useAuth();
 
     return (
         <>
@@ -60,7 +27,12 @@ export default function AddressForm() {
                         fullWidth
                         autoComplete="given-name"
                         variant="standard"
-                        onChange={(e) => setFirstName(e.target.value)}
+                        onChange={(e) => {
+                            setOrderData((prevState) => ({
+                                ...prevState,
+                                firstName: e.target.value,
+                            }));
+                        }}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -72,7 +44,12 @@ export default function AddressForm() {
                         fullWidth
                         autoComplete="family-name"
                         variant="standard"
-                        onChange={(e) => setLastName(e.target.value)}
+                        onChange={(e) => {
+                            setOrderData((prevState) => ({
+                                ...prevState,
+                                lastName: e.target.value,
+                            }));
+                        }}
                     />
                 </Grid>
                 <Grid item xs={12}>
@@ -84,7 +61,12 @@ export default function AddressForm() {
                         fullWidth
                         autoComplete="shipping address-line1"
                         variant="standard"
-                        onChange={(e) => setAddress1(e.target.value)}
+                        onChange={(e) => {
+                            setOrderData((prevState) => ({
+                                ...prevState,
+                                address1: e.target.value,
+                            }));
+                        }}
                     />
                 </Grid>
                 <Grid item xs={12}>
@@ -96,7 +78,12 @@ export default function AddressForm() {
                         fullWidth
                         autoComplete="shipping address-line2"
                         variant="standard"
-                        onChange={(e) => setAddress2(e.target.value)}
+                        onChange={(e) => {
+                            setOrderData((prevState) => ({
+                                ...prevState,
+                                address2: e.target.value,
+                            }));
+                        }}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -108,7 +95,12 @@ export default function AddressForm() {
                         fullWidth
                         autoComplete="shipping address-level2"
                         variant="standard"
-                        onChange={(e) => setCity(e.target.value)}
+                        onChange={(e) => {
+                            setOrderData((prevState) => ({
+                                ...prevState,
+                                city: e.target.value,
+                            }));
+                        }}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -119,7 +111,12 @@ export default function AddressForm() {
                         label="State/Province/Region"
                         fullWidth
                         variant="standard"
-                        onChange={(e) => setState(e.target.value)}
+                        onChange={(e) => {
+                            setOrderData((prevState) => ({
+                                ...prevState,
+                                state: e.target.value,
+                            }));
+                        }}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -131,7 +128,12 @@ export default function AddressForm() {
                         fullWidth
                         autoComplete="shipping postal-code"
                         variant="standard"
-                        onChange={(e) => setZip(e.target.value)}
+                        onChange={(e) => {
+                            setOrderData((prevState) => ({
+                                ...prevState,
+                                zip: e.target.value,
+                            }));
+                        }}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -143,7 +145,12 @@ export default function AddressForm() {
                         fullWidth
                         autoComplete="shipping country"
                         variant="standard"
-                        onChange={(e) => setCountry(e.target.value)}
+                        onChange={(e) => {
+                            setOrderData((prevState) => ({
+                                ...prevState,
+                                country: e.target.value,
+                            }));
+                        }}
                     />
                 </Grid>
                 <Grid
@@ -157,14 +164,8 @@ export default function AddressForm() {
                     }}
                 >
                     <FormControlLabel
-                        control={
-                            <Checkbox
-                                name="saveAddress"
-                                value="yes"
-                                onChange={() => setIsShippingAddressSaved(!isShippingAddressSaved)}
-                            />
-                        }
-                        label="Save data for the next time"
+                        control={<Checkbox name="saveAddress" value="yes" />}
+                        label="Save data for next time use"
                     />
                 </Grid>
             </Grid>

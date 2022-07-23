@@ -16,7 +16,7 @@ import ThanksForOrder from './ThanksForOrder';
 
 export default function Checkout() {
     const [activeStep, setActiveStep] = useState(0);
-    const { mobile, shippingAddress, isShippingAddressSaved } = useAuth();
+    const { mobile, orderData } = useAuth();
 
     const handleNext = () => {
         setActiveStep((prev) => prev + 1);
@@ -52,7 +52,14 @@ export default function Checkout() {
                         {activeStep <= 0 || activeStep >= 3 ? null : (
                             <Button onClick={() => handleBack()}>Back</Button>
                         )}
-                        {activeStep >= 3 ? null : (
+                        {activeStep >= 3 ? null : !orderData.firstName ||
+                          !orderData.lastName ||
+                          !orderData.address1 ||
+                          !orderData.address2 ||
+                          !orderData.city ||
+                          !orderData.state ||
+                          !orderData.zip ||
+                          !orderData.country ? null : (
                             <Button variant="contained" onClick={() => handleNext()}>
                                 {activeStep === 2 ? `Place Order` : `Next`}
                             </Button>

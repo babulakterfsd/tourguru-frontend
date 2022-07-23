@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import Grid from '@mui/material/Grid';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -11,7 +10,7 @@ import ScrollToTop from '../../components/ScrollToTop';
 import useAuth from '../../hooks/useAuth';
 
 export default function Review() {
-    const { shippingAddress } = useAuth();
+    const { orderData } = useAuth();
     const [buyingPackage, setBuyingPackage] = useState({});
     const { packageid } = useParams();
     const buyingPackageURL = `http://localhost:5000/packages/${packageid}`;
@@ -20,7 +19,7 @@ export default function Review() {
         axios.get(buyingPackageURL).then((result) => setBuyingPackage(result?.data));
     }, [buyingPackageURL]);
 
-    const { location, duration, price, img, services, description } = buyingPackage;
+    const { location, duration, price, services } = buyingPackage;
 
     return (
         <>
@@ -67,18 +66,22 @@ export default function Review() {
                     </Typography>
                     <Typography
                         gutterBottom
-                    >{`${shippingAddress?.firstName} ${shippingAddress?.lastName}`}</Typography>
+                    >{`${orderData?.firstName} ${orderData?.lastName}`}</Typography>
                     <Typography
                         gutterBottom
-                    >{`${shippingAddress?.address1},  ${shippingAddress?.address2}`}</Typography>
+                    >{`${orderData?.address1},  ${orderData?.address2}`}</Typography>
                     <Typography
                         gutterBottom
-                    >{`${shippingAddress?.city}, ${shippingAddress?.zip}, ${shippingAddress?.state}, ${shippingAddress?.country}`}</Typography>
+                    >{`${orderData?.city}, ${orderData?.zip}, ${orderData?.state}, ${orderData?.country}`}</Typography>
                 </Grid>
                 <Grid item container direction="column" xs={12} sm={6}>
                     <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
                         Payment details
                     </Typography>
+                    <Typography gutterBottom>{orderData?.nameOnCard}</Typography>
+                    <Typography gutterBottom>{orderData?.cardNumber}</Typography>
+                    <Typography gutterBottom>{orderData?.expiryDate}</Typography>
+                    <Typography gutterBottom>{orderData?.cvv}</Typography>
                 </Grid>
             </Grid>
         </>
