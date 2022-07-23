@@ -9,6 +9,8 @@ const AllStates = () => {
     // states
     const [allPackages, setAllPackages] = useState([]);
     const [popularPackages, setPopularPackages] = useState([]);
+    const [shippingAddress, setShippingAddress] = useState({});
+    const [paymentDetails, setPaymentDetails] = useState({});
 
     // variables
     const getAllPackageURL = `http://localhost:5000/packages`;
@@ -87,6 +89,10 @@ const AllStates = () => {
         signInUsingGoogle,
         allPackages,
         popularPackages,
+        shippingAddress,
+        setShippingAddress,
+        paymentDetails,
+        setPaymentDetails,
     };
 };
 

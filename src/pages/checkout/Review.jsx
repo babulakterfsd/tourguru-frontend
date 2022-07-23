@@ -8,8 +8,10 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ScrollToTop from '../../components/ScrollToTop';
+import useAuth from '../../hooks/useAuth';
 
 export default function Review() {
+    const { shippingAddress } = useAuth();
     const [buyingPackage, setBuyingPackage] = useState({});
     const { packageid } = useParams();
     const buyingPackageURL = `http://localhost:5000/packages/${packageid}`;
@@ -19,8 +21,6 @@ export default function Review() {
     }, [buyingPackageURL]);
 
     const { location, duration, price, img, services, description } = buyingPackage;
-
-    console.log(services);
 
     return (
         <>
@@ -65,8 +65,15 @@ export default function Review() {
                     <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
                         Shipping
                     </Typography>
-                    <Typography gutterBottom>John Smith</Typography>
-                    {/* <Typography gutterBottom>{addresses.join(', ')}</Typography> */}
+                    <Typography
+                        gutterBottom
+                    >{`${shippingAddress?.firstName} ${shippingAddress?.lastName}`}</Typography>
+                    <Typography
+                        gutterBottom
+                    >{`${shippingAddress?.address1},  ${shippingAddress?.address2}`}</Typography>
+                    <Typography
+                        gutterBottom
+                    >{`${shippingAddress?.city}, ${shippingAddress?.zip}, ${shippingAddress?.state}, ${shippingAddress?.country}`}</Typography>
                 </Grid>
                 <Grid item container direction="column" xs={12} sm={6}>
                     <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
