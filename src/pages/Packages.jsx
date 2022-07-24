@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-unused-vars */
-import { Container, Typography } from '@mui/material';
+import { Container, Skeleton, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import React from 'react';
@@ -12,6 +12,56 @@ import useAuth from '../hooks/useAuth';
 function Packages() {
     const { mobile, tablet, desktop, allPackages, orderData, activeStep, setActiveStep } =
         useAuth();
+
+    if (allPackages?.length === 0) {
+        return (
+            <Container>
+                <Box
+                    style={{
+                        height: `100vh`,
+                        display: `flex`,
+                        justifyContent: `center`,
+                        alignItems: `center`,
+                        margin: mobile ? `150px 0px` : `180px 15px`,
+                    }}
+                >
+                    {mobile ? (
+                        <Grid container spacing={3}>
+                            {Array.from(Array(3)).map((packages, index) => (
+                                <Grid item xs={12}>
+                                    <Skeleton
+                                        variant="rectangular"
+                                        style={{
+                                            width: `100%`,
+                                            height: mobile ? `150px` : `210px`,
+                                        }}
+                                    />
+                                    <Skeleton />
+                                    <Skeleton width="60%" />
+                                </Grid>
+                            ))}
+                        </Grid>
+                    ) : (
+                        <Grid container spacing={3}>
+                            {Array.from(Array(9)).map((packages, index) => (
+                                <Grid item md={6} lg={4}>
+                                    <Skeleton
+                                        variant="rectangular"
+                                        style={{
+                                            width: `100%`,
+                                            height: mobile ? `150px` : `210px`,
+                                        }}
+                                    />
+                                    <Skeleton />
+                                    <Skeleton width="60%" />
+                                </Grid>
+                            ))}
+                        </Grid>
+                    )}
+                </Box>
+            </Container>
+        );
+    }
 
     return (
         <div
