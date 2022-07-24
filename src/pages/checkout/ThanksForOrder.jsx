@@ -7,7 +7,7 @@ import useAuth from '../../hooks/useAuth';
 
 function ThanksForOrder() {
     const { orderData, activeStep, setActiveStep } = useAuth();
-    const [seconds, setSeconds] = useState(15);
+    const [seconds, setSeconds] = useState(20);
     const navigate = useNavigate();
     const param = useParams();
 
@@ -19,7 +19,7 @@ function ThanksForOrder() {
                 setActiveStep(0);
                 navigate('/dashboard');
             }
-        }, 15000);
+        }, 20000);
     }, [navigate, activeStep, setActiveStep]);
 
     useEffect(() => {
@@ -36,8 +36,8 @@ function ThanksForOrder() {
                     Thank you for your order.
                 </Typography>
                 <Typography variant="subtitle1">
-                    Your order number is #2001539. We have emailed your order confirmation, and will
-                    send you an update when your order has shipped.
+                    We have emailed your order confirmation, and will send you an update when your
+                    order has shipped.You can track your order in the dashboard.
                 </Typography>
                 <Box style={{ textAlign: `center`, margin: `50px 0px` }}>
                     <Typography variant="subtitle2" style={{ color: `#f3680b` }}>

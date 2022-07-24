@@ -19,12 +19,14 @@ function AllRoutes() {
             <Route path="/home" element={<Navigate to="/" replace />} />
             <Route path="/about" element={<About />} />
             <Route path="/packages" element={<Packages />} />
-            <Route path="/packages/:packageid" element={<Checkout />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="*" element={<NotFound />} />
+            <Route path="/packages/:packageid" element={<PrivateOutlet />}>
+                <Route path="" element={<Checkout />} />
+            </Route>
             <Route path="/*" element={<PrivateOutlet />}>
                 <Route path="dashboard" element={<Dashboard />} />
             </Route>

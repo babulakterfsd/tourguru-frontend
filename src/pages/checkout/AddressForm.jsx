@@ -187,7 +187,14 @@ export default function AddressForm() {
                           !orderData.city ||
                           !orderData.state ||
                           !orderData.zip ||
-                          !orderData.country ? null : (
+                          !orderData.country ? (
+                            <Typography
+                                variant="subtitle1"
+                                style={{ color: `#f3680b`, cursor: `wait` }}
+                            >
+                                Fill all the fields to proceed next
+                            </Typography>
+                        ) : (
                             <Button variant="contained" onClick={() => handleNext()}>
                                 {activeStep === 2 ? `Place Order` : `Next`}
                             </Button>

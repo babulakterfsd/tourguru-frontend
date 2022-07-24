@@ -96,14 +96,21 @@ export default function PaymentForm() {
                         control={<Checkbox name="saveCard" value="yes" />}
                         label="Remember credit card details for next time"
                     />
-                    <Box style={{ display: `flex`, justifyContent: `end` }}>
+                    <Box style={{ display: `flex`, justifyContent: `end`, alignItems: `center` }}>
                         {activeStep <= 0 || activeStep >= 3 ? null : (
                             <Button onClick={() => handleBack()}>Back</Button>
                         )}
                         {activeStep >= 3 ? null : !orderData.nameOnCard ||
                           !orderData.cardNumber ||
                           !orderData.expiryDate ||
-                          !orderData.cvv ? null : (
+                          !orderData.cvv ? (
+                            <Typography
+                                variant="subtitle1"
+                                style={{ color: `#f3680b`, cursor: `wait` }}
+                            >
+                                Fill all the fields to proceed next
+                            </Typography>
+                        ) : (
                             <Button variant="contained" onClick={() => handleNext()}>
                                 {activeStep === 2 ? `Place Order` : `Next`}
                             </Button>

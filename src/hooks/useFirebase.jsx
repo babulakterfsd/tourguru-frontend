@@ -1,8 +1,8 @@
 /* eslint-disable prettier/prettier */
 import {
-    createUserWithEmailAndPassword, getAuth,
-    GoogleAuthProvider,
-    onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile
+  createUserWithEmailAndPassword, getAuth,
+  GoogleAuthProvider,
+  onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile
 } from 'firebase/auth';
 import { useEffect, useState } from 'react';
 import initializeAuthentication from '../firebase/firebase.init';

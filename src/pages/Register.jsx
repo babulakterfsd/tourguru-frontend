@@ -20,7 +20,7 @@ function Register() {
     const { mobile, tablet, handleGoogleLogin,userEmail, userPassword, setUserEmail, setUserPassword, registerWithEmail, setUser, setResponse,name, setName, updateUser, response, user } = useAuth();
 
     const location = useLocation();
-    const targetURL = location.state || '/dashboard';
+    const targetURL = location.state || '/';
     const navigate = useNavigate()
 
     if(user) {

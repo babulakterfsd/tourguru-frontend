@@ -20,7 +20,7 @@ import useAuth from '../hooks/useAuth';
 import Styles from '../styles/Login.module.css';
 
 function Login() {
-    const { mobile, tablet, user, userEmail, setUserEmail, userPassword, setUserPassword, signInWithEmailAndPassword, auth, setUser, setResponse, response, signInUsingGoogle, setIsLoading } = useAuth();
+    const { mobile, tablet, user, userEmail, setUserEmail, userPassword, setUserPassword, signInWithEmailAndPassword, auth, setUser, setResponse, response, signInUsingGoogle, setIsLoading, setActiveStep } = useAuth();
     const location = useLocation();
     const targetURL = location.state || '/dashboard';
     const navigate = useNavigate()
@@ -28,6 +28,8 @@ function Login() {
     if(user) {
         return <Navigate to="/" replace/>
     }
+
+   
 
     const saveUser = (email) => {
         const myUser = { email};
@@ -48,6 +50,7 @@ function Login() {
       const myUser = result.user;
       setUser(myUser)
       setResponse("Login Successfull");
+      setActiveStep(0)
       Swal.fire({
         position: 'center',
         icon: 'success',
@@ -77,6 +80,8 @@ function Login() {
                 setUser(result?.user);
                 Swal.fire(`Login Successfull !`)
                 saveUser(result?.user?.email)
+                setActiveStep(0)
+                navigate(targetURL)
             })
             .catch((error) => {
                 console.log(error);
@@ -84,6 +89,8 @@ function Login() {
             });
         setIsLoading(false);
     };
+
+    
 
     return (
         <div

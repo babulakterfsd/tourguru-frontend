@@ -8,19 +8,49 @@ import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import ScrollToTop from '../../components/ScrollToTop';
 import useAuth from '../../hooks/useAuth';
 
 export default function Review() {
-    const { orderData, setOrderData, activeStep, setActiveStep } = useAuth();
+    const { orderData, setOrderData, activeStep, setActiveStep, user } = useAuth();
 
+    const navigate = useNavigate();
     const [buyingPackage, setBuyingPackage] = useState({});
     const { packageid } = useParams();
     const buyingPackageURL = `http://localhost:5000/packages/${packageid}`;
+    const placeOrderURL = `http://localhost:5000/placeorder`;
+
+    const placeOrder = () => {
+        const options = {
+            url: placeOrderURL,
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json;charset=UTF-8',
+            },
+            data: { packageOrderedBy: user?.email, ...orderData },
+        };
+
+        axios(options).then((response) => {
+            if (response?.data?.insertedId) {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: `Order Confirmed! Your order id is #${response?.data?.insertedId}`,
+                    showConfirmButton: false,
+                    timer: 5000,
+                });
+            } else {
+                Swal.fire(`Sorry, We failed to place the Order !`);
+            }
+        });
+    };
 
     const handleNext = () => {
         setActiveStep((prev) => prev + 1);
+        placeOrder();
         if (activeStep === 2) {
             setOrderData({});
         }
