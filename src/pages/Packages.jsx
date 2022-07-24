@@ -10,7 +10,8 @@ import SinglePackageCard from '../components/SinglePackageCard';
 import useAuth from '../hooks/useAuth';
 
 function Packages() {
-    const { mobile, tablet, desktop, allPackages } = useAuth();
+    const { mobile, tablet, desktop, allPackages, orderData, activeStep, setActiveStep } =
+        useAuth();
 
     return (
         <div

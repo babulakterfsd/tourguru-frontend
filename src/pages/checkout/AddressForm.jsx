@@ -1,4 +1,6 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable no-unused-vars */
+import { Box, Button } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Grid from '@mui/material/Grid';
@@ -9,7 +11,14 @@ import ScrollToTop from '../../components/ScrollToTop';
 import useAuth from '../../hooks/useAuth';
 
 export default function AddressForm() {
-    const { mobile, orderData, setOrderData } = useAuth();
+    const { mobile, orderData, setOrderData, activeStep, setActiveStep } = useAuth();
+
+    const handleNext = () => {
+        setActiveStep((prev) => prev + 1);
+    };
+    const handleBack = () => {
+        setActiveStep((prev) => prev - 1);
+    };
 
     return (
         <>
@@ -167,6 +176,23 @@ export default function AddressForm() {
                         control={<Checkbox name="saveAddress" value="yes" />}
                         label="Save data for next time use"
                     />
+                    <Box style={{ display: `flex`, justifyContent: `end` }}>
+                        {activeStep <= 0 || activeStep >= 3 ? null : (
+                            <Button onClick={() => handleBack()}>Back</Button>
+                        )}
+                        {activeStep >= 3 ? null : !orderData.firstName ||
+                          !orderData.lastName ||
+                          !orderData.address1 ||
+                          !orderData.address2 ||
+                          !orderData.city ||
+                          !orderData.state ||
+                          !orderData.zip ||
+                          !orderData.country ? null : (
+                            <Button variant="contained" onClick={() => handleNext()}>
+                                {activeStep === 2 ? `Place Order` : `Next`}
+                            </Button>
+                        )}
+                    </Box>
                 </Grid>
             </Grid>
         </>

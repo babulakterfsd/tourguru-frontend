@@ -10,6 +10,7 @@ const AllStates = () => {
     const [allPackages, setAllPackages] = useState([]);
     const [popularPackages, setPopularPackages] = useState([]);
     const [orderData, setOrderData] = useState({});
+    const [activeStep, setActiveStep] = useState(0);
 
     // variables
     const getAllPackageURL = `http://localhost:5000/packages`;
@@ -90,6 +91,8 @@ const AllStates = () => {
         popularPackages,
         orderData,
         setOrderData,
+        activeStep,
+        setActiveStep,
     };
 };
 

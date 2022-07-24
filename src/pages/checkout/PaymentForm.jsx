@@ -1,3 +1,5 @@
+/* eslint-disable no-nested-ternary */
+import { Box, Button } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Grid from '@mui/material/Grid';
@@ -8,7 +10,15 @@ import ScrollToTop from '../../components/ScrollToTop';
 import useAuth from '../../hooks/useAuth';
 
 export default function PaymentForm() {
-    const { setOrderData } = useAuth();
+    const { setOrderData, orderData, activeStep, setActiveStep } = useAuth();
+
+    const handleNext = () => {
+        setActiveStep((prev) => prev + 1);
+    };
+    const handleBack = () => {
+        setActiveStep((prev) => prev - 1);
+    };
+
     return (
         <>
             <ScrollToTop />
@@ -86,6 +96,19 @@ export default function PaymentForm() {
                         control={<Checkbox name="saveCard" value="yes" />}
                         label="Remember credit card details for next time"
                     />
+                    <Box style={{ display: `flex`, justifyContent: `end` }}>
+                        {activeStep <= 0 || activeStep >= 3 ? null : (
+                            <Button onClick={() => handleBack()}>Back</Button>
+                        )}
+                        {activeStep >= 3 ? null : !orderData.nameOnCard ||
+                          !orderData.cardNumber ||
+                          !orderData.expiryDate ||
+                          !orderData.cvv ? null : (
+                            <Button variant="contained" onClick={() => handleNext()}>
+                                {activeStep === 2 ? `Place Order` : `Next`}
+                            </Button>
+                        )}
+                    </Box>
                 </Grid>
             </Grid>
         </>

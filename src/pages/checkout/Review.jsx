@@ -1,3 +1,6 @@
+/* eslint-disable no-nested-ternary */
+/* eslint-disable no-unused-vars */
+import { Box, Button } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -10,10 +13,21 @@ import ScrollToTop from '../../components/ScrollToTop';
 import useAuth from '../../hooks/useAuth';
 
 export default function Review() {
-    const { orderData } = useAuth();
+    const { orderData, setOrderData, activeStep, setActiveStep } = useAuth();
+
     const [buyingPackage, setBuyingPackage] = useState({});
     const { packageid } = useParams();
     const buyingPackageURL = `http://localhost:5000/packages/${packageid}`;
+
+    const handleNext = () => {
+        setActiveStep((prev) => prev + 1);
+        if (activeStep === 2) {
+            setOrderData({});
+        }
+    };
+    const handleBack = () => {
+        setActiveStep((prev) => prev - 1);
+    };
 
     useEffect(() => {
         axios.get(buyingPackageURL).then((result) => setBuyingPackage(result?.data));
@@ -83,6 +97,21 @@ export default function Review() {
                     <Typography gutterBottom>{orderData?.expiryDate}</Typography>
                     <Typography gutterBottom>{orderData?.cvv}</Typography>
                 </Grid>
+            </Grid>
+            <Grid>
+                <Box style={{ display: `flex`, justifyContent: `end` }}>
+                    {activeStep <= 0 || activeStep >= 3 ? null : (
+                        <Button onClick={() => handleBack()}>Back</Button>
+                    )}
+                    {activeStep >= 3 ? null : !orderData.nameOnCard ||
+                      !orderData.cardNumber ||
+                      !orderData.expiryDate ||
+                      !orderData.cvv ? null : (
+                        <Button variant="contained" onClick={() => handleNext()}>
+                            {activeStep === 2 ? `Place Order` : `Next`}
+                        </Button>
+                    )}
+                </Box>
             </Grid>
         </>
     );

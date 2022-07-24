@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import Banner from '../components/Banner';
 import CheckIn from '../components/CheckIn';
