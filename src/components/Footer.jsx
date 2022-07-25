@@ -52,24 +52,27 @@ function Footer() {
                                 }}
                             >
                                 <a
-                                    href="https://facebook.com"
+                                    href="https://facebook.com/babulfsd"
                                     style={{ color: '#fff', marginRight: '7px' }}
                                 >
                                     <FacebookIcon />
                                 </a>
                                 <a
-                                    href="https://twitter.com"
+                                    href="https://twitter.com/babulakterfsd"
                                     style={{ color: '#fff', marginRight: '7px' }}
                                 >
                                     <TwitterIcon />
                                 </a>
                                 <a
-                                    href="https://linkedin.com"
+                                    href="https://linkedin.com/in/babulakterfsd"
                                     style={{ color: '#fff', marginRight: '7px' }}
                                 >
                                     <LinkedInIcon />
                                 </a>
-                                <a href="https://github.com" style={{ color: '#fff' }}>
+                                <a
+                                    href="https://github.com/babulakterfsd"
+                                    style={{ color: '#fff' }}
+                                >
                                     <GitHubIcon />
                                 </a>
                             </Box>
