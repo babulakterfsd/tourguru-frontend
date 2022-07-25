@@ -2,8 +2,11 @@
 import { Button } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useAuth from '../hooks/useAuth';
 
 function Dashboard() {
+    const { user } = useAuth();
+
     return (
         <div>
             <p>This is dashboard</p>

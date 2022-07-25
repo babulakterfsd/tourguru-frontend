@@ -12,6 +12,7 @@ import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import DefaultUserImage from '../assests/images/userdefault.png';
 import useAuth from '../hooks/useAuth';
 
 function Navbar() {
@@ -203,17 +204,31 @@ function Navbar() {
                     ) : (
                         <Box sx={{ flexGrow: 0 }} style={{ marginLeft: 'auto' }}>
                             <Tooltip title="settings">
-                                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                    <img
-                                        src={user?.photoURL}
-                                        alt="userImage"
-                                        style={{
-                                            height: '40px',
-                                            width: '40px',
-                                            borderRadius: '100px',
-                                        }}
-                                    />
-                                </IconButton>
+                                {user?.photoURL !== null ? (
+                                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                        <img
+                                            src={user?.photoURL}
+                                            alt="userImage"
+                                            style={{
+                                                height: '40px',
+                                                width: '40px',
+                                                borderRadius: '100px',
+                                            }}
+                                        />
+                                    </IconButton>
+                                ) : (
+                                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                        <img
+                                            src={DefaultUserImage}
+                                            alt="userImage"
+                                            style={{
+                                                height: '40px',
+                                                width: '40px',
+                                                borderRadius: '100px',
+                                            }}
+                                        />
+                                    </IconButton>
+                                )}
                             </Tooltip>
                             <Menu
                                 sx={{ mt: '45px' }}

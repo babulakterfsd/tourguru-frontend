@@ -8,7 +8,6 @@ function ToTopButton() {
     useEffect(() => {
         const handleScroll = () => {
             setWindowHeight(window.scrollY > 500);
-            console.log(windowHeight, window.scrollY);
         };
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
