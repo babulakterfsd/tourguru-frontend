@@ -1,0 +1,25 @@
+.scrollToTop {
+  color: #f3680b;
+  cursor: pointer;
+  display: block;
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  z-index: 9999;
+  animation: toTop 2s linear 2s infinite backwards;
+}
+
+@keyframes toTop {
+  0% {
+    transform: translateY(-10px);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+  75% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}

@@ -43,7 +43,7 @@ function Packages() {
                     ) : (
                         <Grid container spacing={3}>
                             {Array.from(Array(9)).map((packages, index) => (
-                                <Grid item md={6} lg={4}>
+                                <Grid item md={6} lg={4} key={index}>
                                     <Skeleton
                                         variant="rectangular"
                                         style={{

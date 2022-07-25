@@ -7,6 +7,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 import Styles from '../styles/Footer.module.css';
+import ToTopButton from './ToTopButton';
 
 function Footer() {
     const { mobile } = useAuth();
@@ -127,6 +128,7 @@ function Footer() {
                     <Typography>Developed by Babul Akter | copyright 2023 &copy;</Typography>
                 </Box>
             </Container>
+            <ToTopButton />
         </div>
     );
 }
