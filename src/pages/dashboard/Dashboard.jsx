@@ -1,7 +1,6 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/jsx-props-no-spreading */
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import { Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,12 +13,8 @@ import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import { useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
 import Classes from '../../styles/Dashboard.module.css';
-import Chart from './Chart';
-import Deposits from './Deposits';
 import { mainListItems, secondaryListItems } from './ListItems';
-import Orders from './Orders';
 
 const drawerWidth = 240;
 
@@ -54,9 +49,6 @@ function DashboardContent() {
     const toggleDrawer = () => {
         setOpen(!open);
     };
-
-    const { pathname } = useLocation();
-    const { id } = useParams();
 
     return (
         <Box sx={{ display: 'flex' }} className={Classes.mainDashboardStyle}>
@@ -102,7 +94,7 @@ function DashboardContent() {
                                     height: 240,
                                 }}
                             >
-                                <Chart />
+                                <Typography>Some Demo Content</Typography>
                             </Paper>
                         </Grid>
                         {/* Recent Deposits */}
@@ -115,13 +107,13 @@ function DashboardContent() {
                                     height: 240,
                                 }}
                             >
-                                <Deposits />
+                                <Typography>Some Demo Content</Typography>
                             </Paper>
                         </Grid>
                         {/* Recent Orders */}
                         <Grid item xs={12}>
                             <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                                <Orders />
+                                <Typography>Some Demo Content</Typography>
                             </Paper>
                         </Grid>
                     </Grid>
