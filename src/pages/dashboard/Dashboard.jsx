@@ -12,6 +12,7 @@ import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import { useState } from 'react';
+import Classes from '../../styles/Dashboard.module.css';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import { mainListItems, secondaryListItems } from './ListItems';
@@ -52,7 +53,7 @@ function DashboardContent() {
     };
 
     return (
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ display: 'flex' }} className={Classes.mainDashboardStyle}>
             <CssBaseline />
             <Drawer variant="permanent" open={open}>
                 <Toolbar
