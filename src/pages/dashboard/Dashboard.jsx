@@ -1,5 +1,7 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-props-no-spreading */
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,6 +14,7 @@ import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import { useState } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
 import Classes from '../../styles/Dashboard.module.css';
 import Chart from './Chart';
 import Deposits from './Deposits';
@@ -52,6 +55,9 @@ function DashboardContent() {
         setOpen(!open);
     };
 
+    const { pathname } = useLocation();
+    const { id } = useParams();
+
     return (
         <Box sx={{ display: 'flex' }} className={Classes.mainDashboardStyle}>
             <CssBaseline />
@@ -65,7 +71,7 @@ function DashboardContent() {
                     }}
                 >
                     <IconButton onClick={toggleDrawer}>
-                        <ChevronLeftIcon />
+                        {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
                     </IconButton>
                 </Toolbar>
                 <Divider />
