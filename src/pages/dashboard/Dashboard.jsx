@@ -13,8 +13,9 @@ import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import { useState } from 'react';
+import useAuth from '../../hooks/useAuth';
 import Classes from '../../styles/Dashboard.module.css';
-import { mainListItems, secondaryListItems } from './ListItems';
+import { adminListItems, commonListItems, userListItems } from './ListItems';
 
 const drawerWidth = 240;
 
@@ -50,6 +51,9 @@ function DashboardContent() {
         setOpen(!open);
     };
 
+    const { user } = useAuth();
+    const admin = true;
+
     return (
         <Box sx={{ display: 'flex' }} className={Classes.mainDashboardStyle}>
             <CssBaseline />
@@ -62,15 +66,70 @@ function DashboardContent() {
                         px: [1],
                     }}
                 >
-                    <IconButton onClick={toggleDrawer}>
-                        {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-                    </IconButton>
+                    {open ? (
+                        <div
+                            style={{
+                                display: `flex`,
+                                justifyContent: `center`,
+                                alignItems: `center`,
+                                flexDirection: `column`,
+                                padding: `15px 0px`,
+                                minHeight: `130px`,
+                            }}
+                        >
+                            <Typography variant="p">
+                                {user?.displayname?.length >= 20
+                                    ? `${user?.displayName?.slice(0, 20)}...`
+                                    : user?.displayName}
+                            </Typography>
+                            <Typography variant="p">
+                                {user?.email?.length >= 20
+                                    ? `${user?.email?.slice(0, 20)}...`
+                                    : user?.email}
+                            </Typography>
+
+                            <IconButton onClick={toggleDrawer}>
+                                <ChevronLeftIcon
+                                    style={{
+                                        color: `#f3680b`,
+                                        outline: `1px dotted #ccc`,
+                                        border: `1px solid transparent`,
+                                        borderRadius: `100px`,
+                                        outlineOffset: `3px`,
+                                    }}
+                                />
+                            </IconButton>
+                        </div>
+                    ) : (
+                        <div
+                            style={{
+                                display: `flex`,
+                                justifyContent: `center`,
+                                alignItems: `center`,
+                                flexDirection: `column`,
+                                padding: `15px 0px`,
+                                minHeight: `130px`,
+                            }}
+                        >
+                            <IconButton onClick={toggleDrawer}>
+                                <ChevronRightIcon
+                                    style={{
+                                        color: `#f3680b`,
+                                        outline: `1px dotted #ccc`,
+                                        border: `1px solid transparent`,
+                                        borderRadius: `100px`,
+                                        outlineOffset: `3px`,
+                                    }}
+                                />
+                            </IconButton>
+                        </div>
+                    )}
                 </Toolbar>
                 <Divider />
                 <List component="nav">
-                    {mainListItems}
+                    {admin ? adminListItems : userListItems}
                     <Divider sx={{ my: 1 }} />
-                    {secondaryListItems}
+                    {commonListItems}
                 </List>
             </Drawer>
             <Box

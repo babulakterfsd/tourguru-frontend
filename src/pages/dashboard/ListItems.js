@@ -1,72 +1,91 @@
-import AssignmentIcon from '@mui/icons-material/Assignment';
-import BarChartIcon from '@mui/icons-material/BarChart';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
+import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import LayersIcon from '@mui/icons-material/Layers';
-import PeopleIcon from '@mui/icons-material/People';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import HomeIcon from '@mui/icons-material/Home';
+import LogoutIcon from '@mui/icons-material/Logout';
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import ListSubheader from '@mui/material/ListSubheader';
-import * as React from 'react';
+import React from 'react';
 
-export const mainListItems = (
+export const adminListItems = (
     <>
         <ListItemButton>
             <ListItemIcon>
-                <DashboardIcon />
+                <DashboardIcon style={{ color: `#f3680b` }} />
             </ListItemIcon>
-            <ListItemText primary="Dashboard" />
+            <ListItemText primary="Summary" />
         </ListItemButton>
         <ListItemButton>
             <ListItemIcon>
-                <ShoppingCartIcon />
+                <PeopleAltIcon style={{ color: `#f3680b` }} />
             </ListItemIcon>
-            <ListItemText primary="Orders" />
+            <ListItemText primary="Users List" />
         </ListItemButton>
         <ListItemButton>
             <ListItemIcon>
-                <PeopleIcon />
+                <CollectionsBookmarkIcon style={{ color: `#f3680b` }} />
             </ListItemIcon>
-            <ListItemText primary="Customers" />
+            <ListItemText primary="All Packages" />
         </ListItemButton>
         <ListItemButton>
             <ListItemIcon>
-                <BarChartIcon />
+                <BorderColorIcon style={{ color: `#f3680b` }} />
             </ListItemIcon>
-            <ListItemText primary="Reports" />
+            <ListItemText primary="Add New Package" />
         </ListItemButton>
         <ListItemButton>
             <ListItemIcon>
-                <LayersIcon />
+                <MonetizationOnIcon style={{ color: `#f3680b` }} />
             </ListItemIcon>
-            <ListItemText primary="Integrations" />
+            <ListItemText primary="All Orders" />
+        </ListItemButton>
+    </>
+);
+export const userListItems = (
+    <>
+        <ListItemButton>
+            <ListItemIcon>
+                <AddShoppingCartIcon style={{ color: `#f3680b` }} />
+            </ListItemIcon>
+            <ListItemText primary="My Orders" />
+        </ListItemButton>
+        <ListItemButton>
+            <ListItemIcon>
+                <StarBorderIcon style={{ color: `#f3680b` }} />
+            </ListItemIcon>
+            <ListItemText primary="Review TourGuru" />
         </ListItemButton>
     </>
 );
 
-export const secondaryListItems = (
+export const commonListItems = (
     <>
-        <ListSubheader component="div" inset>
+        {/* <ListSubheader component="div" inset>
             Saved reports
-        </ListSubheader>
+        </ListSubheader> */}
         <ListItemButton>
             <ListItemIcon>
-                <AssignmentIcon />
+                <AccountCircleIcon style={{ color: `#f3680b` }} />
             </ListItemIcon>
-            <ListItemText primary="Current month" />
+            <ListItemText primary="Profile" />
         </ListItemButton>
         <ListItemButton>
             <ListItemIcon>
-                <AssignmentIcon />
+                <HomeIcon style={{ color: `#f3680b` }} />
             </ListItemIcon>
-            <ListItemText primary="Last quarter" />
+            <ListItemText primary="Back to Home" />
         </ListItemButton>
         <ListItemButton>
             <ListItemIcon>
-                <AssignmentIcon />
+                <LogoutIcon style={{ color: `#f3680b` }} />
             </ListItemIcon>
-            <ListItemText primary="Year-end sale" />
+            <ListItemText primary="Logout" />
         </ListItemButton>
     </>
 );
