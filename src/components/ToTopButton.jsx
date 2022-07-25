@@ -16,16 +16,6 @@ function ToTopButton() {
 
     return (
         <div>
-            {/* {windowHeight && (
-                <Button
-                    onClick={() => {
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }}
-                    className={Classes.scrollToTop}
-                >
-                    <ArrowUpwardIcon />
-                </Button>
-            )} */}
             {windowHeight && (
                 <ArrowUpwardIcon
                     onClick={() => {
