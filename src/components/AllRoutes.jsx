@@ -4,12 +4,12 @@ import About from '../pages/About';
 import Blog from '../pages/Blog';
 import Checkout from '../pages/checkout/Checkout';
 import Contact from '../pages/Contact';
+import Dashboard from '../pages/dashboard/Dashboard';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
 import NotFound from '../pages/NotFound';
 import Packages from '../pages/Packages';
 import Register from '../pages/Register';
-import Dashboard from './Dashboard';
 import PrivateOutlet from './PrivateOutlet';
 
 function AllRoutes() {
