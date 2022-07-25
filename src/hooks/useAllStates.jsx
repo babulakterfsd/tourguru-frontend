@@ -11,10 +11,12 @@ const AllStates = () => {
     const [popularPackages, setPopularPackages] = useState([]);
     const [orderData, setOrderData] = useState({});
     const [activeStep, setActiveStep] = useState(0);
+    const [isAdmin, setIsAdmin] = useState(false);
 
     // variables
     const getAllPackageURL = `http://localhost:5000/packages`;
     const getPopularPackageURL = `http://localhost:5000/packages?limit=6`;
+    const checkAdminURL = `http://localhost:5000/users/:email`;
 
     // get data
     const getAllPackages = () => {
@@ -25,6 +27,11 @@ const AllStates = () => {
         axios.get(getPopularPackageURL).then((result) => setPopularPackages(result?.data));
     };
 
+    // check admin role
+    const checkIsAdminOrNot = () => {
+        axios.get(checkAdminURL).then((result) => setIsAdmin(result?.data?.admin));
+    };
+
     // function calls
     useEffect(() => {
         getPopularPackages();
@@ -32,6 +39,10 @@ const AllStates = () => {
 
     useEffect(() => {
         getAllPackages();
+    }, []);
+
+    useEffect(() => {
+        checkIsAdminOrNot();
     }, []);
 
     // firebase
@@ -61,10 +72,6 @@ const AllStates = () => {
     const tablet = useMediaQuery('(max-width:992px)');
     const desktop = useMediaQuery('(min-width:1199px)');
 
-    // variables
-
-    // api calls
-
     return {
         user,
         logOut,
@@ -93,6 +100,7 @@ const AllStates = () => {
         setOrderData,
         activeStep,
         setActiveStep,
+        isAdmin,
     };
 };
 

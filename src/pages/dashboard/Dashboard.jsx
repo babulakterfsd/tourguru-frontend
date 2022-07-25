@@ -51,8 +51,7 @@ function DashboardContent() {
         setOpen(!open);
     };
 
-    const { user } = useAuth();
-    const admin = true;
+    const { user, isAdmin } = useAuth();
 
     return (
         <Box sx={{ display: 'flex' }} className={Classes.mainDashboardStyle}>
@@ -127,7 +126,7 @@ function DashboardContent() {
                 </Toolbar>
                 <Divider />
                 <List component="nav">
-                    {admin ? adminListItems : userListItems}
+                    {isAdmin ? adminListItems : userListItems}
                     <Divider sx={{ my: 1 }} />
                     {commonListItems}
                 </List>
