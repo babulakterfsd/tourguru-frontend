@@ -11,7 +11,7 @@ import List from '@mui/material/List';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
-import * as React from 'react';
+import { useState } from 'react';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import { mainListItems, secondaryListItems } from './ListItems';
@@ -46,7 +46,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 function DashboardContent() {
-    const [open, setOpen] = React.useState(true);
+    const [open, setOpen] = useState(true);
     const toggleDrawer = () => {
         setOpen(!open);
     };
