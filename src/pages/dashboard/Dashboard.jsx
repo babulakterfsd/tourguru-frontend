@@ -1,21 +1,28 @@
+/* eslint-disable no-nested-ternary */
+/* eslint-disable no-unused-vars */
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Typography } from '@mui/material';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import MuiDrawer from '@mui/material/Drawer';
-import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
-import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import Classes from '../../styles/Dashboard.module.css';
-import { adminListItems, commonListItems, userListItems } from './ListItems';
+import AddNewpackage from './adminDashboard/AddNewpackage';
+import AllOrders from './adminDashboard/AllOrders';
+import AllPackages from './adminDashboard/AllPackages';
+import Summary from './adminDashboard/Summary';
+import Users from './adminDashboard/Users';
+import Profile from './commonDashboard/Profile';
+import MyListItems from './ListItems';
+import AddReview from './userDashboard/AddReview';
+import MyOrders from './userDashboard/MyOrders';
 
 const drawerWidth = 240;
 
@@ -52,6 +59,7 @@ function DashboardContent() {
     };
 
     const { user, isAdmin } = useAuth();
+    const { pathname } = useLocation();
 
     return (
         <Box sx={{ display: 'flex' }} className={Classes.mainDashboardStyle}>
@@ -125,11 +133,7 @@ function DashboardContent() {
                     )}
                 </Toolbar>
                 <Divider />
-                <List component="nav">
-                    {isAdmin ? adminListItems : userListItems}
-                    <Divider sx={{ my: 1 }} />
-                    {commonListItems}
-                </List>
+                <MyListItems />
             </Drawer>
             <Box
                 component="main"
@@ -140,42 +144,23 @@ function DashboardContent() {
                 }}
             >
                 <Toolbar />
-                <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-                    <Grid container spacing={3}>
-                        {/* Chart */}
-                        <Grid item xs={12} md={8} lg={9}>
-                            <Paper
-                                sx={{
-                                    p: 2,
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    height: 240,
-                                }}
-                            >
-                                <Typography>Some Demo Content</Typography>
-                            </Paper>
-                        </Grid>
-                        {/* Recent Deposits */}
-                        <Grid item xs={12} md={4} lg={3}>
-                            <Paper
-                                sx={{
-                                    p: 2,
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    height: 240,
-                                }}
-                            >
-                                <Typography>Some Demo Content</Typography>
-                            </Paper>
-                        </Grid>
-                        {/* Recent Orders */}
-                        <Grid item xs={12}>
-                            <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                                <Typography>Some Demo Content</Typography>
-                            </Paper>
-                        </Grid>
-                    </Grid>
-                </Container>
+                {pathname === `/dashboard/summary` && isAdmin ? (
+                    <Summary />
+                ) : null || (pathname === `/dashboard/allusers` && isAdmin) ? (
+                    <Users />
+                ) : null || (pathname === `/dashboard/allpackages` && isAdmin) ? (
+                    <AllPackages />
+                ) : null || (pathname === `/dashboard/addnewpackage` && isAdmin) ? (
+                    <AddNewpackage />
+                ) : null || (pathname === `/dashboard/allorders` && isAdmin) ? (
+                    <AllOrders />
+                ) : null || (pathname === `/dashboard/myorders` && !isAdmin) ? (
+                    <MyOrders />
+                ) : null || (pathname === `/dashboard/addreview` && !isAdmin) ? (
+                    <AddReview />
+                ) : null || pathname === `/dashboard/profile` ? (
+                    <Profile />
+                ) : null}
             </Box>
         </Box>
     );
