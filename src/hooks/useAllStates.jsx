@@ -13,38 +13,6 @@ const AllStates = () => {
     const [activeStep, setActiveStep] = useState(0);
     const [isAdmin, setIsAdmin] = useState(false);
 
-    // variables
-    const getAllPackageURL = `http://localhost:5000/packages`;
-    const getPopularPackageURL = `http://localhost:5000/packages?limit=6`;
-    const checkAdminURL = `http://localhost:5000/users/:email`;
-
-    // get data
-    const getAllPackages = () => {
-        axios.get(getAllPackageURL).then((result) => setAllPackages(result?.data));
-    };
-
-    const getPopularPackages = () => {
-        axios.get(getPopularPackageURL).then((result) => setPopularPackages(result?.data));
-    };
-
-    // check admin role
-    const checkIsAdminOrNot = () => {
-        axios.get(checkAdminURL).then((result) => setIsAdmin(result?.data?.admin));
-    };
-
-    // function calls
-    useEffect(() => {
-        getPopularPackages();
-    }, []);
-
-    useEffect(() => {
-        getAllPackages();
-    }, []);
-
-    useEffect(() => {
-        checkIsAdminOrNot();
-    }, []);
-
     // firebase
     const {
         user,
@@ -66,6 +34,40 @@ const AllStates = () => {
         response,
         signInUsingGoogle,
     } = useFirebase();
+
+    // variables
+    const getAllPackageURL = `http://localhost:5000/packages`;
+    const getPopularPackageURL = `http://localhost:5000/packages?limit=6`;
+    const checkAdminURL = `http://localhost:5000/users/${user?.email}`;
+
+    // get data
+    const getAllPackages = () => {
+        axios.get(getAllPackageURL).then((result) => setAllPackages(result?.data));
+    };
+
+    const getPopularPackages = () => {
+        axios.get(getPopularPackageURL).then((result) => setPopularPackages(result?.data));
+    };
+
+    // check admin role
+    const checkIsAdminOrNot = () => {
+        axios.get(checkAdminURL).then((result) => {
+            setIsAdmin(result?.data?.admin);
+        });
+    };
+
+    // function calls
+    useEffect(() => {
+        getPopularPackages();
+    }, []);
+
+    useEffect(() => {
+        getAllPackages();
+    }, []);
+
+    useEffect(() => {
+        checkIsAdminOrNot();
+    }, [user?.email]);
 
     // responsive check
     const mobile = useMediaQuery('(max-width:475px)');
