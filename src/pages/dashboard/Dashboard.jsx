@@ -19,6 +19,7 @@ import AllOrders from './adminDashboard/AllOrders';
 import AllPackages from './adminDashboard/AllPackages';
 import Summary from './adminDashboard/Summary';
 import Users from './adminDashboard/Users';
+import NotFoundInDashboard from './commonDashboard/NotFoundInDashboard';
 import Profile from './commonDashboard/Profile';
 import MyListItems from './ListItems';
 import AddReview from './userDashboard/AddReview';
@@ -146,25 +147,27 @@ function DashboardContent() {
                 <Toolbar />
                 {pathname === `/dashboard` && isAdmin ? (
                     <Summary />
-                ) : null || (pathname === `/dashboard` && !isAdmin) ? (
+                ) : pathname === `/dashboard` && !isAdmin ? (
                     <MyOrders />
-                ) : null || (pathname === `/dashboard/summary` && isAdmin) ? (
+                ) : pathname === `/dashboard/summary` && isAdmin ? (
                     <Summary />
-                ) : null || (pathname === `/dashboard/allusers` && isAdmin) ? (
+                ) : pathname === `/dashboard/allusers` && isAdmin ? (
                     <Users />
-                ) : null || (pathname === `/dashboard/allpackages` && isAdmin) ? (
+                ) : pathname === `/dashboard/allpackages` && isAdmin ? (
                     <AllPackages />
-                ) : null || (pathname === `/dashboard/addnewpackage` && isAdmin) ? (
+                ) : pathname === `/dashboard/addnewpackage` && isAdmin ? (
                     <AddNewpackage />
-                ) : null || (pathname === `/dashboard/allorders` && isAdmin) ? (
+                ) : pathname === `/dashboard/allorders` && isAdmin ? (
                     <AllOrders />
-                ) : null || (pathname === `/dashboard/myorders` && !isAdmin) ? (
+                ) : pathname === `/dashboard/myorders` && !isAdmin ? (
                     <MyOrders />
-                ) : null || (pathname === `/dashboard/addreview` && !isAdmin) ? (
+                ) : pathname === `/dashboard/addreview` && !isAdmin ? (
                     <AddReview />
-                ) : null || pathname === `/dashboard/profile` ? (
+                ) : pathname === `/dashboard/profile` ? (
                     <Profile />
-                ) : null}
+                ) : (
+                    <NotFoundInDashboard />
+                )}
             </Box>
         </Box>
     );
