@@ -9,6 +9,7 @@ import AllOrders from '../pages/dashboard/adminDashboard/AllOrders';
 import AllPackages from '../pages/dashboard/adminDashboard/AllPackages';
 import Summary from '../pages/dashboard/adminDashboard/Summary';
 import Users from '../pages/dashboard/adminDashboard/Users';
+import NotFoundInDashboard from '../pages/dashboard/commonDashboard/NotFoundInDashboard';
 import Profile from '../pages/dashboard/commonDashboard/Profile';
 import Dashboard from '../pages/dashboard/Dashboard';
 import AddReview from '../pages/dashboard/userDashboard/AddReview';
@@ -45,6 +46,7 @@ function AllRoutes() {
                     <Route path="myorders" element={<MyOrders />} />
                     <Route path="addreview" element={<AddReview />} />
                     <Route path="profile" element={<Profile />} />
+                    <Route path="*" element={<NotFoundInDashboard />} />
                 </Route>
             </Route>
         </Routes>

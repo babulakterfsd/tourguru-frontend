@@ -144,7 +144,11 @@ function DashboardContent() {
                 }}
             >
                 <Toolbar />
-                {pathname === `/dashboard/summary` && isAdmin ? (
+                {pathname === `/dashboard` && isAdmin ? (
+                    <Summary />
+                ) : null || (pathname === `/dashboard` && !isAdmin) ? (
+                    <MyOrders />
+                ) : null || (pathname === `/dashboard/summary` && isAdmin) ? (
                     <Summary />
                 ) : null || (pathname === `/dashboard/allusers` && isAdmin) ? (
                     <Users />
