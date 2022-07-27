@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable no-unused-vars */
 import { Box, Container, Grid, Skeleton } from '@mui/material';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
@@ -25,7 +26,7 @@ function PrivateOutlet() {
                             <ScrollToTop />
                             <Grid container spacing={3}>
                                 {Array.from(Array(3)).map((packages, index) => (
-                                    <Grid item xs={12}>
+                                    <Grid item xs={12} key={index}>
                                         <Skeleton
                                             variant="rectangular"
                                             style={{
@@ -42,7 +43,7 @@ function PrivateOutlet() {
                     ) : (
                         <Grid container spacing={5}>
                             {Array.from(Array(9)).map((packages, index) => (
-                                <Grid item md={6} lg={4}>
+                                <Grid item md={6} lg={4} key={index}>
                                     <Skeleton
                                         variant="rectangular"
                                         style={{
