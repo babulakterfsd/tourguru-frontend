@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { Typography } from '@mui/material';
+import { Container, Grid, Skeleton, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
@@ -12,6 +12,7 @@ import { styled } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import ScrollToTop from '../../components/ScrollToTop';
 import useAuth from '../../hooks/useAuth';
 import Classes from '../../styles/Dashboard.module.css';
 import AddNewpackage from './adminDashboard/AddNewpackage';
@@ -59,8 +60,61 @@ function DashboardContent() {
         setOpen(!open);
     };
 
-    const { user, isAdmin } = useAuth();
+    const { user, isAdmin, mobile } = useAuth();
     const { pathname } = useLocation();
+
+    if (isAdmin === undefined) {
+        return (
+            <Container>
+                <Box
+                    style={{
+                        height: `100vh`,
+                        display: `flex`,
+                        justifyContent: `center`,
+                        alignItems: `center`,
+                        margin: mobile ? `100px 0px` : `180px 15px`,
+                    }}
+                >
+                    {mobile ? (
+                        <>
+                            <ScrollToTop />
+                            <Grid container spacing={3}>
+                                {Array.from(Array(3)).map((packages, index) => (
+                                    <Grid item xs={12}>
+                                        <Skeleton
+                                            variant="rectangular"
+                                            style={{
+                                                width: `100%`,
+                                                height: mobile ? `150px` : `210px`,
+                                            }}
+                                        />
+                                        <Skeleton />
+                                        <Skeleton width="60%" />
+                                    </Grid>
+                                ))}
+                            </Grid>
+                        </>
+                    ) : (
+                        <Grid container spacing={5}>
+                            {Array.from(Array(9)).map((packages, index) => (
+                                <Grid item md={6} lg={4}>
+                                    <Skeleton
+                                        variant="rectangular"
+                                        style={{
+                                            width: `100%`,
+                                            height: mobile ? `150px` : `210px`,
+                                        }}
+                                    />
+                                    <Skeleton />
+                                    <Skeleton width="60%" />
+                                </Grid>
+                            ))}
+                        </Grid>
+                    )}
+                </Box>
+            </Container>
+        );
+    }
 
     return (
         <Box sx={{ display: 'flex' }} className={Classes.mainDashboardStyle}>
