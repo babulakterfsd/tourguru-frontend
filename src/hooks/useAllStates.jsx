@@ -12,7 +12,6 @@ const AllStates = () => {
     const [orderData, setOrderData] = useState({});
     const [activeStep, setActiveStep] = useState(0);
     const [isAdmin, setIsAdmin] = useState(false);
-    const [allUsers, setAllUsers] = useState([]);
 
     // firebase
     const {
@@ -40,7 +39,6 @@ const AllStates = () => {
     const getAllPackageURL = `http://localhost:5000/packages`;
     const getPopularPackageURL = `http://localhost:5000/packages?limit=6`;
     const checkAdminURL = `http://localhost:5000/users/${user?.email}`;
-    const getAllUsersURL = `http://localhost:5000/users`;
 
     // get data
     const getAllPackages = () => {
@@ -49,10 +47,6 @@ const AllStates = () => {
 
     const getPopularPackages = () => {
         axios.get(getPopularPackageURL).then((result) => setPopularPackages(result?.data));
-    };
-
-    const getAllUsers = () => {
-        axios.get(getAllUsersURL).then((result) => setAllUsers(result?.data));
     };
 
     // check admin role
@@ -74,10 +68,6 @@ const AllStates = () => {
     useEffect(() => {
         checkIsAdminOrNot();
     }, [user?.email]);
-
-    useEffect(() => {
-        getAllUsers();
-    }, []);
 
     // responsive check
     const mobile = useMediaQuery('(max-width:475px)');
@@ -113,7 +103,6 @@ const AllStates = () => {
         activeStep,
         setActiveStep,
         isAdmin,
-        allUsers,
     };
 };
 

@@ -31,8 +31,8 @@ function Login() {
 
    
 
-    const saveUser = (email) => {
-        const myUser = { email};
+    const saveUser = (email, displayName) => {
+        const myUser = { email, displayName};
         fetch("http://localhost:5000/users", {
           method: 'PUT',
           headers: {
@@ -79,7 +79,7 @@ function Login() {
             .then((result) => {
                 setUser(result?.user);
                 Swal.fire(`Login Successfull !`)
-                saveUser(result?.user?.email)
+                saveUser(result?.user?.email, result?.user?.displayName)
                 setActiveStep(0)
                 navigate(targetURL)
             })

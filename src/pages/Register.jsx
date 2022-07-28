@@ -28,8 +28,8 @@ function Register() {
       }
 
       // save user data to the mongodb database
-  const saveUser = (email) => {
-    const myUser = {email};
+  const saveUser = (email, displayName) => {
+    const myUser = {email, displayName};
     fetch("http://localhost:5000/users", {
       method: 'PUT',
       headers: {
@@ -59,7 +59,7 @@ function Register() {
         //   history.push(redirect);
           setResponse("");
         //   setTimeout(() => navigate('/'), 3000);
-           saveUser(userEmail)
+           saveUser(userEmail, name)
            navigate(targetURL)
         })
         .catch((error) => {
