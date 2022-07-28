@@ -30,7 +30,12 @@ export default function Review() {
                 Accept: 'application/json',
                 'Content-Type': 'application/json;charset=UTF-8',
             },
-            data: { packageOrderedBy: user?.email, ...orderData },
+            data: {
+                userInfo: { displayName: user?.displayName, email: user?.email },
+                shippingAddress: orderData,
+                selectedPackage: buyingPackage,
+                status: 'pending',
+            },
         };
 
         axios(options).then((response) => {

@@ -1,10 +1,24 @@
+/* eslint-disable no-unused-vars */
+import { Box, Container } from '@mui/material';
 import React from 'react';
+import ScrollToTop from '../../../components/ScrollToTop';
+import useAuth from '../../../hooks/useAuth';
+import PackageTable from './PackagesTable';
 
 function AllPackages() {
+    const { user, allUsers, mobile } = useAuth();
+
     return (
-        <div>
-            <p>this is all packages</p>
-        </div>
+        <Container>
+            <ScrollToTop />
+            <Box
+                style={{
+                    padding: mobile ? `0px` : `0px 150px`,
+                }}
+            >
+                <PackageTable />
+            </Box>
+        </Container>
     );
 }
 

@@ -34,6 +34,7 @@ function Navbar() {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+
     return (
         <AppBar position="static" color="bluishDark">
             <Container maxWidth="xl">
@@ -204,31 +205,17 @@ function Navbar() {
                     ) : (
                         <Box sx={{ flexGrow: 0 }} style={{ marginLeft: 'auto' }}>
                             <Tooltip title="settings">
-                                {user?.photoURL !== null ? (
-                                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                        <img
-                                            src={user?.photoURL}
-                                            alt="userImage"
-                                            style={{
-                                                height: '40px',
-                                                width: '40px',
-                                                borderRadius: '100px',
-                                            }}
-                                        />
-                                    </IconButton>
-                                ) : (
-                                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                        <img
-                                            src={DefaultUserImage}
-                                            alt="userImage"
-                                            style={{
-                                                height: '40px',
-                                                width: '40px',
-                                                borderRadius: '100px',
-                                            }}
-                                        />
-                                    </IconButton>
-                                )}
+                                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                    <img
+                                        src={DefaultUserImage}
+                                        alt="userImage"
+                                        style={{
+                                            height: '40px',
+                                            width: '40px',
+                                            borderRadius: '100px',
+                                        }}
+                                    />
+                                </IconButton>
                             </Tooltip>
                             <Menu
                                 sx={{ mt: '45px' }}

@@ -4,14 +4,19 @@
 import { Container, Skeleton, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import ScrollToTop from '../components/ScrollToTop';
 import SinglePackageCard from '../components/SinglePackageCard';
 import useAuth from '../hooks/useAuth';
 
 function Packages() {
-    const { mobile, tablet, desktop, allPackages, orderData, activeStep, setActiveStep } =
-        useAuth();
+    const [allPackages, setAllPackage] = useState([]);
+    const { mobile, tablet, desktop, orderData, activeStep, setActiveStep } = useAuth();
+
+    useEffect(() => {
+        axios.get(`http://localhost:5000/packages`).then((result) => setAllPackage(result?.data));
+    }, [allPackages]);
 
     return (
         <div
@@ -77,7 +82,7 @@ function Packages() {
                             ) : (
                                 <Grid container spacing={5}>
                                     {Array.from(Array(9)).map((packages, index) => (
-                                        <Grid item md={6} lg={4}>
+                                        <Grid item md={6} lg={4} key={index}>
                                             <Skeleton
                                                 variant="rectangular"
                                                 style={{

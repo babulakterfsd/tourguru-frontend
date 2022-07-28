@@ -18,9 +18,10 @@ import ScrollToTop from '../../../components/ScrollToTop';
 import useAuth from '../../../hooks/useAuth';
 
 const columns = [
-    { id: 'name', label: 'Name' },
-    { id: 'email', label: 'Email' },
-    { id: 'role', label: 'Role' },
+    { id: 'destination', label: 'Destination' },
+    { id: 'orderedBy', label: 'OrderedBy' },
+    { id: 'email', label: 'email' },
+    { id: 'orderStatus', label: 'Order Status' },
     { id: 'action', label: 'Action' },
 ];
 
@@ -30,26 +31,22 @@ export default function StickyHeadTable() {
     const [rows, setRows] = useState([]);
     const { mobile, user } = useAuth();
     const [status, setStatus] = useState(null);
-    const [allUsers, setAllUsers] = useState([]);
+    const [allOrders, setAllOrders] = useState([]);
 
-    const getAllUsersURL = `http://localhost:5000/users`;
-
-    const getAllUsers = () => {
-        axios.get(getAllUsersURL).then((result) => setAllUsers(result?.data));
-    };
+    const getAllOrdersURL = `http://localhost:5000/allorder`;
 
     useEffect(() => {
-        getAllUsers();
-    }, [allUsers]);
+        axios.get(getAllOrdersURL).then((result) => setAllOrders(result?.data));
+    }, []);
 
     useEffect(() => {
         const row = [];
-        allUsers?.forEach((singleUser) => {
-            row.push(singleUser);
+        allOrders?.forEach((singleOrder) => {
+            row.push(singleOrder);
             <div key={Math.random() * 1500} />;
         });
         setRows(row);
-    }, [allUsers, status]);
+    }, [allOrders, status]);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -60,27 +57,41 @@ export default function StickyHeadTable() {
         setPage(0);
     };
 
-    const handleMakeAdmin = (id) => {
-        const url = `http://localhost:5000/users/${id}`;
+    const handleDeleteOrder = (id) => {
+        const url = `http://localhost:5000/allorder/${id}`;
+
+        fetch(url, {
+            method: 'DELETE',
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.deletedCount > 0) {
+                    Swal.fire('Order Deleted Successfully !');
+                    axios.get(getAllOrdersURL).then((result) => setAllOrders(result?.data));
+                }
+            });
+    };
+
+    const handleOrderStatus = (id) => {
+        const url = `http://localhost:5000/allorder/${id}`;
+
         fetch(url, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
             },
-            body: JSON.stringify(allUsers),
+            body: JSON.stringify(),
         })
             .then((res) => res.json())
             .then((data) => {
                 if (data.modifiedCount > 0) {
-                    setStatus(!status);
-                    Swal.fire('Made Admin Successfully');
-                } else {
-                    setStatus(false);
+                    Swal.fire('Tour package approved !');
+                    axios.get(getAllOrdersURL).then((result) => setAllOrders(result?.data));
                 }
             });
     };
 
-    if (allUsers?.length === 0) {
+    if (allOrders?.length === 0) {
         return (
             <Container>
                 <Box
@@ -147,7 +158,7 @@ export default function StickyHeadTable() {
                     fontWeight: mobile ? `400` : `700`,
                 }}
             >
-                All Registered Users
+                All Orders
             </Typography>
             <TableContainer>
                 <Table stickyHeader aria-label="sticky table">
@@ -171,56 +182,61 @@ export default function StickyHeadTable() {
                         {rows
                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map((row) => (
-                                <TableRow key={row?.email} hover>
+                                <TableRow key={Math.random() * 1500} hover>
                                     <TableCell
                                         role="checkbox"
                                         tabIndex={-1}
                                         style={{ minWidth: `170px`, textAlign: `center` }}
                                     >
-                                        {row?.displayName}
+                                        {`${row?.selectedPackage?.location?.city}, ${row?.selectedPackage.location?.country}`}
                                     </TableCell>
                                     <TableCell
                                         role="checkbox"
                                         tabIndex={-1}
                                         style={{ minWidth: `170px`, textAlign: `center` }}
                                     >
-                                        {row?.email}
+                                        {`${row?.userInfo?.displayName}`}
                                     </TableCell>
                                     <TableCell
                                         role="checkbox"
                                         tabIndex={-1}
                                         style={{ minWidth: `170px`, textAlign: `center` }}
                                     >
-                                        {row?.role === `admin` ? `admin` : `user`}
+                                        {`${row?.userInfo?.email}`}
                                     </TableCell>
                                     <TableCell
                                         role="checkbox"
                                         tabIndex={-1}
                                         style={{ minWidth: `170px`, textAlign: `center` }}
                                     >
-                                        {row?.role === `admin` ? (
-                                            <Button
-                                                variant="contained"
-                                                size="small"
-                                                disabled
-                                                title="already admin"
-                                                style={{
-                                                    textTransform: `none`,
-                                                    cursor: `not-allowed`,
-                                                }}
-                                            >
-                                                Make Admin
-                                            </Button>
-                                        ) : (
-                                            <Button
-                                                variant="contained"
-                                                size="small"
-                                                style={{ textTransform: `none` }}
-                                                onClick={() => handleMakeAdmin(row?._id)}
-                                            >
-                                                Make Admin
-                                            </Button>
-                                        )}
+                                        {`${row?.status}`}
+                                    </TableCell>
+                                    <TableCell
+                                        role="checkbox"
+                                        tabIndex={-1}
+                                        style={{ minWidth: `170px`, textAlign: `center` }}
+                                    >
+                                        <Button
+                                            variant="contained"
+                                            size="small"
+                                            style={{
+                                                textTransform: `none`,
+                                                marginRight: `4px`,
+                                            }}
+                                            onClick={() => handleOrderStatus(row?._id)}
+                                        >
+                                            Approve
+                                        </Button>
+                                        <Button
+                                            variant="contained"
+                                            size="small"
+                                            style={{
+                                                textTransform: `none`,
+                                            }}
+                                            onClick={() => handleDeleteOrder(row?._id)}
+                                        >
+                                            Delete
+                                        </Button>
                                     </TableCell>
                                 </TableRow>
                             ))}

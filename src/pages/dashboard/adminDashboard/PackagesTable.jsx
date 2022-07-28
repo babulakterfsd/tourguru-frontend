@@ -18,9 +18,9 @@ import ScrollToTop from '../../../components/ScrollToTop';
 import useAuth from '../../../hooks/useAuth';
 
 const columns = [
-    { id: 'name', label: 'Name' },
-    { id: 'email', label: 'Email' },
-    { id: 'role', label: 'Role' },
+    { id: 'destination', label: 'Destination' },
+    { id: 'duration', label: 'Duration' },
+    { id: 'price', label: 'Price' },
     { id: 'action', label: 'Action' },
 ];
 
@@ -30,26 +30,22 @@ export default function StickyHeadTable() {
     const [rows, setRows] = useState([]);
     const { mobile, user } = useAuth();
     const [status, setStatus] = useState(null);
-    const [allUsers, setAllUsers] = useState([]);
+    const [allPackages, setAllPackages] = useState([]);
 
-    const getAllUsersURL = `http://localhost:5000/users`;
-
-    const getAllUsers = () => {
-        axios.get(getAllUsersURL).then((result) => setAllUsers(result?.data));
-    };
+    const getAllPackagesURL = `http://localhost:5000/packages`;
 
     useEffect(() => {
-        getAllUsers();
-    }, [allUsers]);
+        axios.get(getAllPackagesURL).then((result) => setAllPackages(result?.data));
+    }, []);
 
     useEffect(() => {
         const row = [];
-        allUsers?.forEach((singleUser) => {
+        allPackages?.forEach((singleUser) => {
             row.push(singleUser);
             <div key={Math.random() * 1500} />;
         });
         setRows(row);
-    }, [allUsers, status]);
+    }, [allPackages, status]);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -60,27 +56,26 @@ export default function StickyHeadTable() {
         setPage(0);
     };
 
-    const handleMakeAdmin = (id) => {
-        const url = `http://localhost:5000/users/${id}`;
-        fetch(url, {
-            method: 'PUT',
-            headers: {
-                'content-type': 'application/json',
-            },
-            body: JSON.stringify(allUsers),
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.modifiedCount > 0) {
-                    setStatus(!status);
-                    Swal.fire('Made Admin Successfully');
-                } else {
-                    setStatus(false);
-                }
-            });
+    const handleDeletePackage = (id) => {
+        if (allPackages?.length < 15) {
+            Swal.fire("Sorry, you can't delete a package when total package is below 15");
+        } else {
+            const url = `http://localhost:5000/packages/${id}`;
+
+            fetch(url, {
+                method: 'DELETE',
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    if (data?.deletedCount > 0) {
+                        Swal.fire('Successfully Deleted !');
+                        axios.get(getAllPackagesURL).then((result) => setAllPackages(result?.data));
+                    }
+                });
+        }
     };
 
-    if (allUsers?.length === 0) {
+    if (allPackages?.length === 0) {
         return (
             <Container>
                 <Box
@@ -147,7 +142,7 @@ export default function StickyHeadTable() {
                     fontWeight: mobile ? `400` : `700`,
                 }}
             >
-                All Registered Users
+                All Running Packages
             </Typography>
             <TableContainer>
                 <Table stickyHeader aria-label="sticky table">
@@ -171,56 +166,43 @@ export default function StickyHeadTable() {
                         {rows
                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map((row) => (
-                                <TableRow key={row?.email} hover>
+                                <TableRow key={Math.random() * 1500} hover>
                                     <TableCell
                                         role="checkbox"
                                         tabIndex={-1}
                                         style={{ minWidth: `170px`, textAlign: `center` }}
                                     >
-                                        {row?.displayName}
+                                        {`${row?.location?.city}, ${row?.location?.country}`}
                                     </TableCell>
                                     <TableCell
                                         role="checkbox"
                                         tabIndex={-1}
                                         style={{ minWidth: `170px`, textAlign: `center` }}
                                     >
-                                        {row?.email}
+                                        {row?.duration}
                                     </TableCell>
                                     <TableCell
                                         role="checkbox"
                                         tabIndex={-1}
                                         style={{ minWidth: `170px`, textAlign: `center` }}
                                     >
-                                        {row?.role === `admin` ? `admin` : `user`}
+                                        {`$${row?.price}`}
                                     </TableCell>
                                     <TableCell
                                         role="checkbox"
                                         tabIndex={-1}
                                         style={{ minWidth: `170px`, textAlign: `center` }}
                                     >
-                                        {row?.role === `admin` ? (
-                                            <Button
-                                                variant="contained"
-                                                size="small"
-                                                disabled
-                                                title="already admin"
-                                                style={{
-                                                    textTransform: `none`,
-                                                    cursor: `not-allowed`,
-                                                }}
-                                            >
-                                                Make Admin
-                                            </Button>
-                                        ) : (
-                                            <Button
-                                                variant="contained"
-                                                size="small"
-                                                style={{ textTransform: `none` }}
-                                                onClick={() => handleMakeAdmin(row?._id)}
-                                            >
-                                                Make Admin
-                                            </Button>
-                                        )}
+                                        <Button
+                                            variant="contained"
+                                            size="small"
+                                            style={{
+                                                textTransform: `none`,
+                                            }}
+                                            onClick={() => handleDeletePackage(row?._id)}
+                                        >
+                                            Delete
+                                        </Button>
                                     </TableCell>
                                 </TableRow>
                             ))}
