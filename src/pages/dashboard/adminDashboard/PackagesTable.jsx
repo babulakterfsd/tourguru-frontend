@@ -57,8 +57,8 @@ export default function StickyHeadTable() {
     };
 
     const handleDeletePackage = (id) => {
-        if (allPackages?.length < 15) {
-            Swal.fire("Sorry, you can't delete a package when total package is below 15");
+        if (allPackages?.length <= 19) {
+            Swal.fire("Sorry, you can't delete a package when total package is below 19");
         } else {
             const url = `http://localhost:5000/packages/${id}`;
 

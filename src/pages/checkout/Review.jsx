@@ -31,7 +31,8 @@ export default function Review() {
                 'Content-Type': 'application/json;charset=UTF-8',
             },
             data: {
-                userInfo: { displayName: user?.displayName, email: user?.email },
+                email: user?.email,
+                userInfo: { displayName: user?.displayName },
                 shippingAddress: orderData,
                 selectedPackage: buyingPackage,
                 status: 'pending',

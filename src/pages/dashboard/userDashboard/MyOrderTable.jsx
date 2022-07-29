@@ -18,34 +18,34 @@ import useAuth from '../../../hooks/useAuth';
 
 const columns = [
     { id: 'destination', label: 'Destination' },
-    { id: 'orderedBy', label: 'OrderedBy' },
-    { id: 'email', label: 'email' },
+    { id: 'duration', label: 'Duration' },
+    { id: 'price', label: 'Price' },
     { id: 'orderStatus', label: 'Order Status' },
     { id: 'action', label: 'Action' },
 ];
 
-export default function StickyHeadTable() {
+export default function MyOrderTable() {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [rows, setRows] = useState([]);
     const { mobile, user } = useAuth();
     const [status, setStatus] = useState(null);
-    const [allOrders, setAllOrders] = useState([]);
+    const [myOrders, setMyOrders] = useState([]);
 
-    const getAllOrdersURL = `http://localhost:5000/allorder`;
+    const getMyOrdersURL = `http://localhost:5000/myorders/${user?.email}`;
 
     useEffect(() => {
-        axios.get(getAllOrdersURL).then((result) => setAllOrders(result?.data));
+        axios.get(getMyOrdersURL).then((result) => setMyOrders(result?.data));
     }, []);
 
     useEffect(() => {
         const row = [];
-        allOrders?.forEach((singleOrder) => {
+        myOrders?.forEach((singleOrder) => {
             row.push(singleOrder);
             <div key={Math.random() * 1500} />;
         });
         setRows(row);
-    }, [allOrders, status]);
+    }, [myOrders, status]);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -56,7 +56,7 @@ export default function StickyHeadTable() {
         setPage(0);
     };
 
-    const handleDeleteOrder = (id) => {
+    const handleCancelOrder = (id) => {
         const url = `http://localhost:5000/allorder/${id}`;
 
         fetch(url, {
@@ -65,32 +65,13 @@ export default function StickyHeadTable() {
             .then((res) => res.json())
             .then((data) => {
                 if (data.deletedCount > 0) {
-                    Swal.fire('Order Deleted Successfully !');
-                    axios.get(getAllOrdersURL).then((result) => setAllOrders(result?.data));
+                    Swal.fire('Order Canceled !');
+                    axios.get(getMyOrdersURL).then((result) => setMyOrders(result?.data));
                 }
             });
     };
 
-    const handleOrderStatus = (id) => {
-        const url = `http://localhost:5000/allorder/${id}`;
-
-        fetch(url, {
-            method: 'PUT',
-            headers: {
-                'content-type': 'application/json',
-            },
-            body: JSON.stringify(),
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.modifiedCount > 0) {
-                    Swal.fire('Tour package approved !');
-                    axios.get(getAllOrdersURL).then((result) => setAllOrders(result?.data));
-                }
-            });
-    };
-
-    if (allOrders?.length === 0) {
+    if (myOrders?.length === 0) {
         return (
             <Container>
                 <Box
@@ -123,7 +104,7 @@ export default function StickyHeadTable() {
                     fontWeight: mobile ? `400` : `700`,
                 }}
             >
-                All Orders
+                My Orders
             </Typography>
             <TableContainer>
                 <Table stickyHeader aria-label="sticky table">
@@ -160,14 +141,14 @@ export default function StickyHeadTable() {
                                         tabIndex={-1}
                                         style={{ minWidth: `170px`, textAlign: `center` }}
                                     >
-                                        {`${row?.userInfo?.displayName}`}
+                                        {`${row?.selectedPackage?.duration}`}
                                     </TableCell>
                                     <TableCell
                                         role="checkbox"
                                         tabIndex={-1}
                                         style={{ minWidth: `170px`, textAlign: `center` }}
                                     >
-                                        {`${row?.email}`}
+                                        {`${row?.selectedPackage?.price}`}
                                     </TableCell>
                                     <TableCell
                                         role="checkbox"
@@ -181,18 +162,16 @@ export default function StickyHeadTable() {
                                         tabIndex={-1}
                                         style={{ minWidth: `170px`, textAlign: `center` }}
                                     >
-                                        {row?.status === 'approved' ? (
+                                        {row?.status === `pending` ? (
                                             <Button
                                                 variant="contained"
                                                 size="small"
                                                 style={{
                                                     textTransform: `none`,
-                                                    marginRight: `4px`,
                                                 }}
-                                                onClick={() => handleOrderStatus(row?._id)}
-                                                disabled
+                                                onClick={() => handleCancelOrder(row?._id)}
                                             >
-                                                Approve
+                                                Cancel
                                             </Button>
                                         ) : (
                                             <Button
@@ -200,23 +179,13 @@ export default function StickyHeadTable() {
                                                 size="small"
                                                 style={{
                                                     textTransform: `none`,
-                                                    marginRight: `4px`,
                                                 }}
-                                                onClick={() => handleOrderStatus(row?._id)}
+                                                onClick={() => handleCancelOrder(row?._id)}
+                                                disabled
                                             >
-                                                Approve
+                                                Cancel
                                             </Button>
                                         )}
-                                        <Button
-                                            variant="contained"
-                                            size="small"
-                                            style={{
-                                                textTransform: `none`,
-                                            }}
-                                            onClick={() => handleDeleteOrder(row?._id)}
-                                        >
-                                            Delete
-                                        </Button>
                                     </TableCell>
                                 </TableRow>
                             ))}

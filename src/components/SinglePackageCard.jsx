@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 
 function SinglePackageCard({ singlePackage }) {
-    const { mobile } = useAuth();
+    const { mobile, isAdmin } = useAuth();
     const { location, duration, price, img, services, description } = singlePackage;
 
     return (
@@ -39,10 +39,7 @@ function SinglePackageCard({ singlePackage }) {
                         {description.slice(0, 150)}
                     </Typography>
                     <Box style={{ textAlign: `center` }}>
-                        <Link
-                            to={`/packages/${singlePackage?._id}`}
-                            style={{ textDecoration: `none` }}
-                        >
+                        {isAdmin === true ? (
                             <Button
                                 variant="contained"
                                 style={{
@@ -52,10 +49,29 @@ function SinglePackageCard({ singlePackage }) {
                                     fontWeight: `700`,
                                     fontFamily: `abril`,
                                 }}
+                                title="Admin Can Not Buy A Package"
                             >
                                 Buy Package
                             </Button>
-                        </Link>
+                        ) : (
+                            <Link
+                                to={`/packages/${singlePackage?._id}`}
+                                style={{ textDecoration: `none` }}
+                            >
+                                <Button
+                                    variant="contained"
+                                    style={{
+                                        margin: `25px 0px 0px 0px`,
+                                        width: `150px`,
+                                        height: `40px`,
+                                        fontWeight: `700`,
+                                        fontFamily: `abril`,
+                                    }}
+                                >
+                                    Buy Package
+                                </Button>
+                            </Link>
+                        )}
                     </Box>
                 </CardContent>
             </Box>

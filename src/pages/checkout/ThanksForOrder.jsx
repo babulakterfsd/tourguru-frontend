@@ -7,7 +7,7 @@ import useAuth from '../../hooks/useAuth';
 
 function ThanksForOrder() {
     const { orderData, activeStep, setActiveStep } = useAuth();
-    const [seconds, setSeconds] = useState(20);
+    const [seconds, setSeconds] = useState(10);
     const navigate = useNavigate();
     const param = useParams();
 
@@ -19,7 +19,7 @@ function ThanksForOrder() {
                 setActiveStep(0);
                 navigate('/dashboard');
             }
-        }, 20000);
+        }, 10000);
     }, [navigate, activeStep, setActiveStep]);
 
     useEffect(() => {
