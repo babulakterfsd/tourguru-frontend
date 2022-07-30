@@ -19,18 +19,11 @@ const useFirebase = () => {
     const [response, setResponse] = useState('');
     const [name, setName] = useState('');
 
+
     const googleProvider = new GoogleAuthProvider();
 
     // sign in with popup provided by google
     const signInUsingGoogle = () => signInWithPopup(auth, googleProvider);
-
-    // logsout the user
-    const logOut = () => {
-        signOut(auth).then(() => {
-            setUser(null);
-        });
-        setIsLoading(false);
-    };
 
      // update user info
   const updateUser = () => {
@@ -67,7 +60,7 @@ const useFirebase = () => {
         auth,
         user,
         setUser,
-        logOut,
+        signOut,
         isLoading,
         setIsLoading,
         userEmail,

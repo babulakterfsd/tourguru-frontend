@@ -16,7 +16,6 @@ const AllStates = () => {
     // firebase
     const {
         user,
-        logOut,
         isLoading,
         setIsLoading,
         userEmail,
@@ -33,6 +32,7 @@ const AllStates = () => {
         signInWithEmailAndPassword,
         response,
         signInUsingGoogle,
+        signOut,
     } = useFirebase();
 
     // variables
@@ -76,7 +76,6 @@ const AllStates = () => {
 
     return {
         user,
-        logOut,
         isLoading,
         setIsLoading,
         mobile,
@@ -103,6 +102,7 @@ const AllStates = () => {
         activeStep,
         setActiveStep,
         isAdmin,
+        signOut,
     };
 };
 

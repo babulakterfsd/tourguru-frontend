@@ -11,14 +11,24 @@ import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import DefaultUserImage from '../assests/images/userdefault.png';
 import useAuth from '../hooks/useAuth';
 
 function Navbar() {
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
-    const { user, logOut } = useAuth();
+    const { user, signOut, setUser, setIsLoading, auth } = useAuth();
+    const navigate = useNavigate();
+
+    // logsout the user
+    const logOut = () => {
+        signOut(auth).then(() => {
+            setUser(null);
+            navigate('/');
+        });
+        setIsLoading(false);
+    };
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -237,7 +247,10 @@ function Navbar() {
                                     onClick={handleCloseUserMenu}
                                     style={{ borderBottom: '1px solid #ccc' }}
                                 >
-                                    <Link to="/dashboard" style={{ textDecoration: 'none' }}>
+                                    <Link
+                                        to="/dashboard/profile"
+                                        style={{ textDecoration: 'none' }}
+                                    >
                                         <Typography textAlign="center" color="#000">
                                             Profile
                                         </Typography>
@@ -254,11 +267,11 @@ function Navbar() {
                                     </Link>
                                 </MenuItem>
                                 <MenuItem onClick={handleCloseUserMenu}>
-                                    <Link to="/dashboard" style={{ textDecoration: 'none' }}>
-                                        <Button onClick={logOut} style={{ color: '#000' }}>
-                                            Logout
-                                        </Button>
-                                    </Link>
+                                    {/* <Link to="/dashboard" style={{ textDecoration: 'none' }}> */}
+                                    <Button onClick={() => logOut()} style={{ color: '#000' }}>
+                                        Logout
+                                    </Button>
+                                    {/* </Link> */}
                                 </MenuItem>
                             </Menu>
                         </Box>

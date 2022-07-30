@@ -14,12 +14,22 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 
 function MyListItems() {
-    const { logOut, isAdmin } = useAuth();
+    const { isAdmin, signOut, setUser, setIsLoading, auth } = useAuth();
     const { pathname } = useLocation();
+    const navigate = useNavigate();
+
+    // logsout the user
+    const logOut = () => {
+        signOut(auth).then(() => {
+            setUser(null);
+            navigate('/');
+        });
+        setIsLoading(false);
+    };
 
     const AdminListItems = (
         <>
