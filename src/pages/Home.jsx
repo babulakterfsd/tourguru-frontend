@@ -4,6 +4,7 @@ import Banner from '../components/Banner';
 import CheckIn from '../components/CheckIn';
 import Motivation from '../components/Motivation';
 import PopularPackages from '../components/PopularPackages';
+import Reviews from '../components/Reviews/Reviews';
 import ScrollToTop from '../components/ScrollToTop';
 
 function Home() {
@@ -14,6 +15,7 @@ function Home() {
             <CheckIn />
             <PopularPackages />
             <Motivation />
+            <Reviews />
         </div>
     );
 }

@@ -11,7 +11,7 @@ function Motivation() {
             style={{
                 minHeight: `90vh`,
                 background: `#fff`,
-                padding: mobile ? `60px 2px` : `180px 10px`,
+                padding: mobile ? `60px 2px` : `120px 10px 50px 10px`,
             }}
         >
             <Container>
