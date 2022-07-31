@@ -53,7 +53,7 @@ function Reviews() {
         <div
             style={{
                 background: `#fff`,
-                padding: mobile ? `60px 2px` : `180px 10px`,
+                padding: mobile ? `60px 10px` : `180px 10px`,
             }}
         >
             <Container>
