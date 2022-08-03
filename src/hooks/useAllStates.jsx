@@ -73,7 +73,7 @@ const AllStates = () => {
 
     useEffect(() => {
         getAllReviews();
-    }, []);
+    }, [allReviews]);
 
     useEffect(() => {
         checkIsAdminOrNot();
@@ -114,6 +114,8 @@ const AllStates = () => {
         isAdmin,
         signOut,
         allReviews,
+        setAllReviews,
+        getAllReviewsURL,
     };
 };
 
