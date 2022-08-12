@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import { useMediaQuery } from '@mui/material';
 import axios from 'axios';
@@ -42,42 +41,24 @@ const AllStates = () => {
     const checkAdminURL = `http://localhost:5000/users/${user?.email}`;
     const getAllReviewsURL = `http://localhost:5000/review`;
 
-    // get data
-    const getAllPackages = () => {
-        axios.get(getAllPackageURL).then((result) => setAllPackages(result?.data));
-    };
-
-    const getPopularPackages = () => {
+    // function calls
+    useEffect(() => {
         axios.get(getPopularPackageURL).then((result) => setPopularPackages(result?.data));
-    };
+    }, [getPopularPackageURL]);
 
-    const getAllReviews = () => {
+    useEffect(() => {
+        axios.get(getAllPackageURL).then((result) => setAllPackages(result?.data));
+    }, [getAllPackageURL]);
+
+    useEffect(() => {
         axios.get(getAllReviewsURL).then((result) => setAllReviews(result?.data));
-    };
+    }, [getAllReviewsURL]);
 
-    // check admin role
-    const checkIsAdminOrNot = () => {
+    useEffect(() => {
         axios.get(checkAdminURL).then((result) => {
             setIsAdmin(result?.data?.admin);
         });
-    };
-
-    // function calls
-    useEffect(() => {
-        getPopularPackages();
-    }, []);
-
-    useEffect(() => {
-        getAllPackages();
-    }, []);
-
-    useEffect(() => {
-        getAllReviews();
-    }, [allReviews]);
-
-    useEffect(() => {
-        checkIsAdminOrNot();
-    }, [user?.email]);
+    }, [checkAdminURL]);
 
     // responsive check
     const mobile = useMediaQuery('(max-width:475px)');

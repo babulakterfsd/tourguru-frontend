@@ -1,3 +1,6 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable no-restricted-globals */
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable react/no-this-in-sfc */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-undef */
@@ -9,7 +12,8 @@ import {
     Button, Container, Paper, TextField,
     Typography
 } from '@mui/material';
-import React from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
@@ -19,6 +23,8 @@ import Styles from '../../../styles/Login.module.css';
 
 function AddNewpackage() {
    const {mobile, tablet, desktop} = useAuth()
+   const [newPackageImage,setNewPackageImage] = useState({})
+   const [imageURL, setImageURL] = useState('')
 
    const navigate = useNavigate()
 
@@ -28,19 +34,37 @@ function AddNewpackage() {
     formState: { errors },
   } = useForm();
 
+const handleImageUpload = (e) => {
+    const image = e.target.files[0]
+    const formData = new FormData()
+    formData.set("image", image)
+    const imageStorageAPIKey = `99f27926739ee425304cd99a6447e360`
+    const imgUploadURL = `https://api.imgbb.com/1/upload?key=${imageStorageAPIKey}`
+    axios.post(imgUploadURL, formData)
+        .then((res) => {
+            setImageURL(res.data.data.display_url)
+        }).catch((error) => {
+            console.log(error);
+            Swal.fire(`Something went wrong when choosing image`)
+        })
+}
+
    const addPackage = (pack) => {
-
-    const packageDetails = pack
-
+    let packageDetails = pack
     packageDetails.services = ['Hotel Room', 'Food', 'Tour Guide', 'Travel Zeep', 'Security']
-
     const packageLocation = {city: packageDetails.city, country: packageDetails.country}
     packageDetails.location = packageLocation
-
     delete packageDetails.city
     delete packageDetails.country
 
-    fetch('http://localhost:5000/addpackage', {
+    if(imageURL === '') {
+        Swal.fire('Waiting for the image to be processed !')
+    } else {
+        packageDetails = {...packageDetails, img: imageURL}
+    }
+      
+    if(imageURL !== '') {
+        fetch('http://localhost:5000/addpackage', {
         method: 'POST',
         headers: {
             'content-type': 'application/json'
@@ -59,6 +83,9 @@ function AddNewpackage() {
            }
        })
    }
+}
+
+console.log('test');
 
     return (
         <div
@@ -136,16 +163,15 @@ function AddNewpackage() {
                             {...register("description", { required: true })}
                         />
                         <TextField
+                            type="file"
                             margin="normal"
                             required
                             fullWidth
                             id="photourl"
-                            label="Photo URL"
                             name="photourl"
-                            autoComplete="photourl"
                             className={Styles.customTextField}
-                            placeholder="https://i.ibb.co/QjWGB86/istanbul.jpg"
                             {...register("img", { required: true })}
+                            onChange={(e) => handleImageUpload(e)}
                         />
                         
                         

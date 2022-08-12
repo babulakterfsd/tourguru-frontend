@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-array-index-key */
@@ -34,13 +33,9 @@ export default function StickyHeadTable() {
 
     const getAllUsersURL = `http://localhost:5000/users`;
 
-    const getAllUsers = () => {
-        axios.get(getAllUsersURL).then((result) => setAllUsers(result?.data));
-    };
-
     useEffect(() => {
-        getAllUsers();
-    }, [allUsers]);
+        axios.get(getAllUsersURL).then((result) => setAllUsers(result?.data));
+    }, [getAllUsersURL]);
 
     useEffect(() => {
         const row = [];
