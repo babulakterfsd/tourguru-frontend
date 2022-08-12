@@ -42,7 +42,7 @@ const handleImageUpload = (e) => {
     const imgUploadURL = `https://api.imgbb.com/1/upload?key=${imageStorageAPIKey}`
     axios.post(imgUploadURL, formData)
         .then((res) => {
-            setImageURL(res.data.data.display_url)
+            setImageURL(res?.data?.data?.display_url)
         }).catch((error) => {
             console.log(error);
             Swal.fire(`Something went wrong when choosing image`)
