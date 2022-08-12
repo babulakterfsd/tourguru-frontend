@@ -57,11 +57,7 @@ const handleImageUpload = (e) => {
     delete packageDetails.city
     delete packageDetails.country
 
-    if(imageURL === '') {
-        Swal.fire('Waiting for the image to be processed !')
-    } else {
-        packageDetails = {...packageDetails, img: imageURL}
-    }
+    packageDetails = {...packageDetails, img: imageURL}
       
     if(imageURL !== '') {
         fetch('http://localhost:5000/addpackage', {
@@ -79,13 +75,11 @@ const handleImageUpload = (e) => {
             )
             setTimeout(() => {
                 navigate('/dashboard/summary')
-            }, 3000)
+            }, 1500)
            }
        })
    }
 }
-
-console.log('test');
 
     return (
         <div
@@ -173,13 +167,17 @@ console.log('test');
                             {...register("img", { required: true })}
                             onChange={(e) => handleImageUpload(e)}
                         />
-                        
-                        
-                        <Box style={{textAlign: `center`}}>
-                        <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
+                        {
+                            imageURL !== '' ? (<Box style={{textAlign: `center`}}>
+                            <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
+                                Add Package
+                            </Button>
+                            </Box>) : (<Box style={{textAlign: `center`}}>
+                        <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }} disabled>
                             Add Package
                         </Button>
-                        </Box>
+                        </Box>)
+                        }
                     </Box>
                 </Paper>
             </Container>
