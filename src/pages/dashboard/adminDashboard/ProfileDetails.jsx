@@ -9,7 +9,7 @@ import {
   CardHeader,
   Divider, Grid, MenuItem, TextField
 } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../../hooks/useAuth';
 
@@ -36,7 +36,6 @@ export default function ProfileDetails(props) {
 
     const handleChange = (event) => {
       setGender(event.target.value);
-      console.log(gender);
     };
 
     const updateProfile = (data) => {
@@ -55,10 +54,6 @@ export default function ProfileDetails(props) {
      }
          }).catch(err => console.log(err.message))
     }
-
-    useEffect(() => {
-      console.log('reloading...')
-    }, [userInfoInDatabase])
 
     return (
             <Card>
