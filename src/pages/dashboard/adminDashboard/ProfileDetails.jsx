@@ -2,59 +2,30 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react/jsx-props-no-spreading */
 import {
-    Box,
-    Button,
-    Card,
-    CardContent,
-    CardHeader,
-    Divider,
-    Grid,
-    TextField
+  Box,
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  Divider, Grid, MenuItem, TextField
 } from '@mui/material';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import Swal from 'sweetalert2';
 import useAuth from '../../../hooks/useAuth';
 
-const states = [
-    {
-        value: 'Dhaka',
-        label: 'Dhaka',
-    },
-    {
-        value: 'Rajshahi',
-        label: 'Rajshahi',
-    },
-    {
-        value: 'Dinajpur',
-        label: 'Dinajpur',
-    },
-    {
-        value: 'Rangpur',
-        label: 'Rangpur',
-    },
-    {
-        value: 'Mymensing',
-        label: 'Mymensing',
-    },
-    {
-        value: 'Sylhet',
-        label: 'Sylhet',
-    },
-    {
-        value: 'Khulna',
-        label: 'Khulna',
-    },
-    {
-        value: 'Barisal',
-        label: 'Barisal',
-    },
-    {
-        value: 'Chittagong',
-        label: 'Chittagong',
-    },
-];
+const genderoptions = ['Male', 'Female', 'Other']
 
 export default function ProfileDetails(props) {
-    const {user} = useAuth()
+    const {user, userInfoInDatabase} = useAuth()
+    const {email} = user;
+    const [gender, setGender] = useState('male')
+    const {
+        register,
+        control,
+        handleSubmit,
+        reset
+      } = useForm();
     
     const [values, setValues] = useState({
         name: user?.displayName,
@@ -65,95 +36,102 @@ export default function ProfileDetails(props) {
     });
 
     const handleChange = (event) => {
-        setValues({
-            ...values,
-            [event.target.name]: event.target.value,
-        });
+      setGender(event.target.value);
+      console.log(gender);
     };
 
+    const updateProfile = (data) => {
+      const myUser = {email, ...data};
+      fetch(`http://localhost:5000/updateuser/${email}`, {
+        method: 'PUT',
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(myUser),
+      }).then(res=> res.json())
+         .then((myData) => {
+          if(myData?.modifiedCount > 0 ) {
+              reset();
+              Swal.fire('User Info Updated !')
+              window.location.reload()
+     }
+         }).catch(err => console.log(err.message))
+    }
+
     return (
-        <form autoComplete="off" noValidate {...props}>
             <Card>
-                <CardHeader subheader="Name and email are not editable" title="Profile" />
+              <Box component="form" onSubmit={handleSubmit(updateProfile)} noValidate>
+                <CardHeader subheader="You can't change your email" title="Profile" />
                 <Divider />
                 <CardContent>
                     <Grid container spacing={3}>
                         <Grid item md={6} xs={12}>
                             <TextField
                                 fullWidth
-                                helperText="Please specify the name"
                                 label="Name"
                                 name="name"
-                                onChange={handleChange}
                                 required
-                                value={values?.name}
+                                placeholder={userInfoInDatabase?.displayName}
                                 variant="outlined"
-                                disabled
+                                {...register("displayName", { required: true })}
                             />
                         </Grid>
                         <Grid item md={6} xs={12}>
-                            <TextField
-                                fullWidth
-                                label="Email Address"
-                                name="email"
-                                onChange={handleChange}
-                                required
-                                value={values.email}
-                                variant="outlined"
-                                disabled
-                            />
+                        <TextField
+                            select
+                            fullWidth
+                            label="Gender"
+                            defaultValue=''
+                            inputProps={register('gender', {
+                              required: 'Please enter gender',
+                            })}
+                          >
+                            {genderoptions.map((option) => (
+                              <MenuItem key={option} value={option}>
+                                {option}
+                              </MenuItem>
+                            ))}
+                          </TextField>
                         </Grid>
                         <Grid item md={6} xs={12}>
                             <TextField
                                 fullWidth
                                 label="Address"
                                 name="address"
-                                onChange={handleChange}
                                 required
                                 placeholder='Jinjirtala, Dhunat Pouroshava, Dhunat, Bogura'
                                 variant="outlined"
+                                {...register("address", { required: true })}
                             />
                         </Grid>
                         <Grid item md={6} xs={12}>
                             <TextField
                                 fullWidth
-                                label="Phone Number"
-                                name="phone"
-                                onChange={handleChange}
+                                label="Phone"
                                 type="number"
-                                value={values.phone}
                                 variant="outlined"
+                                {...register("phone", { required: true })}
                             />
                         </Grid>
                         <Grid item md={6} xs={12}>
                             <TextField
+                                fullWidth
+                                label="City"
+                                name="city"
+                                required
+                                variant="outlined"
+                                {...register("city", { required: true })}
+                             />
+                        </Grid>
+                        <Grid item md={6} xs={12}> 
+                        <TextField
                                 fullWidth
                                 label="Country"
                                 name="country"
-                                onChange={handleChange}
                                 required
-                                value={values.country}
                                 variant="outlined"
-                            />
-                        </Grid>
-                        <Grid item md={6} xs={12}>
-                            <TextField
-                                fullWidth
-                                label="Select City"
-                                name="city"
-                                onChange={handleChange}
-                                required
-                                select
-                                SelectProps={{ native: true }}
-                                value={values.city}
-                                variant="outlined"
-                            >
-                                {states.map((option) => (
-                                    <option key={option.value} value={option.value}>
-                                        {option.label}
-                                    </option>
-                                ))}
-                            </TextField>
+                                {...register("country", { required: true })}
+                             />
                         </Grid>
                     </Grid>
                 </CardContent>
@@ -165,11 +143,11 @@ export default function ProfileDetails(props) {
                         p: 2,
                     }}
                 >
-                    <Button color="primary" variant="contained"  title='updating profile is not avilable now'>
+                    <Button type='submit' color="primary" variant="contained">
                         Save details
                     </Button>
                 </Box>
+                </Box>
             </Card>
-        </form>
     );
 }

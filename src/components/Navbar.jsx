@@ -10,16 +10,18 @@ import MenuItem from '@mui/material/MenuItem';
 import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import DefaultUserImage from '../assests/images/userdefault.png';
+import defaultAvatar from '../assests/images/userdefault.png';
 import useAuth from '../hooks/useAuth';
 
 function Navbar() {
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
-    const { user, signOut, setUser, setIsLoading, auth } = useAuth();
+    const { user, signOut, setUser, setIsLoading, auth, userInfoInDatabase } = useAuth();
     const navigate = useNavigate();
+
+    useEffect(() => {}, [userInfoInDatabase]);
 
     // logsout the user
     const logOut = () => {
@@ -217,7 +219,11 @@ function Navbar() {
                             <Tooltip title="settings">
                                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                                     <img
-                                        src={DefaultUserImage}
+                                        src={
+                                            userInfoInDatabase?.img
+                                                ? userInfoInDatabase?.img
+                                                : defaultAvatar
+                                        }
                                         alt="userImage"
                                         style={{
                                             height: '40px',

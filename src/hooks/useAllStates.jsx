@@ -12,6 +12,8 @@ const AllStates = () => {
     const [activeStep, setActiveStep] = useState(0);
     const [isAdmin, setIsAdmin] = useState(false);
     const [allReviews, setAllReviews] = useState([]);
+    const [userImageURL, setUserImageURL] = useState('');
+    const [userInfoInDatabase, setUserInfoInDatabase] = useState({});
 
     // firebase
     const {
@@ -39,6 +41,7 @@ const AllStates = () => {
     const getAllPackageURL = `http://localhost:5000/packages`;
     const getPopularPackageURL = `http://localhost:5000/packages?limit=6`;
     const checkAdminURL = `http://localhost:5000/users/${user?.email}`;
+    const getIndividualUserFromdatabse = `http://localhost:5000/user/${user?.email}`;
     const getAllReviewsURL = `http://localhost:5000/review`;
 
     // function calls
@@ -59,6 +62,12 @@ const AllStates = () => {
             setIsAdmin(result?.data?.admin);
         });
     }, [checkAdminURL]);
+
+    useEffect(() => {
+        axios.get(getIndividualUserFromdatabse).then((result) => {
+            setUserInfoInDatabase(result?.data);
+        });
+    }, [getIndividualUserFromdatabse]);
 
     // responsive check
     const mobile = useMediaQuery('(max-width:475px)');
@@ -97,6 +106,10 @@ const AllStates = () => {
         allReviews,
         setAllReviews,
         getAllReviewsURL,
+        userImageURL,
+        setUserImageURL,
+        userInfoInDatabase,
+        setUserInfoInDatabase,
     };
 };
 

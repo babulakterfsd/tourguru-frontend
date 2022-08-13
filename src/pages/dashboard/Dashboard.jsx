@@ -61,7 +61,7 @@ function DashboardContent() {
         setOpen(!open);
     };
 
-    const { user, isAdmin, mobile } = useAuth();
+    const { user, isAdmin, mobile, userInfoInDatabase } = useAuth();
     const { pathname } = useLocation();
 
     if (isAdmin === undefined) {
@@ -141,14 +141,14 @@ function DashboardContent() {
                             }}
                         >
                             <Typography variant="p">
-                                {user?.displayname?.length >= 20
-                                    ? `${user?.displayName?.slice(0, 20)}...`
-                                    : user?.displayName}
+                                {userInfoInDatabase?.displayname?.length >= 20
+                                    ? `${userInfoInDatabase?.displayName?.slice(0, 20)}...`
+                                    : userInfoInDatabase?.displayName}
                             </Typography>
                             <Typography variant="p">
-                                {user?.email?.length >= 20
-                                    ? `${user?.email?.slice(0, 20)}...`
-                                    : user?.email}
+                                {userInfoInDatabase?.email?.length >= 20
+                                    ? `${userInfoInDatabase?.email?.slice(0, 20)}...`
+                                    : userInfoInDatabase?.email}
                             </Typography>
 
                             <IconButton onClick={toggleDrawer}>

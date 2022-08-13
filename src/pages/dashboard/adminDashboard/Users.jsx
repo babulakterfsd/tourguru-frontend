@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { Box, Container } from '@mui/material';
 import React from 'react';
 import ScrollToTop from '../../../components/ScrollToTop';
@@ -6,7 +5,7 @@ import useAuth from '../../../hooks/useAuth';
 import UsersTable from './UsersTable';
 
 function Users() {
-    const { user, allUsers, mobile } = useAuth();
+    const { mobile } = useAuth();
 
     return (
         <Container>
