@@ -9,15 +9,14 @@ import {
   CardHeader,
   Divider, Grid, MenuItem, TextField
 } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import Swal from 'sweetalert2';
 import useAuth from '../../../hooks/useAuth';
 
 const genderoptions = ['Male', 'Female', 'Other']
 
 export default function ProfileDetails(props) {
-    const {user, userInfoInDatabase} = useAuth()
+    const {user, userInfoInDatabase, setUserInfoInDatabase} = useAuth()
     const {email} = user;
     const [gender, setGender] = useState('male')
     const {
@@ -52,11 +51,14 @@ export default function ProfileDetails(props) {
          .then((myData) => {
           if(myData?.modifiedCount > 0 ) {
               reset();
-              Swal.fire('User Info Updated !')
               window.location.reload()
      }
          }).catch(err => console.log(err.message))
     }
+
+    useEffect(() => {
+      console.log('reloading...')
+    }, [userInfoInDatabase])
 
     return (
             <Card>
