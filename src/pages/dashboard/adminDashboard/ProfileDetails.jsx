@@ -58,7 +58,7 @@ export default function ProfileDetails(props) {
     return (
             <Card>
               <Box component="form" onSubmit={handleSubmit(updateProfile)} noValidate>
-                <CardHeader subheader="You can't change your email" title="Profile" />
+                <CardHeader subheader="You can't change your email" title="Update Profile" />
                 <Divider />
                 <CardContent>
                     <Grid container spacing={3}>
