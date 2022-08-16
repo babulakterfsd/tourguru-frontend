@@ -14,7 +14,16 @@ import ScrollToTop from '../../components/ScrollToTop';
 import useAuth from '../../hooks/useAuth';
 
 export default function Review() {
-    const { orderData, setOrderData, activeStep, setActiveStep, user } = useAuth();
+    const {
+        orderData,
+        setOrderData,
+        activeStep,
+        setActiveStep,
+        user,
+        paymentIntentStatus,
+        userInfoInDatabase,
+        paymentTrxID,
+    } = useAuth();
 
     const navigate = useNavigate();
     const [buyingPackage, setBuyingPackage] = useState({});
@@ -31,8 +40,12 @@ export default function Review() {
                 'Content-Type': 'application/json;charset=UTF-8',
             },
             data: {
-                email: user?.email,
-                userInfo: { displayName: user?.displayName },
+                email: userInfoInDatabase?.email,
+                billingDetails: {
+                    name: userInfoInDatabase?.displayName,
+                    email: userInfoInDatabase?.email,
+                    trxid: paymentTrxID,
+                },
                 shippingAddress: orderData,
                 selectedPackage: buyingPackage,
                 status: 'pending',
@@ -44,7 +57,7 @@ export default function Review() {
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
-                    title: `Order Confirmed! Your order id is #${response?.data?.insertedId}`,
+                    title: `Order Confirmed! Your order id is ${paymentTrxID}`,
                     showConfirmButton: false,
                     timer: 5000,
                 });
@@ -109,7 +122,7 @@ export default function Review() {
                     </Typography>
                 </ListItem>
             </List>
-            <Grid container spacing={2}>
+            <Grid container spacing={5}>
                 <Grid item xs={12} sm={6}>
                     <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
                         Shipping
@@ -128,21 +141,48 @@ export default function Review() {
                     <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
                         Payment details
                     </Typography>
-                    <Typography gutterBottom>{orderData?.nameOnCard}</Typography>
-                    <Typography gutterBottom>{orderData?.cardNumber}</Typography>
-                    <Typography gutterBottom>{orderData?.expiryDate}</Typography>
-                    <Typography gutterBottom>{orderData?.cvv}</Typography>
+                    <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                        }}
+                    >
+                        <Typography gutterBottom>Paid By </Typography>
+                        <Typography gutterBottom>{userInfoInDatabase?.displayName}</Typography>
+                    </div>
+                    <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                        }}
+                    >
+                        <Typography gutterBottom>Email </Typography>
+                        <Typography gutterBottom>{userInfoInDatabase?.email}</Typography>
+                    </div>
+                    <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                        }}
+                    >
+                        <Typography gutterBottom>TrxID</Typography>
+                        <Typography gutterBottom>{paymentTrxID}</Typography>
+                    </div>
                 </Grid>
             </Grid>
             <Grid>
-                <Box style={{ display: `flex`, justifyContent: `end` }}>
-                    {activeStep <= 0 || activeStep >= 3 ? null : (
+                <Box style={{ display: `flex`, justifyContent: `end`, margin: '20px 0px' }}>
+                    {activeStep <= 0 ||
+                    (activeStep >= 3 &&
+                        paymentTrxID === '' &&
+                        paymentIntentStatus === '') ? null : (
                         <Button onClick={() => handleBack()}>Back</Button>
                     )}
-                    {activeStep >= 3 ? null : !orderData.nameOnCard ||
-                      !orderData.cardNumber ||
-                      !orderData.expiryDate ||
-                      !orderData.cvv ? null : (
+                    {activeStep >= 3 ? null : paymentIntentStatus !== 'succeeded' &&
+                      paymentTrxID === '' ? null : (
                         <Button variant="contained" onClick={() => handleNext()}>
                             {activeStep === 2 ? `Place Order` : `Next`}
                         </Button>

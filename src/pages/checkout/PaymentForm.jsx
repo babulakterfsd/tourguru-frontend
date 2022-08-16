@@ -1,16 +1,34 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-nested-ternary */
-import { Box, Button } from '@mui/material';
-import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Grid from '@mui/material/Grid';
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
+import {
+    Box,
+    Button,
+    Card,
+    Grid,
+    // eslint-disable-next-line prettier/prettier
+    Typography
+} from '@mui/material';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 import React from 'react';
 import ScrollToTop from '../../components/ScrollToTop';
 import useAuth from '../../hooks/useAuth';
+import StripeForm from './StripeForm';
 
-export default function PaymentForm() {
-    const { setOrderData, orderData, activeStep, setActiveStep } = useAuth();
+const stripePromise = loadStripe(
+    'pk_test_51JwINYCr7RqfY75BoFkzy5YudExXmB6KnbiYD0HNNHZwWp4oQ0Wa41CkWgrIZCU2k37L7fAUiBs2ULpMMlpf4eoS00yNuTBDVo'
+);
+
+function PaymentForm() {
+    return (
+        <Elements stripe={stripePromise}>
+            <MypaymentForm />
+        </Elements>
+    );
+}
+
+function MypaymentForm() {
+    const { setOrderData, orderData, activeStep, setActiveStep, paymentIntentStatus } = useAuth();
 
     const handleNext = () => {
         setActiveStep((prev) => prev + 1);
@@ -23,92 +41,25 @@ export default function PaymentForm() {
         <>
             <ScrollToTop />
             <Typography variant="h6" gutterBottom>
-                Payment method
+                Please pay the bill !
             </Typography>
             <Grid container spacing={3}>
                 <Grid item xs={12} md={6}>
-                    <TextField
-                        required
-                        id="cardName"
-                        label="Name on card"
-                        fullWidth
-                        autoComplete="cc-name"
-                        variant="standard"
-                        onChange={(e) => {
-                            setOrderData((prevState) => ({
-                                ...prevState,
-                                nameOnCard: e.target.value,
-                            }));
-                        }}
-                    />
-                </Grid>
-                <Grid item xs={12} md={6}>
-                    <TextField
-                        required
-                        id="cardNumber"
-                        label="Card number"
-                        fullWidth
-                        autoComplete="cc-number"
-                        variant="standard"
-                        onChange={(e) => {
-                            setOrderData((prevState) => ({
-                                ...prevState,
-                                cardNumber: e.target.value,
-                            }));
-                        }}
-                    />
-                </Grid>
-                <Grid item xs={12} md={6}>
-                    <TextField
-                        required
-                        id="expDate"
-                        label="Expiry date"
-                        fullWidth
-                        autoComplete="cc-exp"
-                        variant="standard"
-                        onChange={(e) => {
-                            setOrderData((prevState) => ({
-                                ...prevState,
-                                expiryDate: e.target.value,
-                            }));
-                        }}
-                    />
-                </Grid>
-                <Grid item xs={12} md={6}>
-                    <TextField
-                        required
-                        id="cvv"
-                        label="CVV"
-                        helperText="Last three digits on signature strip"
-                        fullWidth
-                        autoComplete="cc-csc"
-                        variant="standard"
-                        onChange={(e) => {
-                            setOrderData((prevState) => ({
-                                ...prevState,
-                                cvv: e.target.value,
-                            }));
-                        }}
-                    />
+                    <Card style={{ padding: '25px 15px' }}>
+                        <StripeForm />
+                    </Card>
                 </Grid>
                 <Grid item xs={12}>
-                    <FormControlLabel
-                        control={<Checkbox name="saveCard" value="yes" />}
-                        label="Remember credit card details for next time"
-                    />
                     <Box style={{ display: `flex`, justifyContent: `end`, alignItems: `center` }}>
                         {activeStep <= 0 || activeStep >= 3 ? null : (
                             <Button onClick={() => handleBack()}>Back</Button>
                         )}
-                        {activeStep >= 3 ? null : !orderData.nameOnCard ||
-                          !orderData.cardNumber ||
-                          !orderData.expiryDate ||
-                          !orderData.cvv ? (
+                        {activeStep >= 3 ? null : paymentIntentStatus !== 'succeeded' ? (
                             <Typography
                                 variant="subtitle1"
                                 style={{ color: `#f3680b`, cursor: `wait` }}
                             >
-                                Fill all the fields to proceed next
+                                Please complete the payment to proceed.
                             </Typography>
                         ) : (
                             <Button variant="contained" onClick={() => handleNext()}>
@@ -121,3 +72,5 @@ export default function PaymentForm() {
         </>
     );
 }
+
+export default PaymentForm;

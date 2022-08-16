@@ -160,7 +160,7 @@ export default function StickyHeadTable() {
                                         tabIndex={-1}
                                         style={{ minWidth: `170px`, textAlign: `center` }}
                                     >
-                                        {`${row?.userInfo?.displayName}`}
+                                        {`${row?.billingDetails?.name}`}
                                     </TableCell>
                                     <TableCell
                                         role="checkbox"

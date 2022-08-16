@@ -20,7 +20,8 @@ const columns = [
     { id: 'destination', label: 'Destination' },
     { id: 'duration', label: 'Duration' },
     { id: 'price', label: 'Price' },
-    { id: 'orderStatus', label: 'Order Status' },
+    { id: 'orderStatus', label: 'Status' },
+    { id: 'TrxID', label: 'TrxID' },
     { id: 'action', label: 'Action' },
 ];
 
@@ -139,21 +140,21 @@ export default function MyOrderTable() {
                                     <TableCell
                                         role="checkbox"
                                         tabIndex={-1}
-                                        style={{ minWidth: `170px`, textAlign: `center` }}
+                                        style={{ minWidth: `150px`, textAlign: `center` }}
                                     >
                                         {`${row?.selectedPackage?.duration}`}
                                     </TableCell>
                                     <TableCell
                                         role="checkbox"
                                         tabIndex={-1}
-                                        style={{ minWidth: `170px`, textAlign: `center` }}
+                                        style={{ minWidth: `100px`, textAlign: `center` }}
                                     >
-                                        {`${row?.selectedPackage?.price}`}
+                                        {`$${row?.selectedPackage?.price}`}
                                     </TableCell>
                                     <TableCell
                                         role="checkbox"
                                         tabIndex={-1}
-                                        style={{ minWidth: `170px`, textAlign: `center` }}
+                                        style={{ minWidth: `80px`, textAlign: `center` }}
                                     >
                                         {`${row?.status}`}
                                     </TableCell>
@@ -161,6 +162,13 @@ export default function MyOrderTable() {
                                         role="checkbox"
                                         tabIndex={-1}
                                         style={{ minWidth: `170px`, textAlign: `center` }}
+                                    >
+                                        {`${row?.billingDetails?.trxid}`}
+                                    </TableCell>
+                                    <TableCell
+                                        role="checkbox"
+                                        tabIndex={-1}
+                                        style={{ minWidth: `120px`, textAlign: `center` }}
                                     >
                                         {row?.status === `pending` ? (
                                             <Button

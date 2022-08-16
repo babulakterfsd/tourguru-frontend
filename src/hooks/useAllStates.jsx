@@ -13,6 +13,8 @@ const AllStates = () => {
     const [isAdmin, setIsAdmin] = useState(false);
     const [allReviews, setAllReviews] = useState([]);
     const [userImageURL, setUserImageURL] = useState('');
+    const [paymentIntentStatus, setPaymentIntentStatus] = useState('');
+    const [paymentTrxID, setPaymentTrxID] = useState('');
     const [userInfoInDatabase, setUserInfoInDatabase] = useState({});
 
     // firebase
@@ -110,6 +112,10 @@ const AllStates = () => {
         setUserImageURL,
         userInfoInDatabase,
         setUserInfoInDatabase,
+        paymentIntentStatus,
+        setPaymentIntentStatus,
+        paymentTrxID,
+        setPaymentTrxID,
     };
 };
 
