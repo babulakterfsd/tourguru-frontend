@@ -129,8 +129,10 @@ function DashboardContent() {
                     sx={{
                         display: 'flex',
                         alignItems: 'center',
-                        justifyContent: 'flex-end',
+                        justifyContent: 'center',
                         px: [1],
+                        backgroundColor: '#1a213d',
+                        color: '#fff',
                     }}
                 >
                     {open ? (
@@ -159,10 +161,11 @@ function DashboardContent() {
                                 <ChevronLeftIcon
                                     style={{
                                         color: `#f3680b`,
-                                        outline: `1px dotted #ccc`,
+                                        outline: `1px solid #f3680b`,
                                         border: `1px solid transparent`,
                                         borderRadius: `100px`,
                                         outlineOffset: `3px`,
+                                        marginTop: '10px',
                                     }}
                                 />
                             </IconButton>
@@ -182,10 +185,11 @@ function DashboardContent() {
                                 <ChevronRightIcon
                                     style={{
                                         color: `#f3680b`,
-                                        outline: `1px dotted #ccc`,
+                                        outline: `1px solid #f3680b`,
                                         border: `1px solid transparent`,
                                         borderRadius: `100px`,
                                         outlineOffset: `3px`,
+                                        marginTop: '10px',
                                     }}
                                 />
                             </IconButton>

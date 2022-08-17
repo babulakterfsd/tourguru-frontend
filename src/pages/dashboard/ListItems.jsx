@@ -14,7 +14,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import React from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 
 function MyListItems() {
@@ -31,69 +31,103 @@ function MyListItems() {
         setIsLoading(false);
     };
 
+    const activeStyle = {
+        textDecoration: 'none',
+        color: '#f3680b',
+        display: 'block',
+        backgroundColor: '#1a213d',
+        fontWeight: '700',
+        transition: '1s',
+    };
+    const inActiveStyle = {
+        textDecoration: 'none',
+        color: 'rgba(0,0,0, .87)',
+    };
+
     const AdminListItems = (
         <>
-            <Link to="summary" style={{ textDecoration: `none`, color: `rgba(0,0,0, .87)` }}>
+            <NavLink
+                to="summary"
+                style={({ isActive }) => (isActive ? activeStyle : inActiveStyle)}
+            >
                 <ListItemButton>
                     <ListItemIcon>
                         <DashboardIcon style={{ color: `#f3680b` }} />
                     </ListItemIcon>
                     <ListItemText primary="Summary" />
                 </ListItemButton>
-            </Link>
-            <Link to="allusers" style={{ textDecoration: `none`, color: `rgba(0,0,0, .87)` }}>
+            </NavLink>
+            <NavLink
+                to="allusers"
+                style={({ isActive }) => (isActive ? activeStyle : inActiveStyle)}
+            >
                 <ListItemButton>
                     <ListItemIcon>
                         <PeopleAltIcon style={{ color: `#f3680b` }} />
                     </ListItemIcon>
                     <ListItemText primary="Users List" />
                 </ListItemButton>
-            </Link>
-            <Link to="allpackages" style={{ textDecoration: `none`, color: `rgba(0,0,0, .87)` }}>
+            </NavLink>
+            <NavLink
+                to="allpackages"
+                style={({ isActive }) => (isActive ? activeStyle : inActiveStyle)}
+            >
                 <ListItemButton>
                     <ListItemIcon>
                         <CollectionsBookmarkIcon style={{ color: `#f3680b` }} />
                     </ListItemIcon>
                     <ListItemText primary="All Packages" />
                 </ListItemButton>
-            </Link>
-            <Link to="addnewpackage" style={{ textDecoration: `none`, color: `rgba(0,0,0, .87)` }}>
+            </NavLink>
+            <NavLink
+                to="addnewpackage"
+                style={({ isActive }) => (isActive ? activeStyle : inActiveStyle)}
+            >
                 <ListItemButton>
                     <ListItemIcon>
                         <BorderColorIcon style={{ color: `#f3680b` }} />
                     </ListItemIcon>
                     <ListItemText primary="Add New Package" />
                 </ListItemButton>
-            </Link>
-            <Link to="allorders" style={{ textDecoration: `none`, color: `rgba(0,0,0, .87)` }}>
+            </NavLink>
+            <NavLink
+                to="allorders"
+                style={({ isActive }) => (isActive ? activeStyle : inActiveStyle)}
+            >
                 <ListItemButton>
                     <ListItemIcon>
                         <MonetizationOnIcon style={{ color: `#f3680b` }} />
                     </ListItemIcon>
                     <ListItemText primary="All Orders" />
                 </ListItemButton>
-            </Link>
+            </NavLink>
         </>
     );
 
     const UserListItems = (
         <>
-            <Link to="myorders" style={{ textDecoration: `none`, color: `rgba(0,0,0, .87)` }}>
+            <NavLink
+                to="myorders"
+                style={({ isActive }) => (isActive ? activeStyle : inActiveStyle)}
+            >
                 <ListItemButton>
                     <ListItemIcon>
                         <AddShoppingCartIcon style={{ color: `#f3680b` }} />
                     </ListItemIcon>
                     <ListItemText primary="My Orders" />
                 </ListItemButton>
-            </Link>
-            <Link to="addreview" style={{ textDecoration: `none`, color: `rgba(0,0,0, .87)` }}>
+            </NavLink>
+            <NavLink
+                to="addreview"
+                style={({ isActive }) => (isActive ? activeStyle : inActiveStyle)}
+            >
                 <ListItemButton>
                     <ListItemIcon>
                         <StarBorderIcon style={{ color: `#f3680b` }} />
                     </ListItemIcon>
                     <ListItemText primary="Review TourGuru" />
                 </ListItemButton>
-            </Link>
+            </NavLink>
         </>
     );
 
@@ -102,22 +136,25 @@ function MyListItems() {
             {/* <ListSubheader component="div" inset>
                 Saved reports
             </ListSubheader> */}
-            <Link to="profile" style={{ textDecoration: `none`, color: `rgba(0,0,0, .87)` }}>
+            <NavLink
+                to="profile"
+                style={({ isActive }) => (isActive ? activeStyle : inActiveStyle)}
+            >
                 <ListItemButton>
                     <ListItemIcon>
                         <AccountCircleIcon style={{ color: `#f3680b` }} />
                     </ListItemIcon>
                     <ListItemText primary="Profile" />
                 </ListItemButton>
-            </Link>
-            <Link to="/" style={{ textDecoration: `none`, color: `rgba(0,0,0, .87)` }}>
+            </NavLink>
+            <NavLink to="/" style={({ isActive }) => (isActive ? activeStyle : inActiveStyle)}>
                 <ListItemButton>
                     <ListItemIcon>
                         <HomeIcon style={{ color: `#f3680b` }} />
                     </ListItemIcon>
                     <ListItemText primary="Back to Home" />
                 </ListItemButton>
-            </Link>
+            </NavLink>
             <ListItemButton onClick={logOut}>
                 <ListItemIcon>
                     <LogoutIcon style={{ color: `#f3680b` }} />

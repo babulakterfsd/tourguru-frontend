@@ -96,8 +96,8 @@ export default function StickyHeadTable() {
                 width: '100%',
                 overflow: 'hidden',
             }}
-            data-aos="fade-up-left"
-            data-aos-duration="1500"
+            data-aos="zoom-in"
+            data-aos-duration="4500"
         >
             <Typography
                 style={{

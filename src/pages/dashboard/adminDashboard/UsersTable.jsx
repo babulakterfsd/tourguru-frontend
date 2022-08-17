@@ -107,7 +107,7 @@ export default function StickyHeadTable() {
                             </Grid>
                         </>
                     ) : (
-                        <Grid container spacing={5} data-aos="flip-left" data-aos-duration="1500">
+                        <Grid container spacing={5} data-aos="zoom-in" data-aos-duration="4500">
                             {Array.from(Array(9)).map((packages, index) => (
                                 <Grid item md={6} lg={4} key={index}>
                                     <Skeleton
