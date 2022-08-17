@@ -131,8 +131,6 @@ function DashboardContent() {
                         alignItems: 'center',
                         justifyContent: 'center',
                         px: [1],
-                        backgroundColor: '#1a213d',
-                        color: '#fff',
                     }}
                 >
                     {open ? (
