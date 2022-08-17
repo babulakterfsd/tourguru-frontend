@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-unused-vars */
-import { Container, Skeleton, Typography } from '@mui/material';
+import { Button, Container, Skeleton, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import axios from 'axios';
@@ -11,7 +11,12 @@ import useAuth from '../hooks/useAuth';
 
 function Packages() {
     const [allPackages, setAllPackage] = useState([]);
+    const [numberOfPackage, setNumberOfPackage] = useState(6);
     const { mobile } = useAuth();
+
+    const loadMore = () => {
+        setNumberOfPackage((prev) => prev + 3);
+    };
 
     useEffect(() => {
         document.title = 'Tourguru | Packages';
@@ -108,12 +113,26 @@ function Packages() {
                             spacing={{ xs: 2, md: 3, lg: 5 }}
                             columns={{ xs: 12, md: 12, lg: 12 }}
                         >
-                            {allPackages?.map((singlePackage, index) => (
+                            {allPackages?.slice(0, numberOfPackage)?.map((singlePackage, index) => (
                                 <Grid item xs={12} md={6} lg={4} key={index}>
                                     <SinglePackageCard singlePackage={singlePackage} />
                                 </Grid>
                             ))}
                         </Grid>
+                        <Box style={{ textAlign: 'center' }}>
+                            <Button
+                                variant="contained"
+                                style={{
+                                    padding: mobile ? `8px 6px` : '8px 16px',
+                                    marginTop: '25px',
+                                    fontWeight: '600',
+                                }}
+                                disabled={allPackages?.length <= numberOfPackage}
+                                onClick={() => loadMore()}
+                            >
+                                Load More
+                            </Button>
+                        </Box>
                     </Box>
                 )}
             </Container>
