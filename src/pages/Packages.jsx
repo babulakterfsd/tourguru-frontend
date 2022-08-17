@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-unused-vars */
 import { Container, Skeleton, Typography } from '@mui/material';
@@ -12,7 +11,7 @@ import useAuth from '../hooks/useAuth';
 
 function Packages() {
     const [allPackages, setAllPackage] = useState([]);
-    const { mobile, tablet, desktop, orderData, activeStep, setActiveStep } = useAuth();
+    const { mobile } = useAuth();
 
     useEffect(() => {
         document.title = 'Tourguru | Packages';
@@ -20,7 +19,7 @@ function Packages() {
 
     useEffect(() => {
         axios.get(`http://localhost:5000/packages`).then((result) => setAllPackage(result?.data));
-    }, [allPackages]);
+    }, []);
 
     return (
         <div

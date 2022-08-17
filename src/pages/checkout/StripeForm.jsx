@@ -116,7 +116,7 @@ function StripeForm() {
                 <Button
                     variant="contained"
                     type="submit"
-                    disabled={!stripe || !clientSecret || success}
+                    disabled={!stripe || !clientSecret || Boolean(success)}
                     style={{ padding: '2px 15px', marginTop: '25px' }}
                 >
                     Pay

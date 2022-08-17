@@ -19,6 +19,7 @@ import Swal from 'sweetalert2';
 import defaultAvatar from '../../../assests/images/userdefault.png';
 import useAuth from '../../../hooks/useAuth';
 import Styles from '../../../styles/Login.module.css';
+import Classes from '../../../styles/Profile.module.css';
 import ProfileDetails from '../adminDashboard/ProfileDetails';
 
 
@@ -60,7 +61,7 @@ function Profile(props) {
 
 
     return (
-        <Container>
+        <Container className={`${Classes.profile}`}>
             <Grid container spacing={{xs: 2, md: 5}}>
             <Grid item xs={12} md={4} data-aos="fade-right" data-aos-duration="1500">
             <Card {...props} style={{position: 'relative'}}>

@@ -1,8 +1,6 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable no-unused-vars */
 import { Box, Button } from '@mui/material';
-import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
@@ -172,10 +170,7 @@ export default function AddressForm() {
                         flexDirection: mobile ? `column` : `row`,
                     }}
                 >
-                    <FormControlLabel
-                        control={<Checkbox name="saveAddress" value="yes" />}
-                        label="Save data for next time use"
-                    />
+                    <Box />
                     <Box style={{ display: `flex`, justifyContent: `end` }}>
                         {activeStep <= 0 || activeStep >= 3 ? null : (
                             <Button onClick={() => handleBack()}>Back</Button>
