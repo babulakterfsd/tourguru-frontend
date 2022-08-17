@@ -4,7 +4,7 @@ import { Avatar, Box, Card, CardContent, Grid, LinearProgress, Typography } from
 
 export default function TasksProgress(props) {
     return (
-        <Card sx={{ height: '100%' }} {...props}>
+        <Card sx={{ height: '100%' }} {...props} data-aos="zoom-in" data-aos-duration="1500">
             <CardContent>
                 <Grid container spacing={3} sx={{ justifyContent: 'space-between' }}>
                     <Grid item>

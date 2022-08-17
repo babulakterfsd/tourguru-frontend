@@ -62,7 +62,7 @@ function Profile(props) {
     return (
         <Container>
             <Grid container spacing={{xs: 2, md: 5}}>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} md={4} data-aos="fade-right" data-aos-duration="1500">
             <Card {...props} style={{position: 'relative'}}>
             <CardContent>
                 <Box
@@ -121,7 +121,7 @@ function Profile(props) {
             </CardActions>
         </Card>
             </Grid>
-            <Grid item xs={12} md={8}>
+            <Grid item xs={12} md={8} data-aos="fade-left" data-aos-duration="1500">
                 <ProfileDetails/>
             </Grid>
         </Grid>

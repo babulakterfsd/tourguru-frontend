@@ -19,11 +19,8 @@ function Banner() {
                         item
                         xs={12}
                         className={`${Styles.mainBanner}`}
-                        // sx={{
-                        //     display: mobile ? `flex` : `block`,
-                        //     justifyContent: `center`,
-                        //     flexDirection: 'column',
-                        // }}
+                        data-aos="fade-down"
+                        data-aos-duration="1500"
                     >
                         <Typography
                             variant="h1"

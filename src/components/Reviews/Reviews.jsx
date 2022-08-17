@@ -57,7 +57,12 @@ function Reviews() {
             }}
         >
             <Container>
-                <Typography color="primary" style={{ textAlign: `center` }}>
+                <Typography
+                    color="primary"
+                    style={{ textAlign: `center` }}
+                    data-aos="fade-down"
+                    data-aos-duration="1500"
+                >
                     Testimonial
                 </Typography>
                 <Typography
@@ -70,16 +75,26 @@ function Reviews() {
                         color: '#283A5E',
                         letterSpacing: `-1px`,
                     }}
+                    data-aos="fade-down"
+                    data-aos-duration="1500"
                 >
                     What Our Customers Says
                 </Typography>
-                <Typography style={{ textAlign: `center`, fontFamily: `poppins` }}>
+                <Typography
+                    style={{ textAlign: `center`, fontFamily: `poppins` }}
+                    data-aos="fade-down"
+                    data-aos-duration="1500"
+                >
                     Traveling fosters a medium to build human connections with one another by
                     learning about culture, food, new sites, music, and the way people. Traveling
                     fosters a medium to build human connections with one another by learning about
                     culture.
                 </Typography>
-                <Box style={{ margin: mobile ? `15px 0px` : `50px 0px` }}>
+                <Box
+                    style={{ margin: mobile ? `15px 0px` : `50px 0px` }}
+                    data-aos="fade-up"
+                    data-aos-duration="1500"
+                >
                     <Slider {...settings}>
                         {allReviews?.map((singlereview) => (
                             <Review key={singlereview?._id} userReview={singlereview} />

@@ -10,6 +10,7 @@ import useAuth from '../../hooks/useAuth';
 function StripeForm() {
     const [cardError, setCardError] = useState('');
     const [success, setSuccess] = useState('');
+    const [processing, setProcessing] = useState(false);
     const [clientSecret, setClientSecret] = useState('');
     const {
         orderData,
@@ -48,6 +49,7 @@ function StripeForm() {
         });
         setCardError(error?.message || '');
         setSuccess('');
+        setProcessing(true);
         // confirm card payment
         const { paymentIntent, error: intentError } = await stripe.confirmCardPayment(
             clientSecret,
@@ -62,10 +64,12 @@ function StripeForm() {
             }
         );
         if (intentError) {
+            setProcessing(false);
             setCardError(intentError?.message);
             setSuccess('');
         } else {
             setCardError('');
+            setProcessing(false);
             setPaymentIntentStatus(paymentIntent?.status);
             setPaymentTrxID(paymentIntent?.id);
             setSuccess(`Congrats, Your payment is accepted, ${userInfoInDatabase?.displayName}!`);
@@ -112,15 +116,20 @@ function StripeForm() {
                 <Button
                     variant="contained"
                     type="submit"
-                    disabled={!stripe || !clientSecret}
+                    disabled={!stripe || !clientSecret || success}
                     style={{ padding: '2px 15px', marginTop: '25px' }}
                 >
                     Pay
                 </Button>
             </form>
+            {processing && (
+                <Typography style={{ color: '#f3680b', margin: '10px 0px' }}>
+                    processing your payment..
+                </Typography>
+            )}
             {cardError && (
                 <Typography
-                    style={{ color: '#f3680b', margin: '10px 0px' }}
+                    style={{ color: '#ff0000', margin: '10px 0px' }}
                 >{`${cardError}`}</Typography>
             )}
             {success && (

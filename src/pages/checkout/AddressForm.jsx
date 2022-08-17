@@ -21,7 +21,7 @@ export default function AddressForm() {
     };
 
     return (
-        <>
+        <div data-aos="zoom-in" data-aos-duration="1500">
             <ScrollToTop />
             <Typography variant="h6" gutterBottom>
                 Shipping address
@@ -202,6 +202,6 @@ export default function AddressForm() {
                     </Box>
                 </Grid>
             </Grid>
-        </>
+        </div>
     );
 }

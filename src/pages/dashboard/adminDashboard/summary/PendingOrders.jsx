@@ -5,7 +5,7 @@ import { Avatar, Box, Card, CardContent, Grid, Typography } from '@mui/material'
 
 function PendingOrders(props) {
     return (
-        <Card sx={{ height: '100%' }} {...props}>
+        <Card sx={{ height: '100%' }} {...props} data-aos="zoom-in" data-aos-duration="1500">
             <CardContent>
                 <Grid container spacing={3} sx={{ justifyContent: 'space-between' }}>
                     <Grid item>

@@ -19,7 +19,13 @@ export default function Checkout() {
         <>
             <ScrollToTop />
             <CssBaseline />
-            <Container component="main" maxWidth="md" sx={{ mb: 4 }}>
+            <Container
+                component="main"
+                maxWidth="md"
+                sx={{ mb: 4 }}
+                data-aos="zoom-in"
+                data-aos-duration="1500"
+            >
                 <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 5 } }}>
                     <Typography
                         component="h1"

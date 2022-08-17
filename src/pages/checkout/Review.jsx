@@ -85,7 +85,7 @@ export default function Review() {
     const { location, duration, price, services } = buyingPackage;
 
     return (
-        <>
+        <div data-aos="zoom-in" data-aos-duration="1500">
             <ScrollToTop />
             <Typography variant="h6" gutterBottom>
                 Order summary
@@ -176,9 +176,8 @@ export default function Review() {
             <Grid>
                 <Box style={{ display: `flex`, justifyContent: `end`, margin: '20px 0px' }}>
                     {activeStep <= 0 ||
-                    (activeStep >= 3 &&
-                        paymentTrxID === '' &&
-                        paymentIntentStatus === '') ? null : (
+                    activeStep >= 3 ||
+                    paymentIntentStatus === 'succeeded' ? null : (
                         <Button onClick={() => handleBack()}>Back</Button>
                     )}
                     {activeStep >= 3 ? null : paymentIntentStatus !== 'succeeded' &&
@@ -189,6 +188,6 @@ export default function Review() {
                     )}
                 </Box>
             </Grid>
-        </>
+        </div>
     );
 }

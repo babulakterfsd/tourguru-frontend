@@ -54,6 +54,7 @@ function AddReview() {
             style={{
                 padding: mobile ? `0px` : `0px 100px`,
             }}
+            data-aos="fade-down" data-aos-duration="1500"
         >
             <ScrollToTop />
             <Container component="main" maxWidth='md' style={{background: `#fff`, borderRadius: `5px`}}> 

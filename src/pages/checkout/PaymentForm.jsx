@@ -38,7 +38,7 @@ function MypaymentForm() {
     };
 
     return (
-        <>
+        <div data-aos="zoom-in" data-aos-duration="1500">
             <ScrollToTop />
             <Typography variant="h6" gutterBottom>
                 Please pay the bill !
@@ -51,7 +51,9 @@ function MypaymentForm() {
                 </Grid>
                 <Grid item xs={12}>
                     <Box style={{ display: `flex`, justifyContent: `end`, alignItems: `center` }}>
-                        {activeStep <= 0 || activeStep >= 3 ? null : (
+                        {activeStep <= 0 ||
+                        activeStep >= 3 ||
+                        paymentIntentStatus === 'succeeded' ? null : (
                             <Button onClick={() => handleBack()}>Back</Button>
                         )}
                         {activeStep >= 3 ? null : paymentIntentStatus !== 'succeeded' ? (
@@ -69,7 +71,7 @@ function MypaymentForm() {
                     </Box>
                 </Grid>
             </Grid>
-        </>
+        </div>
     );
 }
 

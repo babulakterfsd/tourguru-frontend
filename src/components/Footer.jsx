@@ -16,7 +16,11 @@ function Footer() {
             <Box sx={{ flexGrow: 1 }} style={{ color: '#fff' }}>
                 <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 12, sm: 12, md: 12 }}>
                     <Grid item xs={12} sm={6} md={4}>
-                        <Box className={`${Styles.boxStyler}`}>
+                        <Box
+                            className={`${Styles.boxStyler}`}
+                            data-aos="zoom-in"
+                            data-aos-duration="1500"
+                        >
                             <Box>
                                 <Link to="/" style={{ textDecoration: 'none' }}>
                                     <Typography
@@ -79,7 +83,11 @@ function Footer() {
                         </Box>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
-                        <Box className={`${Styles.boxStyler}`}>
+                        <Box
+                            className={`${Styles.boxStyler}`}
+                            data-aos="zoom-in"
+                            data-aos-duration="1500"
+                        >
                             <Typography style={{ marginBottom: '32px', fontWeight: '700' }}>
                                 Contact Us
                             </Typography>
@@ -92,7 +100,11 @@ function Footer() {
                         </Box>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
-                        <Box className={`${Styles.boxStyler}`}>
+                        <Box
+                            className={`${Styles.boxStyler}`}
+                            data-aos="zoom-in"
+                            data-aos-duration="1500"
+                        >
                             <Typography style={{ marginBottom: '32px', fontWeight: '700' }}>
                                 Subscribe Newsletter
                             </Typography>
@@ -127,7 +139,11 @@ function Footer() {
                     borderTop: '1px dotted #fff',
                 }}
             >
-                <Box style={{ marginTop: '12px', textAlign: mobile ? `center` : `left` }}>
+                <Box
+                    style={{ marginTop: '12px', textAlign: mobile ? `center` : `left` }}
+                    data-aos="zoom-in"
+                    data-aos-duration="2500"
+                >
                     <Typography>Developed by Babul Akter | copyright 2023 &copy;</Typography>
                 </Box>
             </Container>

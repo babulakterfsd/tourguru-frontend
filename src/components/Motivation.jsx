@@ -24,7 +24,7 @@ function Motivation() {
                     }}
                 >
                     <Grid container>
-                        <Grid item xs={12} lg={8}>
+                        <Grid item xs={12} lg={8} data-aos="fade-right" data-aos-duration="2500">
                             <img
                                 src={twogirls}
                                 alt="two girls"
@@ -41,6 +41,8 @@ function Motivation() {
                             xs={12}
                             lg={4}
                             style={{ padding: `15px 0px`, textAlign: mobile ? `center` : `left` }}
+                            data-aos="fade-left"
+                            data-aos-duration="2500"
                         >
                             <Typography
                                 variant={`${mobile ? `h4` : `h1`}`}

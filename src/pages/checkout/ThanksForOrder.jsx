@@ -29,7 +29,7 @@ function ThanksForOrder() {
     }, [seconds]);
 
     return (
-        <div>
+        <div data-aos="zoom-in" data-aos-duration="1500">
             <ScrollToTop />
             <Box style={{ textAlign: `center`, padding: `25px 0px` }}>
                 <Typography variant="h5" gutterBottom>

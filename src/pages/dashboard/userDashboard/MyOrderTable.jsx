@@ -2,7 +2,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-array-index-key */
-import { Box, Button, Container, Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -32,9 +32,7 @@ export default function MyOrderTable() {
     const { mobile, user } = useAuth();
     const [status, setStatus] = useState(null);
     const [myOrders, setMyOrders] = useState([]);
-
     const getMyOrdersURL = `http://localhost:5000/myorders/${user?.email}`;
-
     useEffect(() => {
         axios.get(getMyOrdersURL).then((result) => setMyOrders(result?.data));
     }, []);
@@ -72,31 +70,14 @@ export default function MyOrderTable() {
             });
     };
 
-    if (myOrders?.length === 0) {
-        return (
-            <Container>
-                <Box
-                    style={{
-                        height: `50vh`,
-                        display: `flex`,
-                        justifyContent: `center`,
-                        alignItems: `center`,
-                    }}
-                >
-                    <Typography variant="h5" style={{ color: `#f3680b` }}>
-                        No Orders Found !
-                    </Typography>
-                </Box>
-            </Container>
-        );
-    }
-
     return (
         <Paper
             sx={{
                 width: '100%',
                 overflow: 'hidden',
             }}
+            data-aos="flip-right"
+            data-aos-duration="1500"
         >
             <Typography
                 style={{

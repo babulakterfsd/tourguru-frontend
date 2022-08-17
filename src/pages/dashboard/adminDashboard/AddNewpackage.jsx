@@ -88,7 +88,7 @@ const handleImageUpload = (e) => {
             }}
         >
             <ScrollToTop />
-            <Container component="main" maxWidth='md' style={{background: `#fff`, borderRadius: `5px`}}> 
+            <Container component="main" maxWidth='md' style={{background: `#fff`, borderRadius: `5px`}} data-aos="zoom-in" data-aos-duration="1500"> 
                 <Paper
                     sx={{
                         padding: mobile ? `20px 8px` : `30px 15px`,

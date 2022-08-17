@@ -20,6 +20,8 @@ function CheckIn() {
                     justifyContent: `space-around`,
                     alignItems: `center`,
                 }}
+                data-aos="zoom-in"
+                data-aos-duration="1500"
             >
                 <div
                     className="checkin"

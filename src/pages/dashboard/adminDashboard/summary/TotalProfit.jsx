@@ -5,7 +5,7 @@ import { Avatar, Box, Card, CardContent, Grid, Typography } from '@mui/material'
 
 export default function TotalProfit(props) {
     return (
-        <Card {...props}>
+        <Card {...props} data-aos="zoom-in" data-aos-duration="1500">
             <CardContent>
                 <Grid container spacing={3} sx={{ justifyContent: 'space-between' }}>
                     <Grid item>
