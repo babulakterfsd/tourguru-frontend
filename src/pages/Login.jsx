@@ -12,7 +12,7 @@ import {
     FormControlLabel, TextField,
     Typography
 } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import ScrollToTop from '../components/ScrollToTop';
@@ -25,11 +25,13 @@ function Login() {
     const targetURL = location.state || '/dashboard';
     const navigate = useNavigate()
 
+    useEffect(() => {
+        document.title = 'Tourguru | Login'
+    })
+
     if(user) {
         return <Navigate to="/" replace/>
     }
-
-   
 
     const saveUser = (email, displayName) => {
         const myUser = { email, displayName};
@@ -89,9 +91,7 @@ function Login() {
             });
         setIsLoading(false);
     };
-
     
-
     return (
         <div
             className={Styles.loginPage}

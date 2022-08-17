@@ -10,7 +10,7 @@ import MuiDrawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import { styled } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import ScrollToTop from '../../components/ScrollToTop';
 import useAuth from '../../hooks/useAuth';
@@ -60,6 +60,10 @@ function DashboardContent() {
     const toggleDrawer = () => {
         setOpen(!open);
     };
+
+    useEffect(() => {
+        document.title = 'Tourguru | Dashboard';
+    });
 
     const { user, isAdmin, mobile, userInfoInDatabase } = useAuth();
     const { pathname } = useLocation();

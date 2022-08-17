@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useEffect } from 'react';
 import Banner from '../components/Banner';
 import CheckIn from '../components/CheckIn';
 import Motivation from '../components/Motivation';
@@ -8,6 +8,9 @@ import Reviews from '../components/Reviews/Reviews';
 import ScrollToTop from '../components/ScrollToTop';
 
 function Home() {
+    useEffect(() => {
+        document.title = 'Tourguru | your trusted tour partner.';
+    });
     return (
         <div>
             <ScrollToTop />

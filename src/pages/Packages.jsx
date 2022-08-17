@@ -15,6 +15,10 @@ function Packages() {
     const { mobile, tablet, desktop, orderData, activeStep, setActiveStep } = useAuth();
 
     useEffect(() => {
+        document.title = 'Tourguru | Packages';
+    });
+
+    useEffect(() => {
         axios.get(`http://localhost:5000/packages`).then((result) => setAllPackage(result?.data));
     }, [allPackages]);
 

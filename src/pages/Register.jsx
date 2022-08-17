@@ -9,7 +9,7 @@ import {
     Button, Container, TextField,
     Typography
 } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import ScrollToTop from '../components/ScrollToTop';
@@ -22,6 +22,10 @@ function Register() {
     const location = useLocation();
     const targetURL = location.state || '/';
     const navigate = useNavigate()
+
+    useEffect(() => {
+        document.title = 'Tourguru | Register'
+    })
 
     if(user) {
         return navigate('/')
