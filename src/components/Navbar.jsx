@@ -127,16 +127,6 @@ function Navbar() {
                                 onClick={handleCloseNavMenu}
                                 style={{ borderBottom: '1px solid #ccc' }}
                             >
-                                <Link to="/blog" style={{ textDecoration: 'none' }}>
-                                    <Typography textAlign="center" color="#000">
-                                        Blog
-                                    </Typography>
-                                </Link>
-                            </MenuItem>
-                            <MenuItem
-                                onClick={handleCloseNavMenu}
-                                style={{ borderBottom: '1px solid #ccc' }}
-                            >
                                 <Link to="/contact" style={{ textDecoration: 'none' }}>
                                     <Typography textAlign="center" color="#000">
                                         Contact
@@ -185,13 +175,6 @@ function Navbar() {
                             <Link to="/packages" style={{ textDecoration: 'none' }}>
                                 <Typography textAlign="center" color="#fff">
                                     Packages
-                                </Typography>
-                            </Link>
-                        </MenuItem>
-                        <MenuItem onClick={handleCloseNavMenu}>
-                            <Link to="/blog" style={{ textDecoration: 'none' }}>
-                                <Typography textAlign="center" color="#fff">
-                                    Blog
                                 </Typography>
                             </Link>
                         </MenuItem>

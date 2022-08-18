@@ -1,7 +1,6 @@
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import About from '../pages/About';
-import Blog from '../pages/Blog';
 import Checkout from '../pages/checkout/Checkout';
 import Contact from '../pages/Contact';
 import AddNewpackage from '../pages/dashboard/adminDashboard/AddNewpackage';
@@ -29,7 +28,6 @@ function AllRoutes() {
             <Route path="/home" element={<Navigate to="/" replace />} />
             <Route path="/about" element={<About />} />
             <Route path="/packages" element={<Packages />} />
-            <Route path="/blog" element={<Blog />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
