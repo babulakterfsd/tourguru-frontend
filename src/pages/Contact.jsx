@@ -1,3 +1,4 @@
+import { Container } from '@mui/material';
 import React, { useEffect } from 'react';
 
 function Contact() {
@@ -5,9 +6,9 @@ function Contact() {
         document.title = 'Tourguru | Contact';
     });
     return (
-        <div>
-            <p>this is the contact page</p>
-        </div>
+        <Container>
+            <p>contact</p>
+        </Container>
     );
 }
 
