@@ -36,7 +36,12 @@ function Packages() {
         >
             <ScrollToTop />
             <Container>
-                <Typography color="primary" style={{ textAlign: `center` }}>
+                <Typography
+                    color="primary"
+                    style={{ textAlign: `center` }}
+                    data-aos="fade-down"
+                    data-aos-duration="1500"
+                >
                     All Packages
                 </Typography>
                 <Typography
@@ -49,10 +54,16 @@ function Packages() {
                         color: '#283A5E',
                         letterSpacing: `-1px`,
                     }}
+                    data-aos="fade-down"
+                    data-aos-duration="1500"
                 >
                     Our All Packages
                 </Typography>
-                <Typography style={{ textAlign: `center`, fontFamily: `poppins` }}>
+                <Typography
+                    style={{ textAlign: `center`, fontFamily: `poppins` }}
+                    data-aos="fade-down"
+                    data-aos-duration="1500"
+                >
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam fugit inventore
                     quaerat! Culpa, inventore. Doloribus praesentium dicta repellendus tempora
                     eligendi maxime odio soluta quae in, architecto modi maiores quas facere?
@@ -67,6 +78,8 @@ function Packages() {
                                 alignItems: `center`,
                                 margin: mobile ? `100px 0px` : `180px 15px`,
                             }}
+                            data-aos="fade-up"
+                            data-aos-duration="1500"
                         >
                             {mobile ? (
                                 <>
@@ -112,6 +125,8 @@ function Packages() {
                             container
                             spacing={{ xs: 2, md: 3, lg: 5 }}
                             columns={{ xs: 12, md: 12, lg: 12 }}
+                            data-aos="fade-up"
+                            data-aos-duration="1500"
                         >
                             {allPackages?.slice(0, numberOfPackage)?.map((singlePackage, index) => (
                                 <Grid item xs={12} md={6} lg={4} key={index}>

@@ -16,12 +16,21 @@ function About() {
     }, []);
 
     return (
-        <Container style={{ minHeight: '100vh', padding: '20px 0px' }}>
+        <Container style={{ minHeight: '100vh', padding: '20px' }}>
             <ScrollToTop />
-            <Typography variant="h3" style={{ marginTop: '20px', textAlign: 'center' }}>
-                <span style={{ color: '#f3680b' }}>WHY CHOOSE</span> TOURGURU
+            <Typography
+                variant="h3"
+                style={{ textAlign: 'center' }}
+                data-aos="zoom-in"
+                data-aos-duration="1500"
+            >
+                <span style={{ color: '#f3680b', fontFamily: `abril` }}>WHY CHOOSE</span> TOURGURU
             </Typography>
-            <Box style={{ textAlign: 'center', margin: '20px 0px' }}>
+            <Box
+                style={{ textAlign: 'center', margin: '20px 0px' }}
+                data-aos="zoom-in"
+                data-aos-duration="1500"
+            >
                 <img
                     src="https://i.ibb.co/HtffG6b/aboutusbanner.png"
                     alt="aboutimg"
@@ -40,6 +49,8 @@ function About() {
                     alignItems: 'center',
                     flexDirection: mobile ? 'column' : 'row',
                 }}
+                data-aos="zoom-in"
+                data-aos-duration="1500"
             >
                 <Box style={{ textAlign: 'center', marginBottom: mobile ? '20px' : '0px' }}>
                     <DriveEtaIcon style={{ color: '#f3680b', fontSize: '32px' }} />
@@ -86,7 +97,7 @@ function About() {
                 <Box
                     style={{
                         textAlign: 'center',
-                        margin: mobile ? '0px' : '0px 25px',
+                        margin: mobile ? '0px' : '0px 25px 0px 0px',
                         marginBottom: mobile ? '35px' : '0px',
                     }}
                 >
