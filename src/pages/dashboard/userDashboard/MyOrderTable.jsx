@@ -76,8 +76,8 @@ export default function MyOrderTable() {
                 width: '100%',
                 overflow: 'hidden',
             }}
-            data-aos="flip-right"
-            data-aos-duration="1500"
+            data-aos="zoom-in"
+            data-aos-duration="4500"
         >
             <Typography
                 style={{
