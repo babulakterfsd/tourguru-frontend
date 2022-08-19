@@ -427,8 +427,8 @@ function Contact() {
                             src={contactImg}
                             alt=""
                             style={{
-                                height: !mobile ? '75%' : '100%',
-                                width: !mobile ? '75%' : '100%',
+                                height: !mobile ? '85%' : '100%',
+                                width: !mobile ? '85%' : '100%',
                                 objectFit: 'cover',
                             }}
                         />
