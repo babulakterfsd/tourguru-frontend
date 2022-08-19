@@ -1,5 +1,4 @@
 import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
 import { Button } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -123,18 +122,12 @@ function Navbar() {
                                     </Typography>
                                 </Link>
                             </MenuItem>
-                            <MenuItem
-                                onClick={handleCloseNavMenu}
-                                style={{ borderBottom: '1px solid #ccc' }}
-                            >
+                            <MenuItem onClick={handleCloseNavMenu}>
                                 <Link to="/contact" style={{ textDecoration: 'none' }}>
                                     <Typography textAlign="center" color="#000">
                                         Contact
                                     </Typography>
                                 </Link>
-                            </MenuItem>
-                            <MenuItem onClick={handleCloseNavMenu} disableRipple>
-                                <SearchIcon color="#000" /> Search...
                             </MenuItem>
                         </Menu>
                     </Box>
@@ -184,9 +177,6 @@ function Navbar() {
                                     Contact
                                 </Typography>
                             </Link>
-                        </MenuItem>
-                        <MenuItem onClick={handleCloseNavMenu} disableRipple>
-                            <SearchIcon color="white" />
                         </MenuItem>
                     </Box>
 

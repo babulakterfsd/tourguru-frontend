@@ -86,7 +86,7 @@ function Packages() {
                                     <ScrollToTop />
                                     <Grid container spacing={3}>
                                         {Array.from(Array(3)).map((packages, index) => (
-                                            <Grid item xs={12}>
+                                            <Grid item xs={12} key={index}>
                                                 <Skeleton
                                                     variant="rectangular"
                                                     style={{

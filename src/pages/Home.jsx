@@ -6,13 +6,14 @@ import Motivation from '../components/Motivation';
 import PopularPackages from '../components/PopularPackages';
 import Reviews from '../components/Reviews/Reviews';
 import ScrollToTop from '../components/ScrollToTop';
+import Classes from '../styles/Contact.module.css';
 
 function Home() {
     useEffect(() => {
         document.title = 'Tourguru | your trusted tour partner.';
     });
     return (
-        <div>
+        <div className={Classes.controller}>
             <ScrollToTop />
             <Banner />
             <CheckIn />

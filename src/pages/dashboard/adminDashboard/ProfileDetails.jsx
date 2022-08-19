@@ -16,7 +16,7 @@ import useAuth from '../../../hooks/useAuth';
 const genderoptions = ['Male', 'Female', 'Other']
 
 export default function ProfileDetails(props) {
-    const {user, userInfoInDatabase, setUserInfoInDatabase} = useAuth()
+    const {user, userInfoInDatabase, setUserInfoInDatabase, mobile} = useAuth()
     const {email} = user;
     const [gender, setGender] = useState('male')
     const {
@@ -56,7 +56,7 @@ export default function ProfileDetails(props) {
     }
 
     return (
-            <Card>
+            <Card style={{margin: mobile ? '30px 0px' : '0px'}}>
               <Box component="form" onSubmit={handleSubmit(updateProfile)} noValidate>
                 <CardHeader subheader="You can't change your email" title="Update Profile" />
                 <Divider />
