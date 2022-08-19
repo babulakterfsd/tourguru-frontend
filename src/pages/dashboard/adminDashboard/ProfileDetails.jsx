@@ -55,6 +55,7 @@ export default function ProfileDetails(props) {
          }).catch(err => console.log(err.message))
     }
 
+    
     return (
             <Card style={{margin: mobile ? '30px 0px' : '0px'}}>
               <Box component="form" onSubmit={handleSubmit(updateProfile)} noValidate>
