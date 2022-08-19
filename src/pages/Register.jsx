@@ -88,7 +88,7 @@ function Register() {
                 display: `flex`,
                 justifyContent: `center`,
                 alignItems: `center`,
-                height: mobile ? `auto`: tablet ? `auto` : `100vh`,
+                height: mobile ? `auto`: tablet ? `auto` : `115vh`,
             }}
         >
             <ScrollToTop />

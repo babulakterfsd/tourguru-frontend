@@ -100,11 +100,11 @@ function Login() {
                 display: `flex`,
                 justifyContent: `center`,
                 alignItems: `center`,
-                height: mobile ? `auto`: tablet ? `auto` : `100vh`,
+                height: mobile ? `auto`: tablet ? `auto` : `115vh`,
             }}
         >
             <ScrollToTop />
-            <Container component="main" maxWidth="xs" style={{background: `#fff`, borderRadius: `5px`}}> 
+            <Container component="main" maxWidth="xs" style={{background: `#fff`, borderRadius: `5px`, margin: mobile ? `50px 0px` : `180px 0px`}}> 
                 <Box
                     sx={{
                         padding: mobile ? `20px 8px` : `30px 15px`,
@@ -118,6 +118,9 @@ function Login() {
                     </Avatar>
                     <Typography component="h1" variant="h5" fontFamily='abril' color="#283A5E">
                         Please, LogIn !
+                    </Typography>
+                    <Typography component="p" color="#283A5E" style={{textAlign: 'center', margin: '15px 0px'}}>
+                    (To Login as Admin, use babul@gmail.com as email and 123456 as password. Please, don&#39;t misuse the power)
                     </Typography>
                     <Box component="form" noValidate sx={{ mt: 1 }}>
                         <TextField
