@@ -25,6 +25,7 @@ import guide2 from '../assests/images/guide2.jpg';
 import guide3 from '../assests/images/guide3.png';
 import guide4 from '../assests/images/guide4.png';
 import useAuth from '../hooks/useAuth';
+import Classes from '../styles/Contact.module.css';
 
 function Contact() {
     const { mobile } = useAuth();
@@ -61,7 +62,10 @@ function Contact() {
     });
 
     return (
-        <Container style={{ minHeight: '100vh', padding: mobile ? '15px 10px' : '50px 0px' }}>
+        <Container
+            style={{ minHeight: '100vh', padding: mobile ? '15px 10px' : '50px 0px' }}
+            className={Classes.controller}
+        >
             <Typography
                 color="primary"
                 style={{ textAlign: `center` }}
@@ -401,17 +405,38 @@ function Contact() {
             </Box>
             <Box style={{ margin: mobile ? '80px 0px' : '120px 0px 0px 0px' }}>
                 <Typography
-                    variant="h3"
+                    color="primary"
+                    style={{ textAlign: `center` }}
+                    data-aos="fade-down"
+                    data-aos-duration="1500"
+                >
+                    Contact
+                </Typography>
+                <Typography
+                    color="bluishDark"
+                    variant="h4"
                     style={{
                         textAlign: `center`,
                         fontFamily: `abril`,
                         fontWeight: `700`,
                         color: '#283A5E',
                         letterSpacing: `-1px`,
-                        marginBottom: '25px',
                     }}
+                    data-aos="fade-down"
+                    data-aos-duration="1500"
                 >
                     Contact Us Anytime !
+                </Typography>
+                <Typography
+                    style={{ textAlign: `center`, fontFamily: `poppins` }}
+                    data-aos="fade-down"
+                    data-aos-duration="1000"
+                >
+                    The message you send us is sent from an automated email address. You should
+                    input your correct phone number and email address so that we can reach you
+                    easily. If you put any invalid phone number or email address here, we might fail
+                    to contact you. After recieving your message, we will reach you back within 24
+                    hours.
                 </Typography>
                 <Box
                     style={{
