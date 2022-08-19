@@ -16,8 +16,9 @@ import {
     // eslint-disable-next-line prettier/prettier
     Typography
 } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import Swal from 'sweetalert2';
 import contactImg from '../assests/images/contact.jpg';
 import guide1 from '../assests/images/guide1.png';
 import guide2 from '../assests/images/guide2.jpg';
@@ -27,15 +28,33 @@ import useAuth from '../hooks/useAuth';
 
 function Contact() {
     const { mobile } = useAuth();
-    const [mailData, setMailData] = useState({});
 
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, reset } = useForm();
 
     const handleFormSubmit = (data) => {
-        setMailData(data);
+        const { name, phone } = data;
+        if (name.length > 3 && phone.length > 7) {
+            fetch('http://localhost:5000/sendemail', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+                .then((res) => res.json())
+                .then((respose) => {
+                    if (respose?.name) {
+                        Swal.fire(
+                            `Tourguru has recieved your mail, ${respose?.name}. We'll reach you soon`
+                        );
+                        reset();
+                    }
+                })
+                .catch((err) => Swal.fire('Something is wrong !'));
+        } else {
+            Swal.fire('Sorry ! your Name or Phone Number is too short');
+        }
     };
-
-    console.log(mailData);
 
     useEffect(() => {
         document.title = 'Tourguru | Contact';
@@ -456,6 +475,18 @@ function Contact() {
                                     autoComplete="email"
                                     variant="standard"
                                     {...register('email')}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    required
+                                    id="subject"
+                                    name="subject"
+                                    label="Subject"
+                                    fullWidth
+                                    autoComplete="subject"
+                                    variant="standard"
+                                    {...register('subject')}
                                 />
                             </Grid>
                             <Grid item xs={12}>
