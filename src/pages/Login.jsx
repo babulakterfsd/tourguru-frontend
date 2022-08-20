@@ -120,7 +120,7 @@ function Login() {
                         Please, LogIn !
                     </Typography>
                     <Typography component="p" color="#283A5E" style={{textAlign: 'center', margin: '15px 0px'}}>
-                    (To Login as Admin, use babul@gmail.com as email and 123456 as password. Please, don&#39;t misuse the power)
+                    (To Login as Admin, use <span style={{color: '#f3680b'}}>babul@gmail.com</span> as email and <span style={{color: '#f3680b'}}>123456</span> as password. Please, don&#39;t misuse the power)
                     </Typography>
                     <Box component="form" noValidate sx={{ mt: 1 }}>
                         <TextField
