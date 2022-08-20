@@ -10,7 +10,6 @@ import useAuth from '../hooks/useAuth';
 
 function About() {
     const { mobile } = useAuth();
-
     useEffect(() => {
         document.title = 'Tourguru | About Us';
     }, []);
