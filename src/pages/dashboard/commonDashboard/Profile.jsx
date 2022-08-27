@@ -75,7 +75,7 @@ function Profile(props) {
                 >
                     <img
                             src={userInfoInDatabase?.img ? userInfoInDatabase?.img : defaultAvatar}
-                            style={{height: `60px`, width: `60px`, borderRadius: `500px`}}
+                            style={{height: `60px`, width: `60px`, borderRadius: `500px`, objectFit: 'cover'}}
                             alt="user"
                         />
                     <Typography color="textPrimary" variant="h5">

@@ -202,6 +202,7 @@ function Navbar() {
                                             height: '40px',
                                             width: '40px',
                                             borderRadius: '100px',
+                                            objectFit: 'cover',
                                         }}
                                     />
                                 </IconButton>
