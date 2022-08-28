@@ -115,7 +115,6 @@ function Login() {
 
   // send password reset email
   const handleSendPasswordResetEmail = () => {
-    alert('clicked');
     sendPasswordResetEmail(auth, userEmail)
       .then(() => {
         Swal.fire('Password Reset Email Sent');
