@@ -5,14 +5,14 @@
 import { LockOutlined } from '@mui/icons-material';
 import Google from '@mui/icons-material/Google';
 import {
-    Avatar,
-    Box,
-    Button,
-    Checkbox,
-    Container,
-    FormControlLabel,
-    TextField,
-    Typography
+  Avatar,
+  Box,
+  Button,
+  Checkbox,
+  Container,
+  FormControlLabel,
+  TextField,
+  Typography
 } from '@mui/material';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import React, { useEffect } from 'react';
@@ -171,7 +171,7 @@ function Login() {
             style={{ textAlign: 'center', margin: '15px 0px' }}
           >
             (To Login as Admin, use{' '}
-            <span style={{ color: '#f3680b' }}>babul@gmail.com</span> as email
+            <span style={{ color: '#f3680b' }}>babulakterfsd@gmail.com</span> as email
             and <span style={{ color: '#f3680b' }}>123456</span> as password.
             Please, don&#39;t misuse the power)
           </Typography>

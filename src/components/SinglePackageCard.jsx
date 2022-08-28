@@ -7,6 +7,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import useAuth from '../hooks/useAuth';
 
 function SinglePackageCard({ singlePackage }) {
@@ -49,7 +50,7 @@ function SinglePackageCard({ singlePackage }) {
                                     fontWeight: `700`,
                                     fontFamily: `abril`,
                                 }}
-                                title="Admin Can Not Buy A Package"
+                                onClick={() => Swal.fire(`Admin doesn't need to buy any package`)}
                             >
                                 Buy Package
                             </Button>

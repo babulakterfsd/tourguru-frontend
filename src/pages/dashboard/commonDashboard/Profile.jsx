@@ -14,7 +14,9 @@ import {
     Typography
 } from '@mui/material';
 import axios from 'axios';
+import { deleteUser } from 'firebase/auth';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import defaultAvatar from '../../../assests/images/userdefault.png';
 import useAuth from '../../../hooks/useAuth';
@@ -24,7 +26,9 @@ import ProfileDetails from '../adminDashboard/ProfileDetails';
 
 
 function Profile(props) {
-    const {user, userImageURL, setUserImageURL, userInfoInDatabase, setUserInfoInDatabase} = useAuth()
+    const {user, userImageURL, setUserImageURL, userInfoInDatabase, setUserInfoInDatabase, setUser, setIsLoading, auth} = useAuth()
+
+    const navigate = useNavigate();
 
     const handleUserImageUpload = (e) => {
         const image = e.target.files[0]
@@ -59,6 +63,27 @@ function Profile(props) {
            }).catch(err => console.log(err.message))
       };
 
+      const handleDeleteAccount = () => {
+        if(user?.email === 'babulakterfsd@gmail.com') {
+            Swal.fire('You can not delete Head Admin account')
+        } else {
+            deleteUser(user).then(() => {
+                const url = `http://localhost:5000/deleteuser/${user?.email}`;
+            fetch(url, {
+                method: 'DELETE',
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    if (data.deletedCount > 0) {
+                        Swal.fire(`Account deleted successfully`)
+                    }
+                });
+              }).catch((error) => {
+                Swal.fire(`Something went wrong when deleting account`)
+              });
+        }
+      }
+
 
     return (
         <Container className={`${Classes.profile}`}>
@@ -71,6 +96,7 @@ function Profile(props) {
                         alignItems: 'center',
                         display: 'flex',
                         flexDirection: 'column',
+                        marginTop: '30px'
                     }}
                 >
                     <img
@@ -92,6 +118,9 @@ function Profile(props) {
                         {userInfoInDatabase?.phone}
                     </Typography>) : null
                     }
+                    <Button type='button' variant='text' style={{textTransform: 'capitalize', position: 'absolute', top: '0px', right: '0px'}} onClick={() => handleDeleteAccount()}>
+                        Delete Account
+                    </Button>
                     <Box style={{position: 'absolute', top: '0px', left: '0px', textAlign: 'center', padding: '15px', background: '#f3680b', transform: 'rotate(-45deg) translateY(-15px) translateX(-5px)'}}>
                     <Typography color="#fff" variant="body2" style={{marginTop: `8px`}}>
                         {userInfoInDatabase?.role === 'admin' ? `Admin` : `User`}

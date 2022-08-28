@@ -191,11 +191,17 @@ export default function StickyHeadTable() {
                                     <TableCell
                                         role="checkbox"
                                         tabIndex={-1}
-                                        style={{ minWidth: `170px`, textAlign: `center` }}
+                                        style={{
+                                            minWidth: `170px`,
+                                            textAlign: `center`,
+                                            display: `flex`,
+                                            justifyContent: `center`,
+                                            alignItems: `center`,
+                                        }}
                                     >
                                         {row?.role === `admin` ? (
                                             <Button
-                                                variant="contained"
+                                                variant="text"
                                                 size="small"
                                                 disabled
                                                 title="already admin"
@@ -208,7 +214,7 @@ export default function StickyHeadTable() {
                                             </Button>
                                         ) : (
                                             <Button
-                                                variant="contained"
+                                                variant="text"
                                                 size="small"
                                                 style={{ textTransform: `none` }}
                                                 onClick={() => handleMakeAdmin(row?._id)}
