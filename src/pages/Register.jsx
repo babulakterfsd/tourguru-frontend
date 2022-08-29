@@ -40,7 +40,8 @@ function Register() {
         "content-type": "application/json",
       },
       body: JSON.stringify(myUser),
-    }).then().catch(err => console.log(err))
+    }).then()
+    // .catch(err => console.log(err))
   };
 
     const handleSubmit = (event) => {

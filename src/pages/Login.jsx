@@ -62,7 +62,7 @@ function Login() {
       body: JSON.stringify(myUser),
     })
       .then()
-      .catch((err) => console.log(err.message));
+      // .catch((err) => console.log(err));
   };
 
   const handleSubmit = (event) => {
@@ -107,7 +107,7 @@ function Login() {
         navigate(targetURL);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         Swal.fire(`Login Failed !`);
       });
     setIsLoading(false);

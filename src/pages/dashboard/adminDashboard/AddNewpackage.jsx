@@ -44,7 +44,7 @@ const handleImageUpload = (e) => {
         .then((res) => {
             setImageURL(res?.data?.data?.display_url)
         }).catch((error) => {
-            console.log(error);
+            // console.log(error);
             Swal.fire(`Something went wrong when choosing image`)
         })
 }

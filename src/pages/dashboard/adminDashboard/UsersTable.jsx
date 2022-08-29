@@ -42,7 +42,9 @@ export default function StickyHeadTable() {
         const searchValue = e.target.value;
         const url = `http://localhost:5000/users?name=${searchValue}`;
         axios.get(url).then((result) => {
-            setAllUsers(result?.data);
+            if (result.data.length > 0) {
+                setAllUsers(result?.data);
+            }
         });
     };
 

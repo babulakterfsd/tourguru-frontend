@@ -60,7 +60,8 @@ function Profile(props) {
                 setUserImageURL('')
                 window.location.reload()
        }
-           }).catch(err => console.log(err.message))
+           })
+        //    .catch(err => console.log(err.message))
       };
 
       const handleDeleteAccount = () => {
