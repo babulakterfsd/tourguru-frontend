@@ -31,6 +31,7 @@ export default function StickyHeadTable() {
     const { mobile, user } = useAuth();
     const [status, setStatus] = useState(null);
     const [allPackages, setAllPackages] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
 
     const getAllPackagesURL = `http://localhost:5000/packages`;
 
@@ -38,14 +39,16 @@ export default function StickyHeadTable() {
         axios.get(getAllPackagesURL).then((result) => setAllPackages(result?.data));
     }, []);
 
-    const handleSearchPackages = (e) => {
-        e.preventDefault();
-        const searchValue = e.target.value;
-        const url = `http://localhost:5000/packages?location=${searchValue}`;
-        axios.get(url).then((result) => {
-            setAllPackages(result?.data);
-        });
-    };
+    useEffect(() => {
+        const delayDebounceFn = setTimeout(() => {
+            const url = `http://localhost:5000/packages?location=${searchTerm}`;
+            axios.get(url).then((result) => {
+                setAllPackages(result?.data);
+            });
+        }, 500);
+
+        return () => clearTimeout(delayDebounceFn);
+    }, [searchTerm]);
 
     useEffect(() => {
         const row = [];
@@ -159,7 +162,7 @@ export default function StickyHeadTable() {
                     label="Search Location by City"
                     variant="standard"
                     style={{ color: '#f3680b', marginRight: '8px' }}
-                    onChange={(e) => handleSearchPackages(e)}
+                    onChange={(e) => setSearchTerm(e.target.value)}
                 />
             </Box>
             <TableContainer>

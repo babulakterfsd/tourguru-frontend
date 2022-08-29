@@ -13,6 +13,18 @@ function Packages() {
     const [allPackages, setAllPackage] = useState([]);
     const [numberOfPackage, setNumberOfPackage] = useState(6);
     const { mobile } = useAuth();
+    const [searchTerm, setSearchTerm] = useState('');
+
+    useEffect(() => {
+        const delayDebounceFn = setTimeout(() => {
+            const url = `http://localhost:5000/packages?location=${searchTerm}`;
+            axios.get(url).then((result) => {
+                setAllPackage(result?.data);
+            });
+        }, 500);
+
+        return () => clearTimeout(delayDebounceFn);
+    }, [searchTerm]);
 
     const loadMore = () => {
         setNumberOfPackage((prev) => prev + 3);
@@ -25,15 +37,6 @@ function Packages() {
     useEffect(() => {
         axios.get(`http://localhost:5000/packages`).then((result) => setAllPackage(result?.data));
     }, []);
-
-    const handleSearchPackages = (e) => {
-        e.preventDefault();
-        const searchValue = e.target.value;
-        const url = `http://localhost:5000/packages?location=${searchValue}`;
-        axios.get(url).then((result) => {
-            setAllPackage(result?.data);
-        });
-    };
 
     return (
         <div
@@ -149,7 +152,7 @@ function Packages() {
                                     fontSize: '22px',
                                     width: '350px',
                                 }}
-                                onChange={(e) => handleSearchPackages(e)}
+                                onChange={(e) => setSearchTerm(e.target.value)}
                                 data-aos="fade-up"
                                 data-aos-duration="1500"
                             />

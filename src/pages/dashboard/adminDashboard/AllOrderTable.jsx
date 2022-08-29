@@ -31,21 +31,24 @@ export default function StickyHeadTable() {
     const { mobile, user } = useAuth();
     const [status, setStatus] = useState(null);
     const [allOrders, setAllOrders] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
+
+    useEffect(() => {
+        const delayDebounceFn = setTimeout(() => {
+            const url = `http://localhost:5000/allorder?email=${searchTerm}`;
+            axios.get(url).then((result) => {
+                setAllOrders(result?.data);
+            });
+        }, 500);
+
+        return () => clearTimeout(delayDebounceFn);
+    }, [searchTerm]);
 
     const getAllOrdersURL = `http://localhost:5000/allorder`;
 
     useEffect(() => {
         axios.get(getAllOrdersURL).then((result) => setAllOrders(result?.data));
     }, []);
-
-    const handleSearchOrder = (e) => {
-        e.preventDefault();
-        const searchValue = e.target.value;
-        const url = `http://localhost:5000/allorder?email=${searchValue}`;
-        axios.get(url).then((result) => {
-            setAllOrders(result?.data);
-        });
-    };
 
     useEffect(() => {
         const row = [];
@@ -123,7 +126,7 @@ export default function StickyHeadTable() {
                     label="Find specific order by email"
                     variant="standard"
                     style={{ color: '#f3680b', marginRight: '8px' }}
-                    onChange={(e) => handleSearchOrder(e)}
+                    onChange={(e) => setSearchTerm(e.target.value)}
                 />
             </Box>
             <TableContainer>

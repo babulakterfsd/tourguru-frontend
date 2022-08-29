@@ -30,6 +30,7 @@ export default function StickyHeadTable() {
     const { mobile, user } = useAuth();
     const [status, setStatus] = useState(null);
     const [allUsers, setAllUsers] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
 
     const getAllUsersURL = `http://localhost:5000/users`;
 
@@ -37,16 +38,16 @@ export default function StickyHeadTable() {
         axios.get(getAllUsersURL).then((result) => setAllUsers(result?.data));
     }, [getAllUsersURL]);
 
-    const handleSearchUser = (e) => {
-        e.preventDefault();
-        const searchValue = e.target.value;
-        const url = `http://localhost:5000/users?name=${searchValue}`;
-        axios.get(url).then((result) => {
-            if (result.data.length > 0) {
+    useEffect(() => {
+        const delayDebounceFn = setTimeout(() => {
+            const url = `http://localhost:5000/users?name=${searchTerm}`;
+            axios.get(url).then((result) => {
                 setAllUsers(result?.data);
-            }
-        });
-    };
+            });
+        }, 500);
+
+        return () => clearTimeout(delayDebounceFn);
+    }, [searchTerm]);
 
     useEffect(() => {
         const row = [];
@@ -161,7 +162,7 @@ export default function StickyHeadTable() {
                     label="Search User by Name"
                     variant="standard"
                     style={{ color: '#f3680b', marginRight: '8px' }}
-                    onChange={(e) => handleSearchUser(e)}
+                    onChange={(e) => setSearchTerm(e.target.value)}
                 />
             </Box>
 
