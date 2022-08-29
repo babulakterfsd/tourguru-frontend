@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-unused-vars */
-import { Button, Container, Skeleton, Typography } from '@mui/material';
+import { Button, Container, Skeleton, TextField, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import axios from 'axios';
@@ -25,6 +25,15 @@ function Packages() {
     useEffect(() => {
         axios.get(`http://localhost:5000/packages`).then((result) => setAllPackage(result?.data));
     }, []);
+
+    const handleSearchPackages = (e) => {
+        e.preventDefault();
+        const searchValue = e.target.value;
+        const url = `http://localhost:5000/packages?location=${searchValue}`;
+        axios.get(url).then((result) => {
+            setAllPackage(result?.data);
+        });
+    };
 
     return (
         <div
@@ -120,7 +129,31 @@ function Packages() {
                         </Box>
                     </Container>
                 ) : (
-                    <Box style={{ padding: mobile ? `40px 0px` : `80px 0px` }}>
+                    <Box style={{ padding: mobile ? `40px 0px` : `60px 0px` }}>
+                        <Box
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                flexDirection: mobile ? 'column' : 'row',
+                                margin: `0px 0px 30px 0px`,
+                            }}
+                        >
+                            <TextField
+                                id="outlined-basic"
+                                label="Search Packages by City Name"
+                                variant="standard"
+                                style={{
+                                    color: '#f3680b',
+                                    marginRight: '8px',
+                                    fontSize: '22px',
+                                    width: '350px',
+                                }}
+                                onChange={(e) => handleSearchPackages(e)}
+                                data-aos="fade-up"
+                                data-aos-duration="1500"
+                            />
+                        </Box>
                         <Grid
                             container
                             spacing={{ xs: 2, md: 3, lg: 5 }}
