@@ -2,7 +2,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-array-index-key */
-import { Button, Typography } from '@mui/material';
+import { Box, Button, TextField, Typography } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -37,6 +37,15 @@ export default function StickyHeadTable() {
     useEffect(() => {
         axios.get(getAllOrdersURL).then((result) => setAllOrders(result?.data));
     }, []);
+
+    const handleSearchOrder = (e) => {
+        e.preventDefault();
+        const searchValue = e.target.value;
+        const url = `http://localhost:5000/allorder?email=${searchValue}`;
+        axios.get(url).then((result) => {
+            setAllOrders(result?.data);
+        });
+    };
 
     useEffect(() => {
         const row = [];
@@ -99,15 +108,24 @@ export default function StickyHeadTable() {
             data-aos="zoom-in"
             data-aos-duration="4500"
         >
-            <Typography
-                style={{
-                    padding: mobile ? `10px` : `25px`,
-                    color: `#E46F44`,
-                    fontWeight: mobile ? `400` : `700`,
-                }}
-            >
-                All Orders
-            </Typography>
+            <Box style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <Typography
+                    style={{
+                        padding: mobile ? `10px` : `25px`,
+                        color: `#E46F44`,
+                        fontWeight: mobile ? `400` : `700`,
+                    }}
+                >
+                    All Available Packages
+                </Typography>
+                <TextField
+                    id="standard-basic"
+                    label="Find specific order by email"
+                    variant="standard"
+                    style={{ color: '#f3680b', marginRight: '8px' }}
+                    onChange={(e) => handleSearchOrder(e)}
+                />
+            </Box>
             <TableContainer>
                 <Table stickyHeader aria-label="sticky table">
                     <TableHead>

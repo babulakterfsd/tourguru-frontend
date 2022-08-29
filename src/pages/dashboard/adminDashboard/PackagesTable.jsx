@@ -2,7 +2,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-array-index-key */
-import { Box, Button, Container, Grid, Skeleton, Typography } from '@mui/material';
+import { Box, Button, Container, Grid, Skeleton, TextField, Typography } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -37,6 +37,15 @@ export default function StickyHeadTable() {
     useEffect(() => {
         axios.get(getAllPackagesURL).then((result) => setAllPackages(result?.data));
     }, []);
+
+    const handleSearchPackages = (e) => {
+        e.preventDefault();
+        const searchValue = e.target.value;
+        const url = `http://localhost:5000/packages?location=${searchValue}`;
+        axios.get(url).then((result) => {
+            setAllPackages(result?.data);
+        });
+    };
 
     useEffect(() => {
         const row = [];
@@ -135,15 +144,24 @@ export default function StickyHeadTable() {
                 overflow: 'hidden',
             }}
         >
-            <Typography
-                style={{
-                    padding: mobile ? `10px` : `25px`,
-                    color: `#E46F44`,
-                    fontWeight: mobile ? `400` : `700`,
-                }}
-            >
-                All Running Packages
-            </Typography>
+            <Box style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <Typography
+                    style={{
+                        padding: mobile ? `10px` : `25px`,
+                        color: `#E46F44`,
+                        fontWeight: mobile ? `400` : `700`,
+                    }}
+                >
+                    All Available Packages
+                </Typography>
+                <TextField
+                    id="standard-basic"
+                    label="Search Location by City"
+                    variant="standard"
+                    style={{ color: '#f3680b', marginRight: '8px' }}
+                    onChange={(e) => handleSearchPackages(e)}
+                />
+            </Box>
             <TableContainer>
                 <Table stickyHeader aria-label="sticky table">
                     <TableHead>
