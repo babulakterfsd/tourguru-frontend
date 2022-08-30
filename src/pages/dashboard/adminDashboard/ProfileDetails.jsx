@@ -14,6 +14,7 @@ import {
   TextField,
   Typography
 } from '@mui/material';
+import axios from 'axios';
 import { sendEmailVerification } from 'firebase/auth';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -52,8 +53,12 @@ export default function ProfileDetails(props) {
       .then((res) => res.json())
       .then((myData) => {
         if (myData?.modifiedCount > 0) {
+          axios.get(`http://localhost:5000/user/${user?.email}`).then((result) => {
+                    setUserInfoInDatabase(result?.data);
+                });
+          Swal.fire('Profile updated successfully');
           reset();
-          window.location.reload();
+          // window.location.reload();
         }
       })
       // .catch((err) => console.log(err.message));
