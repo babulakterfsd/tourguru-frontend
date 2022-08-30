@@ -1,8 +1,7 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-unused-vars */
-import { Button, Container, Skeleton, TextField, Typography } from '@mui/material';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
+import { Box, Button, Container, Grid, Skeleton, TextField, Typography } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import ScrollToTop from '../components/ScrollToTop';
@@ -10,7 +9,7 @@ import SinglePackageCard from '../components/SinglePackageCard';
 import useAuth from '../hooks/useAuth';
 
 function Packages() {
-    const [allPackages, setAllPackage] = useState([]);
+    const [allPackages, setAllPackage] = useState(null);
     const [numberOfPackage, setNumberOfPackage] = useState(6);
     const { mobile } = useAuth();
     const [searchTerm, setSearchTerm] = useState('');
@@ -22,6 +21,13 @@ function Packages() {
                 setAllPackage(result?.data);
             });
         }, 500);
+
+        if (searchTerm === '') {
+            const url = `http://localhost:5000/packages`;
+            axios.get(url).then((result) => {
+                setAllPackage(result?.data);
+            });
+        }
 
         return () => clearTimeout(delayDebounceFn);
     }, [searchTerm]);
@@ -80,7 +86,29 @@ function Packages() {
                     quaerat! Culpa, inventore. Doloribus praesentium dicta repellendus tempora
                     eligendi maxime odio soluta quae in, architecto modi maiores quas facere?
                 </Typography>
-                {allPackages?.length === 0 ? (
+                <Box
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        flexDirection: mobile ? 'column' : 'row',
+                        margin: `30px 0px`,
+                    }}
+                >
+                    <TextField
+                        id="outlined-basic"
+                        label="Search Packages by City Name"
+                        variant="standard"
+                        style={{
+                            color: '#f3680b',
+                            marginRight: '8px',
+                            fontSize: '22px',
+                            width: mobile ? '270px' : '350px',
+                        }}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                </Box>
+                {!Array.isArray(allPackages) ? (
                     <Container>
                         <Box
                             style={{
@@ -90,8 +118,6 @@ function Packages() {
                                 alignItems: `center`,
                                 margin: mobile ? `100px 0px` : `180px 15px`,
                             }}
-                            data-aos="fade-up"
-                            data-aos-duration="1500"
                         >
                             {mobile ? (
                                 <>
@@ -131,32 +157,29 @@ function Packages() {
                             )}
                         </Box>
                     </Container>
-                ) : (
-                    <Box style={{ padding: mobile ? `40px 0px` : `60px 0px` }}>
-                        <Box
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                flexDirection: mobile ? 'column' : 'row',
-                                margin: `0px 0px 30px 0px`,
-                            }}
-                        >
-                            <TextField
-                                id="outlined-basic"
-                                label="Search Packages by City Name"
-                                variant="standard"
+                ) : Array.isArray(allPackages) && allPackages.length === 0 ? (
+                    <Container>
+                        <Box>
+                            <Box
                                 style={{
-                                    color: '#f3680b',
-                                    marginRight: '8px',
-                                    fontSize: '22px',
-                                    width: '350px',
+                                    display: `flex`,
+                                    justifyContent: `center`,
+                                    alignItems: `center`,
                                 }}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                                data-aos="fade-up"
-                                data-aos-duration="1500"
-                            />
+                            >
+                                <Typography
+                                    variant="h4"
+                                    style={{ color: '#1a213d' }}
+                                    data-aos="zoom-in"
+                                    data-aos-duration="1500"
+                                >
+                                    No avilable packages found for this location
+                                </Typography>
+                            </Box>
                         </Box>
+                    </Container>
+                ) : (
+                    <Box>
                         <Grid
                             container
                             spacing={{ xs: 2, md: 3, lg: 5 }}
