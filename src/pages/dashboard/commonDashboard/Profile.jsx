@@ -44,7 +44,8 @@ function Profile(props) {
             })
     }
 
-    useEffect(() => {}, [userInfoInDatabase]);
+    useEffect(() => {
+    }, [userInfoInDatabase,userImageURL]);
 
     const saveUserProfilePhoto = (email, photoURL) => {
         const myUser = { email, img: photoURL};
@@ -58,7 +59,10 @@ function Profile(props) {
            .then((data) => {
             if(data?.modifiedCount > 0 ) {
                 setUserImageURL('')
-                window.location.reload()
+                axios.get(`http://localhost:5000/user/${user?.email}`).then((result) => {
+                    setUserInfoInDatabase(result?.data);
+                });
+                Swal.fire(`Profile photo updated successfully`)
        }
            })
         //    .catch(err => console.log(err.message))
