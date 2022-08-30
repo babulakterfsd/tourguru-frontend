@@ -21,6 +21,7 @@ export default function Review() {
         setActiveStep,
         user,
         paymentIntentStatus,
+        setPaymentIntentStatus,
         userInfoInDatabase,
         paymentTrxID,
     } = useAuth();
@@ -69,6 +70,7 @@ export default function Review() {
 
     const handleNext = () => {
         setActiveStep((prev) => prev + 1);
+        setPaymentIntentStatus('');
         placeOrder();
         if (activeStep === 2) {
             setOrderData({});
