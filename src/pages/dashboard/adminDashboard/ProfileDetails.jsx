@@ -58,7 +58,6 @@ export default function ProfileDetails(props) {
                 });
           Swal.fire('Profile updated successfully');
           reset();
-          // window.location.reload();
         }
       })
       // .catch((err) => console.log(err.message));
