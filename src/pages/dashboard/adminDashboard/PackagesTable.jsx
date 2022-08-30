@@ -87,59 +87,6 @@ export default function StickyHeadTable() {
         }
     };
 
-    if (allPackages?.length === 0) {
-        return (
-            <Container>
-                <Box
-                    style={{
-                        height: `100vh`,
-                        display: `flex`,
-                        justifyContent: `center`,
-                        alignItems: `center`,
-                        margin: mobile ? `100px 0px` : `180px 15px`,
-                    }}
-                >
-                    {mobile ? (
-                        <>
-                            <ScrollToTop />
-                            <Grid container spacing={3}>
-                                {Array.from(Array(3)).map((packages, index) => (
-                                    <Grid item xs={12} key={index}>
-                                        <Skeleton
-                                            variant="rectangular"
-                                            style={{
-                                                width: `100%`,
-                                                height: mobile ? `150px` : `210px`,
-                                            }}
-                                        />
-                                        <Skeleton />
-                                        <Skeleton width="60%" />
-                                    </Grid>
-                                ))}
-                            </Grid>
-                        </>
-                    ) : (
-                        <Grid container spacing={5} data-aos="zoom-in" data-aos-duration="4500">
-                            {Array.from(Array(9)).map((packages, index) => (
-                                <Grid item md={6} lg={4} key={index}>
-                                    <Skeleton
-                                        variant="rectangular"
-                                        style={{
-                                            width: `100%`,
-                                            height: mobile ? `150px` : `210px`,
-                                        }}
-                                    />
-                                    <Skeleton />
-                                    <Skeleton width="60%" />
-                                </Grid>
-                            ))}
-                        </Grid>
-                    )}
-                </Box>
-            </Container>
-        );
-    }
-
     return (
         <Paper
             sx={{
@@ -147,7 +94,13 @@ export default function StickyHeadTable() {
                 overflow: 'hidden',
             }}
         >
-            <Box style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Box
+                style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                }}
+            >
                 <Typography
                     style={{
                         padding: mobile ? `10px` : `25px`,
