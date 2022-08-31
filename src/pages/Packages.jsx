@@ -94,6 +94,8 @@ function Packages() {
                         flexDirection: mobile ? 'column' : 'row',
                         margin: `30px 0px`,
                     }}
+                    data-aos="fade-up"
+                    data-aos-duration="1500"
                 >
                     <TextField
                         id="outlined-basic"
@@ -122,7 +124,12 @@ function Packages() {
                             {mobile ? (
                                 <>
                                     <ScrollToTop />
-                                    <Grid container spacing={3}>
+                                    <Grid
+                                        container
+                                        spacing={3}
+                                        data-aos="fade-up"
+                                        data-aos-duration="1500"
+                                    >
                                         {Array.from(Array(3)).map((packages, index) => (
                                             <Grid item xs={12} key={index}>
                                                 <Skeleton
@@ -139,7 +146,12 @@ function Packages() {
                                     </Grid>
                                 </>
                             ) : (
-                                <Grid container spacing={5}>
+                                <Grid
+                                    container
+                                    spacing={5}
+                                    data-aos="fade-up"
+                                    data-aos-duration="1500"
+                                >
                                     {Array.from(Array(9)).map((packages, index) => (
                                         <Grid item md={6} lg={4} key={index}>
                                             <Skeleton
