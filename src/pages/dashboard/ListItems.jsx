@@ -28,6 +28,7 @@ function MyListItems() {
             setUser(null);
             navigate('/');
         });
+        localStorage.removeItem('accessToken');
         setIsLoading(false);
     };
 

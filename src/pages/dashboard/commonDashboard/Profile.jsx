@@ -5,16 +5,16 @@
 // import userImage from '../../../assests/images/userdefault.png';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import {
-    Box,
-    Button,
-    Card,
-    CardActions,
-    CardContent,
-    Container,
-    Divider,
-    Grid,
-    TextField,
-    Typography
+  Box,
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  Container,
+  Divider,
+  Grid,
+  TextField,
+  Typography
 } from '@mui/material';
 import axios from 'axios';
 import { deleteUser } from 'firebase/auth';

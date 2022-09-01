@@ -16,10 +16,11 @@ import {
 } from '@mui/material';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import React, { useEffect } from 'react';
-import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import ScrollToTop from '../components/ScrollToTop';
 import useAuth from '../hooks/useAuth';
+import useToken from '../hooks/useToken';
 import Styles from '../styles/Login.module.css';
 
 function Login() {
@@ -41,16 +42,19 @@ function Login() {
     setActiveStep,
   } = useAuth();
   const location = useLocation();
-  const targetURL = location.state || '/dashboard';
+  const targetURL = location?.state || '/dashboard';
   const navigate = useNavigate();
+  const [token] = useToken(user);
 
   useEffect(() => {
     document.title = 'Tourguru | Login';
   });
 
-  if (user) {
-    return <Navigate to="/" replace />;
-  }
+  useEffect(() => {
+    if (token) {
+      navigate(targetURL, { replace: true });
+    }
+  }, [navigate, targetURL, token]);
 
   const saveUser = (email, displayName) => {
     const myUser = { email, displayName };
@@ -81,7 +85,7 @@ function Login() {
           showConfirmButton: false,
           timer: 2500,
         });
-        navigate(targetURL);
+        // navigate(targetURL);
         setResponse('');
       })
       .catch((error) => {

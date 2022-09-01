@@ -2,6 +2,7 @@
 import { useMediaQuery } from '@mui/material';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import axiosPrivate from './axiosPrivate';
 import useFirebase from './useFirebase';
 
 const AllStates = () => {
@@ -66,7 +67,7 @@ const AllStates = () => {
     }, [checkAdminURL]);
 
     useEffect(() => {
-        axios.get(getIndividualUserFromdatabse).then((result) => {
+        axiosPrivate.get(getIndividualUserFromdatabse).then((result) => {
             setUserInfoInDatabase(result?.data);
         });
     }, [getIndividualUserFromdatabse]);

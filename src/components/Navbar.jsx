@@ -28,6 +28,7 @@ function Navbar() {
             setUser(null);
             navigate('/');
         });
+        localStorage.removeItem('accessToken');
         setIsLoading(false);
     };
 

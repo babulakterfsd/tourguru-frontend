@@ -119,7 +119,7 @@ export default function StickyHeadTable() {
                         fontWeight: mobile ? `400` : `700`,
                     }}
                 >
-                    All Available Packages
+                    All Available Orders
                 </Typography>
                 <TextField
                     id="standard-basic"
