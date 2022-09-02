@@ -31,7 +31,7 @@ export default function StickyHeadTable() {
     const [allUsers, setAllUsers] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
 
-    const getAllUsersURL = `http://localhost:5000/users`;
+    const getAllUsersURL = `https://rocky-inlet-29740.herokuapp.com/users`;
 
     useEffect(() => {
         axios.get(getAllUsersURL).then((result) => setAllUsers(result?.data));
@@ -39,7 +39,7 @@ export default function StickyHeadTable() {
 
     useEffect(() => {
         const delayDebounceFn = setTimeout(() => {
-            const url = `http://localhost:5000/users?name=${searchTerm}`;
+            const url = `https://rocky-inlet-29740.herokuapp.com/users?name=${searchTerm}`;
             axios.get(url).then((result) => {
                 setAllUsers(result?.data);
             });
@@ -67,7 +67,7 @@ export default function StickyHeadTable() {
     };
 
     const handleMakeAdmin = (id) => {
-        const url = `http://localhost:5000/users/${id}`;
+        const url = `https://rocky-inlet-29740.herokuapp.com/users/${id}`;
         fetch(url, {
             method: 'PUT',
             headers: {

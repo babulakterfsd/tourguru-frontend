@@ -33,7 +33,7 @@ function AddReview() {
 
     const reviewDetails = review
 
-    fetch(`http://localhost:5000/review/${user?.email}`, {
+    fetch(`https://rocky-inlet-29740.herokuapp.com/review/${user?.email}`, {
         method: 'POST',
         headers: {
             'content-type': 'application/json',

@@ -10,7 +10,7 @@ function Users() {
     const { mobile } = useAuth();
     const [allUsers, setAllUsers] = useState(null);
 
-    const getAllUsersURL = `http://localhost:5000/users`;
+    const getAllUsersURL = `https://rocky-inlet-29740.herokuapp.com/users`;
 
     useEffect(() => {
         axios.get(getAllUsersURL).then((result) => setAllUsers(result?.data));

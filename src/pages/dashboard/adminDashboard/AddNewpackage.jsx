@@ -60,7 +60,7 @@ const handleImageUpload = (e) => {
     packageDetails = {...packageDetails, img: imageURL}
       
     if(imageURL !== '') {
-        fetch('http://localhost:5000/addpackage', {
+        fetch('https://rocky-inlet-29740.herokuapp.com/addpackage', {
         method: 'POST',
         headers: {
             'content-type': 'application/json'

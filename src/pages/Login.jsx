@@ -5,14 +5,14 @@
 import { LockOutlined } from '@mui/icons-material';
 import Google from '@mui/icons-material/Google';
 import {
-  Avatar,
-  Box,
-  Button,
-  Checkbox,
-  Container,
-  FormControlLabel,
-  TextField,
-  Typography
+    Avatar,
+    Box,
+    Button,
+    Checkbox,
+    Container,
+    FormControlLabel,
+    TextField,
+    Typography
 } from '@mui/material';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import React, { useEffect } from 'react';
@@ -58,7 +58,7 @@ function Login() {
 
   const saveUser = (email, displayName) => {
     const myUser = { email, displayName };
-    fetch('http://localhost:5000/users', {
+    fetch('https://rocky-inlet-29740.herokuapp.com/users', {
       method: 'PUT',
       headers: {
         'content-type': 'application/json',

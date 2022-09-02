@@ -35,7 +35,7 @@ function Contact() {
     const handleFormSubmit = (data) => {
         const { name, phone } = data;
         if (name.length > 3 && phone.length > 7) {
-            fetch('http://localhost:5000/sendemail', {
+            fetch('https://rocky-inlet-29740.herokuapp.com/sendemail', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',

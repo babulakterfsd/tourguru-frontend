@@ -3,16 +3,16 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react/jsx-props-no-spreading */
 import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  CardHeader,
-  Divider,
-  Grid,
-  MenuItem,
-  TextField,
-  Typography
+    Box,
+    Button,
+    Card,
+    CardContent,
+    CardHeader,
+    Divider,
+    Grid,
+    MenuItem,
+    TextField,
+    Typography
 } from '@mui/material';
 import axios from 'axios';
 import { sendEmailVerification } from 'firebase/auth';
@@ -43,7 +43,7 @@ export default function ProfileDetails(props) {
 
   const updateProfile = (data) => {
     const myUser = { email, ...data };
-    fetch(`http://localhost:5000/updateuser/${email}`, {
+    fetch(`https://rocky-inlet-29740.herokuapp.com/updateuser/${email}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json',
@@ -53,7 +53,7 @@ export default function ProfileDetails(props) {
       .then((res) => res.json())
       .then((myData) => {
         if (myData?.modifiedCount > 0) {
-          axios.get(`http://localhost:5000/user/${user?.email}`).then((result) => {
+          axios.get(`https://rocky-inlet-29740.herokuapp.com/user/${user?.email}`).then((result) => {
                     setUserInfoInDatabase(result?.data);
                 });
           Swal.fire('Profile updated successfully');

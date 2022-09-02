@@ -7,7 +7,7 @@ const useToken = (user) => {
         const getToken = async () => {
             if (user?.email) {
                 const userEmail = user?.email;
-                fetch('http://localhost:5000/getaccesstoken', {
+                fetch('https://rocky-inlet-29740.herokuapp.com/getaccesstoken', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

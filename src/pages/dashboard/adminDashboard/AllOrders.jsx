@@ -11,7 +11,7 @@ function AllOrders() {
     const { user, allUsers, mobile } = useAuth();
     const [allOrders, setAllOrders] = useState(null);
 
-    const getAllOrdersURL = `http://localhost:5000/allorder`;
+    const getAllOrdersURL = `https://rocky-inlet-29740.herokuapp.com/allorder`;
     useEffect(() => {
         axios.get(getAllOrdersURL).then((result) => setAllOrders(result?.data));
     }, [getAllOrdersURL]);

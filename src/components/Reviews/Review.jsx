@@ -19,7 +19,7 @@ function Review({ userReview }) {
         if (allReviews?.length <= 4) {
             Swal.fire("Sorry, you can't delete a package when total package is below 5");
         } else {
-            const url = `http://localhost:5000/review/${id}`;
+            const url = `https://rocky-inlet-29740.herokuapp.com/review/${id}`;
 
             fetch(url, {
                 method: 'DELETE',

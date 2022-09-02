@@ -34,7 +34,7 @@ function Register() {
       // save user data to the mongodb database
   const saveUser = (email, displayName) => {
     const myUser = {email, displayName};
-    fetch("http://localhost:5000/users", {
+    fetch("https://rocky-inlet-29740.herokuapp.com/users", {
       method: 'PUT',
       headers: {
         "content-type": "application/json",

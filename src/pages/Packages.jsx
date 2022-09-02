@@ -16,14 +16,14 @@ function Packages() {
 
     useEffect(() => {
         const delayDebounceFn = setTimeout(() => {
-            const url = `http://localhost:5000/packages?location=${searchTerm}`;
+            const url = `https://rocky-inlet-29740.herokuapp.com/packages?location=${searchTerm}`;
             axios.get(url).then((result) => {
                 setAllPackage(result?.data);
             });
         }, 500);
 
         if (searchTerm === '') {
-            const url = `http://localhost:5000/packages`;
+            const url = `https://rocky-inlet-29740.herokuapp.com/packages`;
             axios.get(url).then((result) => {
                 setAllPackage(result?.data);
             });
@@ -41,7 +41,9 @@ function Packages() {
     });
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/packages`).then((result) => setAllPackage(result?.data));
+        axios
+            .get(`https://rocky-inlet-29740.herokuapp.com/packages`)
+            .then((result) => setAllPackage(result?.data));
     }, []);
 
     return (

@@ -5,16 +5,16 @@
 // import userImage from '../../../assests/images/userdefault.png';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import {
-  Box,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  Container,
-  Divider,
-  Grid,
-  TextField,
-  Typography
+    Box,
+    Button,
+    Card,
+    CardActions,
+    CardContent,
+    Container,
+    Divider,
+    Grid,
+    TextField,
+    Typography
 } from '@mui/material';
 import axios from 'axios';
 import { deleteUser } from 'firebase/auth';
@@ -66,7 +66,7 @@ function Profile(props) {
 
   const saveUserProfilePhoto = (email, photoURL) => {
     const myUser = { email, img: photoURL };
-    fetch('http://localhost:5000/users', {
+    fetch('https://rocky-inlet-29740.herokuapp.com/users', {
       method: 'PUT',
       headers: {
         'content-type': 'application/json',
@@ -78,7 +78,7 @@ function Profile(props) {
         if (data?.modifiedCount > 0) {
           setUserImageURL('');
           axios
-            .get(`http://localhost:5000/user/${user?.email}`)
+            .get(`https://rocky-inlet-29740.herokuapp.com/user/${user?.email}`)
             .then((result) => {
               setUserInfoInDatabase(result?.data);
             });
@@ -95,7 +95,7 @@ function Profile(props) {
     } else {
       deleteUser(user)
         .then(() => {
-          const url = `http://localhost:5000/deleteuser/${user?.email}`;
+          const url = `https://rocky-inlet-29740.herokuapp.com/deleteuser/${user?.email}`;
           fetch(url, {
             method: 'DELETE',
           })

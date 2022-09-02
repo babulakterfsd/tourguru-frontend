@@ -32,7 +32,7 @@ export default function MyOrderTable() {
     const { mobile, user } = useAuth();
     const [status, setStatus] = useState(null);
     const [myOrders, setMyOrders] = useState([]);
-    const getMyOrdersURL = `http://localhost:5000/myorders/${user?.email}`;
+    const getMyOrdersURL = `https://rocky-inlet-29740.herokuapp.com/myorders/${user?.email}`;
 
     useEffect(() => {
         const options = {
@@ -68,7 +68,7 @@ export default function MyOrderTable() {
     };
 
     const handleCancelOrder = (id) => {
-        const url = `http://localhost:5000/allorder/${id}`;
+        const url = `https://rocky-inlet-29740.herokuapp.com/allorder/${id}`;
 
         fetch(url, {
             method: 'DELETE',

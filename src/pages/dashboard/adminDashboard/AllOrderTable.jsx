@@ -35,7 +35,7 @@ export default function StickyHeadTable() {
 
     useEffect(() => {
         const delayDebounceFn = setTimeout(() => {
-            const url = `http://localhost:5000/allorder?email=${searchTerm}`;
+            const url = `https://rocky-inlet-29740.herokuapp.com/allorder?email=${searchTerm}`;
             axios.get(url).then((result) => {
                 setAllOrders(result?.data);
             });
@@ -44,7 +44,7 @@ export default function StickyHeadTable() {
         return () => clearTimeout(delayDebounceFn);
     }, [searchTerm]);
 
-    const getAllOrdersURL = `http://localhost:5000/allorder`;
+    const getAllOrdersURL = `https://rocky-inlet-29740.herokuapp.com/allorder`;
 
     useEffect(() => {
         axios.get(getAllOrdersURL).then((result) => setAllOrders(result?.data));
@@ -69,7 +69,7 @@ export default function StickyHeadTable() {
     };
 
     const handleDeleteOrder = (id) => {
-        const url = `http://localhost:5000/allorder/${id}`;
+        const url = `https://rocky-inlet-29740.herokuapp.com/allorder/${id}`;
 
         fetch(url, {
             method: 'DELETE',
@@ -84,7 +84,7 @@ export default function StickyHeadTable() {
     };
 
     const handleOrderStatus = (id) => {
-        const url = `http://localhost:5000/allorder/${id}`;
+        const url = `https://rocky-inlet-29740.herokuapp.com/allorder/${id}`;
 
         fetch(url, {
             method: 'PUT',

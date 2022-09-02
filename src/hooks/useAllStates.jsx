@@ -40,11 +40,11 @@ const AllStates = () => {
     } = useFirebase();
 
     // variables
-    const getAllPackageURL = `http://localhost:5000/packages`;
-    const getPopularPackageURL = `http://localhost:5000/packages?limit=6`;
-    const checkAdminURL = `http://localhost:5000/users/${user?.email}`;
-    const getIndividualUserFromdatabse = `http://localhost:5000/user/${user?.email}`;
-    const getAllReviewsURL = `http://localhost:5000/review`;
+    const getAllPackageURL = `https://rocky-inlet-29740.herokuapp.com/packages`;
+    const getPopularPackageURL = `https://rocky-inlet-29740.herokuapp.com/packages?limit=6`;
+    const checkAdminURL = `https://rocky-inlet-29740.herokuapp.com/users/${user?.email}`;
+    const getIndividualUserFromdatabse = `https://rocky-inlet-29740.herokuapp.com/user/${user?.email}`;
+    const getAllReviewsURL = `https://rocky-inlet-29740.herokuapp.com/review`;
 
     // function calls
     useEffect(() => {
@@ -68,7 +68,7 @@ const AllStates = () => {
     useEffect(() => {
         setTimeout(() => {
             if (user) {
-                fetch(`http://localhost:5000/user/${user?.email}`, {
+                fetch(`https://rocky-inlet-29740.herokuapp.com/user/${user?.email}`, {
                     headers: {
                         authorization: `Bearer ${localStorage.getItem('accessToken')}`,
                     },

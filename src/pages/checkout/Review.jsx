@@ -29,8 +29,8 @@ export default function Review() {
     const navigate = useNavigate();
     const [buyingPackage, setBuyingPackage] = useState({});
     const { packageid } = useParams();
-    const buyingPackageURL = `http://localhost:5000/packages/${packageid}`;
-    const placeOrderURL = `http://localhost:5000/placeorder`;
+    const buyingPackageURL = `https://rocky-inlet-29740.herokuapp.com/packages/${packageid}`;
+    const placeOrderURL = `https://rocky-inlet-29740.herokuapp.com/placeorder`;
 
     const placeOrder = () => {
         const options = {
