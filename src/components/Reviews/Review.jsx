@@ -37,7 +37,7 @@ function Review({ userReview }) {
     return (
         <Card
             style={{
-                minHeight: `200px`,
+                minHeight: `250px`,
                 width: mobile ? `250px` : `350px`,
                 margin: mobile ? `0px` : `0px 15px`,
                 textAlign: `center`,

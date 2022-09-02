@@ -33,10 +33,11 @@ function AddReview() {
 
     const reviewDetails = review
 
-    fetch('http://localhost:5000/review', {
+    fetch(`http://localhost:5000/review/${user?.email}`, {
         method: 'POST',
         headers: {
-            'content-type': 'application/json'
+            'content-type': 'application/json',
+            authorization: `Bearer ${localStorage.getItem('accessToken')}`,
         },
         body: JSON.stringify(reviewDetails)
       })
