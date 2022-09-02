@@ -10,7 +10,7 @@ axiosPrivate.interceptors.request.use(
         if (!config.headers.authorization) {
             config.headers.authorization = `Bearer ${localStorage.getItem('accessToken')}`;
         }
-        return config;
+        return config; // if authorization header gets undefined, content-type when sending the request
     },
     (error) =>
         // Do something with request error
