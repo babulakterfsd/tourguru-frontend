@@ -2,7 +2,6 @@
 import { useMediaQuery } from '@mui/material';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import axiosPrivate from './axiosPrivate';
 import useFirebase from './useFirebase';
 
 const AllStates = () => {
@@ -67,10 +66,21 @@ const AllStates = () => {
     }, [checkAdminURL]);
 
     useEffect(() => {
-        axiosPrivate.get(getIndividualUserFromdatabse).then((result) => {
-            setUserInfoInDatabase(result?.data);
-        });
-    }, [getIndividualUserFromdatabse]);
+        setTimeout(() => {
+            if (user) {
+                fetch(`http://localhost:5000/user/${user?.email}`, {
+                    headers: {
+                        authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+                    },
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        setUserInfoInDatabase(data);
+                    })
+                    .catch((err) => console.log(err));
+            }
+        }, 1000);
+    }, [user]);
 
     // responsive check
     const mobile = useMediaQuery('(max-width:475px)');

@@ -1,4 +1,4 @@
-import axios from 'axios';
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from 'react';
 
 const useToken = (user) => {
@@ -6,12 +6,19 @@ const useToken = (user) => {
     useEffect(() => {
         const getToken = async () => {
             if (user?.email) {
-                const { data } = await axios.post(
-                    'http://localhost:5000/getaccesstoken',
-                    user?.email
-                );
-                setToken(data?.accessToken);
-                localStorage.setItem('accessToken', data?.accessToken);
+                const userEmail = user?.email;
+                fetch('http://localhost:5000/getaccesstoken', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ userEmail }),
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        setToken(data?.accessToken);
+                        localStorage.setItem('accessToken', data?.accessToken);
+                    });
             }
         };
         getToken();
