@@ -33,9 +33,21 @@ export default function MyOrderTable() {
     const [status, setStatus] = useState(null);
     const [myOrders, setMyOrders] = useState([]);
     const getMyOrdersURL = `http://localhost:5000/myorders/${user?.email}`;
+
     useEffect(() => {
-        axios.get(getMyOrdersURL).then((result) => setMyOrders(result?.data));
-    }, []);
+        const options = {
+            url: getMyOrdersURL,
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8',
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+            },
+        };
+
+        axios(options).then((response) => {
+            setMyOrders(response.data);
+        });
+    }, [user?.email]);
 
     useEffect(() => {
         const row = [];

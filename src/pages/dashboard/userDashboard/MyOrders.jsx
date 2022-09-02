@@ -1,3 +1,4 @@
+/* eslint-disable prefer-template */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-unused-vars */
 import { Box, Container, Grid, Skeleton, Typography } from '@mui/material';
@@ -10,10 +11,20 @@ import MyOrderTable from './MyOrderTable';
 function MyOrders() {
     const { user, allUsers, mobile } = useAuth();
     const [myOrders, setMyOrders] = useState(null);
-    const getMyOrdersURL = `http://localhost:5000/myorders/${user?.email}`;
     useEffect(() => {
-        axios.get(getMyOrdersURL).then((result) => setMyOrders(result?.data));
-    }, [getMyOrdersURL]);
+        const options = {
+            url: `http://localhost:5000/myorders/${user?.email}`,
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8',
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+            },
+        };
+
+        axios(options).then((response) => {
+            setMyOrders(response.data);
+        });
+    }, [user?.email]);
 
     if (!Array.isArray(myOrders)) {
         return (
@@ -92,6 +103,7 @@ function MyOrders() {
         );
     }
 
+    // eslint-disable-next-line consistent-return
     return (
         <Container>
             <ScrollToTop />
