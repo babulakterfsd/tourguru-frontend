@@ -5,11 +5,22 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import ScrollToTop from '../../components/ScrollToTop';
 import useAuth from '../../hooks/useAuth';
 
 export default function AddressForm() {
-    const { mobile, orderData, setOrderData, activeStep, setActiveStep } = useAuth();
+    const {
+        mobile,
+        orderData,
+        setOrderData,
+        activeStep,
+        setActiveStep,
+        userInfoInDatabase,
+        setUserInfoInDatabase,
+    } = useAuth();
+    const navigate = useNavigate();
 
     const handleNext = () => {
         setActiveStep((prev) => prev + 1);
@@ -17,6 +28,15 @@ export default function AddressForm() {
     const handleBack = () => {
         setActiveStep((prev) => prev - 1);
     };
+
+    if (userInfoInDatabase?.role === 'admin') {
+        Swal.fire(
+            `As you've loggedin as an admin, you don't need to buy package and will be redirected to admin panel`
+        );
+        setTimeout(() => {
+            navigate('/dashboard', { replace: true });
+        }, 2000);
+    }
 
     return (
         <div data-aos="zoom-in" data-aos-duration="1500">

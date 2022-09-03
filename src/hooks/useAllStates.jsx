@@ -79,7 +79,7 @@ const AllStates = () => {
                     })
                     .catch((err) => console.log(err));
             }
-        }, 1500);
+        }, 1000);
     }, [user]);
 
     // responsive check
