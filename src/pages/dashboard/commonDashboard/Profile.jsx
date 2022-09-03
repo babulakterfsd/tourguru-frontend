@@ -5,16 +5,16 @@
 // import userImage from '../../../assests/images/userdefault.png';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import {
-    Box,
-    Button,
-    Card,
-    CardActions,
-    CardContent,
-    Container,
-    Divider,
-    Grid,
-    TextField,
-    Typography
+  Box,
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  Container,
+  Divider,
+  Grid,
+  TextField,
+  Typography
 } from '@mui/material';
 import axios from 'axios';
 import { deleteUser } from 'firebase/auth';
@@ -62,7 +62,9 @@ function Profile(props) {
       });
   };
 
-  useEffect(() => {}, [userInfoInDatabase, userImageURL]);
+  useEffect(() => {
+    console.log('pro pic updated');
+  }, [userInfoInDatabase, userImageURL]);
 
   const saveUserProfilePhoto = (email, photoURL) => {
     const myUser = { email, img: photoURL };
@@ -77,11 +79,17 @@ function Profile(props) {
       .then((data) => {
         if (data?.modifiedCount > 0) {
           setUserImageURL('');
-          axios
-            .get(`https://rocky-inlet-29740.herokuapp.com/user/${user?.email}`)
-            .then((result) => {
-              setUserInfoInDatabase(result?.data);
-            });
+          const options = {
+            url: `https://rocky-inlet-29740.herokuapp.com/user/${user?.email}`,
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8',
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+            },
+        };
+        axios(options).then((response) => {
+          setUserInfoInDatabase(response.data);
+      });
           Swal.fire(`Profile photo updated successfully`);
           setSelectedImage(null);
         }

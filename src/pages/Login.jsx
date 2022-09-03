@@ -5,14 +5,14 @@
 import { LockOutlined } from '@mui/icons-material';
 import Google from '@mui/icons-material/Google';
 import {
-    Avatar,
-    Box,
-    Button,
-    Checkbox,
-    Container,
-    FormControlLabel,
-    TextField,
-    Typography
+  Avatar,
+  Box,
+  Button,
+  Checkbox,
+  Container,
+  FormControlLabel,
+  TextField,
+  Typography
 } from '@mui/material';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import React, { useEffect } from 'react';

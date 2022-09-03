@@ -41,9 +41,7 @@ function Packages() {
     });
 
     useEffect(() => {
-        axios
-            .get(`https://rocky-inlet-29740.herokuapp.com/packages`)
-            .then((result) => setAllPackage(result?.data));
+        axios.get(`https://rocky-inlet-29740.herokuapp.com/packages`).then((result) => setAllPackage(result?.data));
     }, []);
 
     return (
