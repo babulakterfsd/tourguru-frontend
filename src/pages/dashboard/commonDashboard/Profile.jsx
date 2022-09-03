@@ -63,7 +63,6 @@ function Profile(props) {
   };
 
   useEffect(() => {
-    console.log('pro pic updated');
   }, [userInfoInDatabase, userImageURL]);
 
   const saveUserProfilePhoto = (email, photoURL) => {

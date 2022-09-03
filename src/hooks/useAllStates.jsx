@@ -16,7 +16,6 @@ const AllStates = () => {
     const [paymentIntentStatus, setPaymentIntentStatus] = useState('');
     const [paymentTrxID, setPaymentTrxID] = useState('');
     const [userInfoInDatabase, setUserInfoInDatabase] = useState({});
-    const [globalToken, setGlobalToken] = useState('');
 
     // firebase
     const {
@@ -65,19 +64,6 @@ const AllStates = () => {
             setIsAdmin(result?.data?.admin);
         });
     }, [checkAdminURL]);
-
-    useEffect(() => {
-        if (!globalToken || !localStorage.getItem('accessToken')) {
-            const logOut = () => {
-                signOut(auth).then(() => {
-                    setUser(null);
-                });
-                localStorage.removeItem('accessToken');
-                setIsLoading(false);
-            };
-            logOut();
-        }
-    }, [globalToken, signOut, auth, setUser, setIsLoading]);
 
     useEffect(() => {
         setTimeout(() => {
@@ -141,8 +127,6 @@ const AllStates = () => {
         setPaymentIntentStatus,
         paymentTrxID,
         setPaymentTrxID,
-        globalToken,
-        setGlobalToken,
     };
 };
 

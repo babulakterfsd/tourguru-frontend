@@ -1,45 +1,21 @@
 /* eslint-disable react/no-array-index-key */
 import { Box, Container, Grid, Skeleton, Typography } from '@mui/material';
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
 import ScrollToTop from '../../../components/ScrollToTop';
 import useAuth from '../../../hooks/useAuth';
 import UsersTable from './UsersTable';
 
 function Users() {
-    const { mobile, user, setUser, signOut, auth } = useAuth();
+    const { mobile } = useAuth();
     const [allUsers, setAllUsers] = useState(null);
 
-    const navigate = useNavigate();
-
     useEffect(() => {
-        if (localStorage.getItem('accessToken')) {
-            const options = {
-                url: `https://rocky-inlet-29740.herokuapp.com/users`,
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json;charset=UTF-8',
-                    authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-                },
-            };
-
-            axios(options).then((response) => {
-                setAllUsers(response.data);
+        fetch(`https://rocky-inlet-29740.herokuapp.com/users`)
+            .then((response) => response.json())
+            .then((data) => {
+                setAllUsers(data);
             });
-        } else {
-            Swal.fire('Your Token is invalid, Login Again');
-            const logOut = () => {
-                signOut(auth).then(() => {
-                    setUser(null);
-                    navigate('/login');
-                });
-                localStorage.removeItem('accessToken');
-            };
-            logOut();
-        }
-    }, [user?.email, auth, navigate, signOut, setUser]);
+    }, []);
 
     if (!Array.isArray(allUsers)) {
         return (

@@ -3,16 +3,16 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react/jsx-props-no-spreading */
 import {
-    Box,
-    Button,
-    Card,
-    CardContent,
-    CardHeader,
-    Divider,
-    Grid,
-    MenuItem,
-    TextField,
-    Typography
+  Box,
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  Divider,
+  Grid,
+  MenuItem,
+  TextField,
+  Typography
 } from '@mui/material';
 import axios from 'axios';
 import { sendEmailVerification } from 'firebase/auth';
@@ -24,7 +24,8 @@ import useAuth from '../../../hooks/useAuth';
 const genderoptions = ['Male', 'Female', 'Other'];
 
 export default function ProfileDetails(props) {
-  const { user, userInfoInDatabase, setUserInfoInDatabase, mobile, auth } = useAuth();
+  const { user, userInfoInDatabase, setUserInfoInDatabase, mobile, auth } =
+    useAuth();
   const { email } = user;
   const [gender, setGender] = useState('male');
   const { register, control, handleSubmit, reset } = useForm();
@@ -53,41 +54,63 @@ export default function ProfileDetails(props) {
       .then((res) => res.json())
       .then((myData) => {
         if (myData?.modifiedCount > 0) {
-          axios.get(`https://rocky-inlet-29740.herokuapp.com/user/${user?.email}`).then((result) => {
-                    setUserInfoInDatabase(result?.data);
-                });
+          const options = {
+            url: `https://rocky-inlet-29740.herokuapp.com/user/${user?.email}`,
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json;charset=UTF-8',
+              authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+            },
+          };
+          axios(options).then((response) => {
+            setUserInfoInDatabase(response.data);
+          });
           Swal.fire('Profile updated successfully');
           reset();
         }
-      })
-      // .catch((err) => console.log(err.message));
+      });
+    // .catch((err) => console.log(err.message));
   };
 
   // verify email
   const verifyEmail = () => {
     sendEmailVerification(auth.currentUser)
-  .then(() => {
-    Swal.fire(`Email sent. Check spam folder if you don't see it.`);
-  }).catch(() => Swal.fire(`Something is wrong`));
-  }
+      .then(() => {
+        Swal.fire(`Email sent. Check spam folder if you don't see it.`);
+      })
+      .catch(() => Swal.fire(`Something is wrong`));
+  };
 
   return (
     <Card style={{ margin: mobile ? '30px 0px' : '0px' }}>
       <Box component="form" onSubmit={handleSubmit(updateProfile)} noValidate>
-        <Box style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-        <CardHeader
-          subheader="You can't change your email"
-          title="Update Profile"
-        />
-        <Typography style={{marginRight: '10px'}}>
-          <span style={{margin: '0px 5px 8px 0px'}}>{user?.email}</span>
-          <small style={{ color: '#3b5' }}>
-            {user?.emailVerified && '(verified)'}
-          </small>
-          <small style={{ color: '#f3680b', textDecoration: 'underline', cursor: 'pointer' }} onClick={() => verifyEmail()}>
-            {!user?.emailVerified && '(unverified)'}
-          </small>
-        </Typography>
+        <Box
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
+          <CardHeader
+            subheader="You can't change your email"
+            title="Update Profile"
+          />
+          <Typography style={{ marginRight: '10px' }}>
+            <span style={{ margin: '0px 5px 8px 0px' }}>{user?.email}</span>
+            <small style={{ color: '#3b5' }}>
+              {user?.emailVerified && '(verified)'}
+            </small>
+            <small
+              style={{
+                color: '#f3680b',
+                textDecoration: 'underline',
+                cursor: 'pointer',
+              }}
+              onClick={() => verifyEmail()}
+            >
+              {!user?.emailVerified && '(unverified)'}
+            </small>
+          </Typography>
         </Box>
         <Divider />
         <CardContent>

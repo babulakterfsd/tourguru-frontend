@@ -1,10 +1,8 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from 'react';
-import useAuth from './useAuth';
 
 const useToken = (user) => {
     const [token, setToken] = useState('');
-    const { setGlobalToken } = useAuth();
     useEffect(() => {
         const getToken = async () => {
             if (user?.email) {
@@ -18,16 +16,14 @@ const useToken = (user) => {
                 })
                     .then((res) => res.json())
                     .then((data) => {
-                        console.log(data);
                         setToken(data?.accessToken);
-                        setGlobalToken(data?.accessToken);
                         localStorage.setItem('accessToken', data?.accessToken);
                     })
                     .catch((err) => console.log(err.message));
             }
         };
         getToken();
-    }, [user, setGlobalToken]);
+    }, [user?.email]);
     return [token];
 };
 

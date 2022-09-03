@@ -31,22 +31,11 @@ export default function StickyHeadTable() {
     const [allUsers, setAllUsers] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
 
-    console.log(allUsers);
+    const getAllUsersURL = `https://rocky-inlet-29740.herokuapp.com/users`;
 
     useEffect(() => {
-        const options = {
-            url: `https://rocky-inlet-29740.herokuapp.com/users`,
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json;charset=UTF-8',
-                authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-            },
-        };
-
-        axios(options).then((response) => {
-            setAllUsers(response.data);
-        });
-    }, [user?.email]);
+        axios.get(getAllUsersURL).then((result) => setAllUsers(result?.data));
+    }, [getAllUsersURL]);
 
     useEffect(() => {
         const delayDebounceFn = setTimeout(() => {
@@ -91,6 +80,7 @@ export default function StickyHeadTable() {
                 if (data.modifiedCount > 0) {
                     setStatus(!status);
                     Swal.fire('Made Admin Successfully');
+                    axios.get(getAllUsersURL).then((result) => setAllUsers(result?.data));
                 } else {
                     setStatus(false);
                 }
@@ -104,7 +94,13 @@ export default function StickyHeadTable() {
                 overflow: 'hidden',
             }}
         >
-            <Box style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Box
+                style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                }}
+            >
                 <Typography
                     style={{
                         padding: mobile ? `10px` : `25px`,
