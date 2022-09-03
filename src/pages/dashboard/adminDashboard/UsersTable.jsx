@@ -31,11 +31,22 @@ export default function StickyHeadTable() {
     const [allUsers, setAllUsers] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
 
-    const getAllUsersURL = `https://rocky-inlet-29740.herokuapp.com/users`;
+    console.log(allUsers);
 
     useEffect(() => {
-        axios.get(getAllUsersURL).then((result) => setAllUsers(result?.data));
-    }, [getAllUsersURL]);
+        const options = {
+            url: `https://rocky-inlet-29740.herokuapp.com/users`,
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8',
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+            },
+        };
+
+        axios(options).then((response) => {
+            setAllUsers(response.data);
+        });
+    }, [user?.email]);
 
     useEffect(() => {
         const delayDebounceFn = setTimeout(() => {
