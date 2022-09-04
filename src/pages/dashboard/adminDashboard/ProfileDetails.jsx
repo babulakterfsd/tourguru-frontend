@@ -11,8 +11,7 @@ import {
   Divider,
   Grid,
   MenuItem,
-  TextField,
-  Typography
+  TextField
 } from '@mui/material';
 import axios from 'axios';
 import { sendEmailVerification } from 'firebase/auth';
@@ -82,25 +81,39 @@ export default function ProfileDetails(props) {
   };
 
   return (
-    <Card style={{ margin: mobile ? '30px 0px' : '0px' }}>
+    <Card style={{ margin: mobile ? '30px 0px' : '0px'}}>
       <Box component="form" onSubmit={handleSubmit(updateProfile)} noValidate>
         <Box
           style={{
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
+            flexDirection: mobile ? 'column' : 'row',
           }}
         >
           <CardHeader
             subheader="You can't change your email"
             title="Update Profile"
+            style={{
+              margin: mobile ? '0px 0px 5px 0px' : '0px',
+              textAlign: mobile ? 'center' : 'left',
+            }}
           />
-          <Typography style={{ marginRight: '10px' }}>
-            <span style={{ margin: '0px 5px 8px 0px' }}>{user?.email}</span>
-            <small style={{ color: '#3b5' }}>
-              {user?.emailVerified && '(verified)'}
-            </small>
-            <small
+          <Box style={{ marginRight: '10px' }}>
+            <Box
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                flexDirection: 'column',
+                paddingBottom: mobile ? '10px' : '0px',
+              }}
+            >
+              <span style={{ margin: '0px 0px 2px 0px' }}>{user?.email}</span>
+              <small style={{ color: '#3b5' }}>
+                {user?.emailVerified && '(verified)'}
+              </small>
+              <small
               style={{
                 color: '#f3680b',
                 textDecoration: 'underline',
@@ -110,7 +123,8 @@ export default function ProfileDetails(props) {
             >
               {!user?.emailVerified && '(unverified)'}
             </small>
-          </Typography>
+            </Box>
+          </Box>
         </Box>
         <Divider />
         <CardContent>

@@ -97,15 +97,17 @@ export default function StickyHeadTable() {
             <Box
                 style={{
                     display: 'flex',
-                    justifyContent: 'space-between',
+                    justifyContent: mobile ? 'start' : 'space-between',
                     alignItems: 'center',
+                    flexDirection: mobile ? 'column' : 'row',
                 }}
             >
                 <Typography
                     style={{
-                        padding: mobile ? `10px` : `25px`,
+                        padding: mobile ? `10px 0px` : `25px`,
+                        marginBottom: mobile ? `10px` : `0px`,
                         color: `#E46F44`,
-                        fontWeight: mobile ? `400` : `700`,
+                        fontWeight: mobile ? `500` : `700`,
                     }}
                 >
                     All Registered Users
@@ -114,7 +116,10 @@ export default function StickyHeadTable() {
                     id="standard-basic"
                     label="Search User by Name"
                     variant="standard"
-                    style={{ color: '#f3680b', marginRight: '8px' }}
+                    style={{
+                        color: '#f3680b',
+                        marginRight: '8px',
+                    }}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
             </Box>

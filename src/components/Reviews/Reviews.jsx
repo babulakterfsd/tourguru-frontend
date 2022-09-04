@@ -57,39 +57,30 @@ function Reviews() {
             }}
         >
             <Container>
-                <Typography
-                    color="primary"
-                    style={{ textAlign: `center` }}
-                    data-aos="fade-down"
-                    data-aos-duration="1500"
-                >
-                    Testimonial
-                </Typography>
-                <Typography
-                    color="bluishDark"
-                    variant="h4"
-                    style={{
-                        textAlign: `center`,
-                        fontFamily: `abril`,
-                        fontWeight: `700`,
-                        color: '#283A5E',
-                        letterSpacing: `-1px`,
-                    }}
-                    data-aos="fade-down"
-                    data-aos-duration="1500"
-                >
-                    What Our Customers Says
-                </Typography>
-                <Typography
-                    style={{ textAlign: `center`, fontFamily: `poppins` }}
-                    data-aos="fade-down"
-                    data-aos-duration="1500"
-                >
-                    Traveling fosters a medium to build human connections with one another by
-                    learning about culture, food, new sites, music, and the way people. Traveling
-                    fosters a medium to build human connections with one another by learning about
-                    culture.
-                </Typography>
+                <Box data-aos="fade-down" data-aos-duration="1500">
+                    <Typography color="primary" style={{ textAlign: `center` }}>
+                        Testimonial
+                    </Typography>
+                    <Typography
+                        color="bluishDark"
+                        variant="h4"
+                        style={{
+                            textAlign: `center`,
+                            fontFamily: `abril`,
+                            fontWeight: `700`,
+                            color: '#283A5E',
+                            letterSpacing: `-1px`,
+                        }}
+                    >
+                        What Our Customers Says
+                    </Typography>
+                    <Typography style={{ textAlign: `center`, fontFamily: `poppins` }}>
+                        Traveling fosters a medium to build human connections with one another by
+                        learning about culture, food, new sites, music, and the way people.
+                        Traveling fosters a medium to build human connections with one another by
+                        learning about culture.
+                    </Typography>
+                </Box>
                 <Box
                     style={{ margin: mobile ? `15px 0px` : `50px 0px` }}
                     data-aos="fade-up"

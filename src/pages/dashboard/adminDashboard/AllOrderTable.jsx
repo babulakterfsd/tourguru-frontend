@@ -111,10 +111,18 @@ export default function StickyHeadTable() {
             data-aos="zoom-in"
             data-aos-duration="4500"
         >
-            <Box style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Box
+                style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    flexDirection: mobile ? 'column' : 'row',
+                }}
+            >
                 <Typography
                     style={{
                         padding: mobile ? `10px` : `25px`,
+                        marginBottom: mobile ? `10px` : `0px`,
                         color: `#E46F44`,
                         fontWeight: mobile ? `400` : `700`,
                     }}

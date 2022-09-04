@@ -10,10 +10,7 @@ function Banner() {
     const { mobile, tablet, desktop } = useAuth();
     return (
         <div>
-            <div
-                className={`${Styles.banner}`}
-                style={{ alignItems: mobile ? `flex-start` : `center` }}
-            >
+            <div className={`${Styles.banner}`} style={{ alignItems: `center` }}>
                 <Grid container>
                     <Grid
                         item
@@ -40,11 +37,11 @@ function Banner() {
                                 wordBreak: mobile ? 'break-all' : `keep-all`,
                             }}
                         >
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel
-                            perferendis et, debitis quod asperiores officia, atque nam quo nostrum
-                            assumenda dolorum! Reiciendis repellendus enim est. Lorem ipsum, dolor
-                            sit amet consectetur adipisicing elit. Inventore distinctio ipsum,
-                            itaque nobis totam exercitationem?
+                            When you travel, not the trip or the vacation itself, but the whole
+                            process of planning, exploring, and returning from a trip is important.
+                            When you realise how the benefits of travelling can do wonders for you,
+                            you definitely will have the motivation to pack your bag and start
+                            travelling more.
                         </Typography>
                         <br />
                         <div
@@ -54,7 +51,7 @@ function Banner() {
                                 <Button
                                     variant="contained"
                                     style={{
-                                        padding: mobile ? `12px 6px` : '14px 12px',
+                                        padding: mobile ? `12px 8px` : '14px 12px',
                                         marginTop: '25px',
                                         fontWeight: '600',
                                     }}

@@ -76,7 +76,7 @@ function Contact() {
             </Typography>
             <Typography
                 color="bluishDark"
-                variant="h4"
+                variant={mobile ? 'h5' : 'h4'}
                 style={{
                     textAlign: `center`,
                     fontFamily: `abril`,
@@ -131,7 +131,7 @@ function Contact() {
                                     borderRadius: '500px',
                                     outline: '1px solid #f3680b',
                                     outlineOffset: '3px',
-                                    margin: '0px 8px',
+                                    margin: mobile ? '0px 12px' : '0px 8px',
                                 }}
                             />
                         </a>
@@ -143,7 +143,7 @@ function Contact() {
                                     borderRadius: '500px',
                                     outline: '1px solid #f3680b',
                                     outlineOffset: '3px',
-                                    margin: '0px 8px',
+                                    margin: mobile ? '0px 12px' : '0px 8px',
                                 }}
                             />
                         </a>
@@ -159,7 +159,7 @@ function Contact() {
                                     borderRadius: '500px',
                                     outline: '1px solid #f3680b',
                                     outlineOffset: '3px',
-                                    margin: '0px 8px',
+                                    margin: mobile ? '0px 12px' : '0px 8px',
                                 }}
                             />
                         </a>
@@ -175,7 +175,7 @@ function Contact() {
                                     borderRadius: '500px',
                                     outline: '1px solid #f3680b',
                                     outlineOffset: '3px',
-                                    margin: '0px 8px',
+                                    margin: mobile ? '0px 12px' : '0px 8px',
                                 }}
                             />
                         </a>
@@ -203,7 +203,7 @@ function Contact() {
                                     borderRadius: '500px',
                                     outline: '1px solid #f3680b',
                                     outlineOffset: '3px',
-                                    margin: '0px 8px',
+                                    margin: mobile ? '0px 12px' : '0px 8px',
                                 }}
                             />
                         </a>
@@ -215,7 +215,7 @@ function Contact() {
                                     borderRadius: '500px',
                                     outline: '1px solid #f3680b',
                                     outlineOffset: '3px',
-                                    margin: '0px 8px',
+                                    margin: mobile ? '0px 12px' : '0px 8px',
                                 }}
                             />
                         </a>
@@ -231,7 +231,7 @@ function Contact() {
                                     borderRadius: '500px',
                                     outline: '1px solid #f3680b',
                                     outlineOffset: '3px',
-                                    margin: '0px 8px',
+                                    margin: mobile ? '0px 12px' : '0px 8px',
                                 }}
                             />
                         </a>
@@ -247,7 +247,7 @@ function Contact() {
                                     borderRadius: '500px',
                                     outline: '1px solid #f3680b',
                                     outlineOffset: '3px',
-                                    margin: '0px 8px',
+                                    margin: mobile ? '0px 12px' : '0px 8px',
                                 }}
                             />
                         </a>
@@ -280,7 +280,7 @@ function Contact() {
                                     borderRadius: '500px',
                                     outline: '1px solid #f3680b',
                                     outlineOffset: '3px',
-                                    margin: '0px 8px',
+                                    margin: mobile ? '0px 12px' : '0px 8px',
                                 }}
                             />
                         </a>
@@ -292,7 +292,7 @@ function Contact() {
                                     borderRadius: '500px',
                                     outline: '1px solid #f3680b',
                                     outlineOffset: '3px',
-                                    margin: '0px 8px',
+                                    margin: mobile ? '0px 12px' : '0px 8px',
                                 }}
                             />
                         </a>
@@ -308,7 +308,7 @@ function Contact() {
                                     borderRadius: '500px',
                                     outline: '1px solid #f3680b',
                                     outlineOffset: '3px',
-                                    margin: '0px 8px',
+                                    margin: mobile ? '0px 12px' : '0px 8px',
                                 }}
                             />
                         </a>
@@ -324,7 +324,7 @@ function Contact() {
                                     borderRadius: '500px',
                                     outline: '1px solid #f3680b',
                                     outlineOffset: '3px',
-                                    margin: '0px 8px',
+                                    margin: mobile ? '0px 12px' : '0px 8px',
                                 }}
                             />
                         </a>
@@ -352,7 +352,7 @@ function Contact() {
                                     borderRadius: '500px',
                                     outline: '1px solid #f3680b',
                                     outlineOffset: '3px',
-                                    margin: '0px 8px',
+                                    margin: mobile ? '0px 12px' : '0px 8px',
                                 }}
                             />
                         </a>
@@ -364,7 +364,7 @@ function Contact() {
                                     borderRadius: '500px',
                                     outline: '1px solid #f3680b',
                                     outlineOffset: '3px',
-                                    margin: '0px 8px',
+                                    margin: mobile ? '0px 12px' : '0px 8px',
                                 }}
                             />
                         </a>
@@ -380,7 +380,7 @@ function Contact() {
                                     borderRadius: '500px',
                                     outline: '1px solid #f3680b',
                                     outlineOffset: '3px',
-                                    margin: '0px 8px',
+                                    margin: mobile ? '0px 12px' : '0px 8px',
                                 }}
                             />
                         </a>
@@ -396,7 +396,7 @@ function Contact() {
                                     borderRadius: '500px',
                                     outline: '1px solid #f3680b',
                                     outlineOffset: '3px',
-                                    margin: '0px 8px',
+                                    margin: mobile ? '0px 12px' : '0px 8px',
                                 }}
                             />
                         </a>
@@ -404,40 +404,33 @@ function Contact() {
                 </Card>
             </Box>
             <Box style={{ margin: mobile ? '80px 0px' : '120px 0px 0px 0px' }}>
-                <Typography
-                    color="primary"
-                    style={{ textAlign: `center` }}
-                    data-aos="fade-down"
-                    data-aos-duration="1500"
-                >
-                    Contact
-                </Typography>
-                <Typography
-                    color="bluishDark"
-                    variant="h4"
-                    style={{
-                        textAlign: `center`,
-                        fontFamily: `abril`,
-                        fontWeight: `700`,
-                        color: '#283A5E',
-                        letterSpacing: `-1px`,
-                    }}
-                    data-aos="fade-down"
-                    data-aos-duration="1500"
-                >
-                    Contact Us Anytime !
-                </Typography>
-                <Typography
-                    style={{ textAlign: `center`, fontFamily: `poppins` }}
-                    data-aos="fade-down"
-                    data-aos-duration="1000"
-                >
-                    The message you send us is sent from an automated email address. You should
-                    input your correct phone number and email address so that we can reach you
-                    easily. If you put any invalid phone number or email address here, we might fail
-                    to contact you. After recieving your message, we will reach you back within 24
-                    hours.
-                </Typography>
+                <Box data-aos="fade-down" data-aos-duration="1500">
+                    <Typography color="primary" style={{ textAlign: `center` }}>
+                        Contact
+                    </Typography>
+                    <Typography
+                        color="bluishDark"
+                        variant={mobile ? 'h5' : 'h4'}
+                        style={{
+                            textAlign: `center`,
+                            fontFamily: `abril`,
+                            fontWeight: `700`,
+                            color: '#283A5E',
+                            letterSpacing: `-1px`,
+                        }}
+                    >
+                        Contact Us Anytime !
+                    </Typography>
+                    <Typography
+                        style={{ textAlign: mobile ? 'justify' : 'center', fontFamily: `poppins` }}
+                    >
+                        The message you send us is sent from an automated email address. You should
+                        input your correct phone number and email address so that we can reach you
+                        easily. If you put any invalid phone number or email address here, we might
+                        fail to contact you. After recieving your message, we will reach you back
+                        within 24 hours.
+                    </Typography>
+                </Box>
                 <Box
                     style={{
                         margin: '12px 0px',
@@ -532,7 +525,7 @@ function Contact() {
                                 variant="contained"
                                 type="submit"
                                 style={{
-                                    padding: mobile ? `12px 6px` : '14px 12px',
+                                    padding: mobile ? `12px 8px` : '14px 12px',
                                     marginTop: '25px',
                                     fontWeight: '600',
                                 }}

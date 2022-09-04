@@ -115,6 +115,7 @@ function Profile(props) {
             });
         })
         .catch((error) => {
+          console.log(error.message);
           Swal.fire(`Something went wrong when deleting account`);
         });
     }

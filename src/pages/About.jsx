@@ -18,7 +18,7 @@ function About() {
         <Container style={{ minHeight: '100vh', padding: '20px' }}>
             <ScrollToTop />
             <Typography
-                variant="h3"
+                variant={mobile ? 'h5' : 'h3'}
                 style={{ textAlign: 'center' }}
                 data-aos="zoom-in"
                 data-aos-duration="1500"

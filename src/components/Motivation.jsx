@@ -68,7 +68,7 @@ function Motivation() {
                                     <Button
                                         variant="contained"
                                         style={{
-                                            padding: mobile ? `12px 6px` : '14px 12px',
+                                            padding: mobile ? `12px 8px` : '14px 12px',
                                             fontWeight: `700`,
                                             fontFamily: `abril`,
                                         }}

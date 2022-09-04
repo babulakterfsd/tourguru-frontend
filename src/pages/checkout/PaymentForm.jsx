@@ -50,7 +50,13 @@ function MypaymentForm() {
                     </Card>
                 </Grid>
                 <Grid item xs={12}>
-                    <Box style={{ display: `flex`, justifyContent: `end`, alignItems: `center` }}>
+                    <Box
+                        style={{
+                            display: `flex`,
+                            justifyContent: `end`,
+                            alignItems: `center`,
+                        }}
+                    >
                         {activeStep <= 0 ||
                         activeStep >= 3 ||
                         paymentIntentStatus === 'succeeded' ? null : (
@@ -61,7 +67,7 @@ function MypaymentForm() {
                                 variant="subtitle1"
                                 style={{ color: `#f3680b`, cursor: `wait` }}
                             >
-                                Please complete the payment to proceed.
+                                waiting for payment
                             </Typography>
                         ) : (
                             <Button variant="contained" onClick={() => handleNext()}>

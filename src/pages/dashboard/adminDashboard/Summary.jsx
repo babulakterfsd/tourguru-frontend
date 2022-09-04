@@ -9,7 +9,7 @@ import TotalProfit from './summary/TotalProfit';
 function Summary() {
     const { mobile } = useAuth();
     return (
-        <Container style={{ padding: mobile ? `0px` : `0px 75px` }}>
+        <Container style={{ padding: mobile ? `0px 0px 20px 0px` : `0px 75px` }}>
             <Container>
                 <Grid container spacing={{ xs: 3, lg: 5 }}>
                     <Grid item xs={12} md={6} lg={4}>

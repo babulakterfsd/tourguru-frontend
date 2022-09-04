@@ -77,7 +77,18 @@ export default function MyOrderTable() {
             .then((data) => {
                 if (data.deletedCount > 0) {
                     Swal.fire('Order Canceled !');
-                    axios.get(getMyOrdersURL).then((result) => setMyOrders(result?.data));
+                    const options = {
+                        url: `https://rocky-inlet-29740.herokuapp.com/myorders/${user?.email}`,
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json;charset=UTF-8',
+                            authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+                        },
+                    };
+
+                    axios(options).then((response) => {
+                        setMyOrders(response.data);
+                    });
                 }
             });
     };

@@ -98,11 +98,13 @@ export default function StickyHeadTable() {
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center',
+                    flexDirection: mobile ? 'column' : 'row',
                 }}
             >
                 <Typography
                     style={{
                         padding: mobile ? `10px` : `25px`,
+                        marginBottom: mobile ? `10px` : `0px`,
                         color: `#E46F44`,
                         fontWeight: mobile ? `400` : `700`,
                     }}

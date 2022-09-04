@@ -91,7 +91,7 @@ function AddReview() {
                         />
                     <select
                         required
-                        style={{width: `150px`, height: `50px`, border: `1px solid #ccc`, textAlign: `center`}}
+                        style={{width: mobile ? `100%` : `150px`, height: `55px`, marginTop: '6px', border: `1px solid #ccc`, textAlign: `center`}}
                         {...register("rating")}>
                         <option value="5">5</option>
                         <option value="4.5">4.5</option>
@@ -118,7 +118,7 @@ function AddReview() {
                             {...register("comment", { required: true })}
                         />
                         
-                        <Box style={{textAlign: `center`}}>
+                        <Box style={{textAlign: `right`}}>
                         <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
                             Add Review
                         </Button>

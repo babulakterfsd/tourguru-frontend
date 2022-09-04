@@ -58,9 +58,9 @@ export default function Review() {
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
-                    title: `Order Confirmed! Your order id is ${paymentTrxID}`,
+                    title: `Order Confirmed!`,
                     showConfirmButton: false,
-                    timer: 5000,
+                    timer: 3000,
                 });
             } else {
                 Swal.fire(`Sorry, We failed to place the Order !`);
@@ -89,7 +89,7 @@ export default function Review() {
     return (
         <div data-aos="zoom-in" data-aos-duration="1500">
             <ScrollToTop />
-            <Typography variant="h6" gutterBottom>
+            <Typography variant="h6" gutterBottom style={{ color: '#f3680b', marginTop: '18px' }}>
                 Order summary
             </Typography>
             <List disablePadding>
@@ -106,19 +106,13 @@ export default function Review() {
                     </Typography>
                 </ListItem>
                 <ListItem sx={{ py: 1, px: 0 }}>
-                    <ListItemText primary="Our Services" />
-                    <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-                        {services?.join(', ')}
-                    </Typography>
-                </ListItem>
-                <ListItem sx={{ py: 1, px: 0 }}>
                     <ListItemText primary="VAT" />
                     <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
                         {`$${0}`}
                     </Typography>
                 </ListItem>
                 <ListItem sx={{ py: 1, px: 0 }}>
-                    <ListItemText primary="Total" />
+                    <ListItemText primary="Amount Paid" />
                     <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
                         {`$${price}`}
                     </Typography>
@@ -126,7 +120,12 @@ export default function Review() {
             </List>
             <Grid container spacing={5}>
                 <Grid item xs={12} sm={6}>
-                    <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
+                    <Typography
+                        variant="h6"
+                        gutterBottom
+                        sx={{ mt: 2 }}
+                        style={{ color: '#f3680b' }}
+                    >
                         Shipping
                     </Typography>
                     <Typography
@@ -140,7 +139,12 @@ export default function Review() {
                     >{`${orderData?.city}, ${orderData?.zip}, ${orderData?.state}, ${orderData?.country}`}</Typography>
                 </Grid>
                 <Grid item container direction="column" xs={12} sm={6}>
-                    <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
+                    <Typography
+                        variant="h6"
+                        style={{ color: '#f3680b' }}
+                        gutterBottom
+                        sx={{ mt: 2 }}
+                    >
                         Payment details
                     </Typography>
                     <div

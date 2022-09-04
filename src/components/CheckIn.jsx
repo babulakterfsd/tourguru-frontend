@@ -5,6 +5,7 @@ import SelfImprovement from '@mui/icons-material/SelfImprovement';
 import Skateboarding from '@mui/icons-material/Skateboarding';
 import { Button, Container } from '@mui/material';
 import React from 'react';
+import Swal from 'sweetalert2';
 import useAuth from '../hooks/useAuth';
 
 function CheckIn() {
@@ -183,6 +184,7 @@ function CheckIn() {
                     <Button
                         variant="contained"
                         style={{ height: mobile ? `50px` : `80px`, fontWeight: `700` }}
+                        onClick={() => Swal.fire(`Sorry!`, `This feature is not available yet`)}
                     >
                         Check Avilability
                     </Button>

@@ -71,38 +71,30 @@ function Packages() {
             }}
         >
             <Container>
-                <Typography
-                    color="primary"
-                    style={{ textAlign: `center` }}
-                    data-aos="fade-down"
-                    data-aos-duration="1500"
-                >
-                    Popular Packages
-                </Typography>
-                <Typography
-                    color="bluishDark"
-                    variant="h4"
-                    style={{
-                        textAlign: `center`,
-                        fontFamily: `abril`,
-                        fontWeight: `700`,
-                        color: '#283A5E',
-                        letterSpacing: `-1px`,
-                    }}
-                    data-aos="fade-down"
-                    data-aos-duration="1500"
-                >
-                    Our Popular Packages
-                </Typography>
-                <Typography
-                    style={{ textAlign: `center`, fontFamily: `poppins` }}
-                    data-aos="fade-down"
-                    data-aos-duration="1500"
-                >
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam fugit inventore
-                    quaerat! Culpa, inventore. Doloribus praesentium dicta repellendus tempora
-                    eligendi maxime odio soluta quae in, architecto modi maiores quas facere?
-                </Typography>
+                <Box data-aos="fade-down" data-aos-duration="1500">
+                    <Typography color="primary" style={{ textAlign: `center` }}>
+                        Popular Packages
+                    </Typography>
+                    <Typography
+                        color="bluishDark"
+                        variant="h4"
+                        style={{
+                            textAlign: `center`,
+                            fontFamily: `abril`,
+                            fontWeight: `700`,
+                            color: '#283A5E',
+                            letterSpacing: `-1px`,
+                        }}
+                    >
+                        Our Popular Packages
+                    </Typography>
+                    <Typography style={{ textAlign: `center`, fontFamily: `poppins` }}>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam fugit
+                        inventore quaerat! Culpa, inventore. Doloribus praesentium dicta repellendus
+                        tempora eligendi maxime odio soluta quae in, architecto modi maiores quas
+                        facere?
+                    </Typography>
+                </Box>
                 <Box style={{ padding: mobile ? `40px 0px` : `80px 0px 20px 0px` }}>
                     <Grid
                         container
@@ -123,7 +115,7 @@ function Packages() {
                         <Button
                             variant="contained"
                             style={{
-                                padding: mobile ? `12px 6px` : '14px 12px',
+                                padding: mobile ? `12px 8px` : '14px 12px',
                                 fontWeight: `700`,
                                 fontFamily: `abril`,
                             }}

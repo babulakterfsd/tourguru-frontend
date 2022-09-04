@@ -28,7 +28,7 @@ function Footer() {
                                             letterSpacing: '.3rem',
                                             color: '#fff',
                                             textDecoration: 'none',
-                                            marginBottom: '32px',
+                                            marginBottom: mobile ? '16px' : '32px',
                                         }}
                                     >
                                         TourGuru
@@ -48,7 +48,7 @@ function Footer() {
                                     display: 'flex',
                                     justifyContent: 'space-evenly',
                                     alignItems: 'center',
-                                    marginTop: '32px',
+                                    marginTop: mobile ? '16px' : '32px',
                                 }}
                             >
                                 <a
@@ -80,7 +80,12 @@ function Footer() {
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
                         <Box className={`${Styles.boxStyler}`}>
-                            <Typography style={{ marginBottom: '32px', fontWeight: '700' }}>
+                            <Typography
+                                style={{
+                                    marginBottom: mobile ? '16px' : '32px',
+                                    fontWeight: '700',
+                                }}
+                            >
                                 Contact Us
                             </Typography>
                             <Typography style={{ textAlign: 'center' }}>
@@ -93,7 +98,12 @@ function Footer() {
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
                         <Box className={`${Styles.boxStyler}`}>
-                            <Typography style={{ marginBottom: '32px', fontWeight: '700' }}>
+                            <Typography
+                                style={{
+                                    marginBottom: mobile ? '16px' : '32px',
+                                    fontWeight: '700',
+                                }}
+                            >
                                 Subscribe Newsletter
                             </Typography>
                             <Typography style={{ textAlign: mobile ? `center` : `left` }}>
