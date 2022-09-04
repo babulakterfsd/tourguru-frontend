@@ -11,8 +11,14 @@ import Swal from 'sweetalert2';
 import useAuth from '../hooks/useAuth';
 
 function SinglePackageCard({ singlePackage }) {
-    const { mobile, isAdmin } = useAuth();
+    const { mobile, isAdmin, setActiveStep, setPaymentIntentStatus, setOrderData } = useAuth();
     const { location, duration, price, img, services, description } = singlePackage;
+
+    const removePreviousSelectedPackage = () => {
+        setActiveStep(0);
+        setPaymentIntentStatus('');
+        setOrderData({});
+    };
 
     return (
         <Card style={{ height: mobile ? `430px` : `450px` }}>
@@ -68,6 +74,7 @@ function SinglePackageCard({ singlePackage }) {
                                         fontWeight: `700`,
                                         fontFamily: `abril`,
                                     }}
+                                    onClick={() => removePreviousSelectedPackage()}
                                 >
                                     Buy Package
                                 </Button>
