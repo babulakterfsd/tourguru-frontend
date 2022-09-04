@@ -224,6 +224,7 @@ export default function StickyHeadTable() {
                                             size="small"
                                             style={{
                                                 textTransform: `none`,
+                                                marginTop: mobile ? `5px` : `0px`,
                                             }}
                                             onClick={() => handleDeleteOrder(row?._id)}
                                         >

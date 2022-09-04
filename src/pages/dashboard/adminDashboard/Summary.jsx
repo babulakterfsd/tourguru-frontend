@@ -24,7 +24,7 @@ function Summary() {
                 </Grid>
             </Container>
 
-            <Container style={{ marginTop: mobile ? `50px` : `120px` }}>
+            <Container style={{ marginTop: mobile ? `50px` : `75px` }}>
                 <Grid container spacing={{ xs: 3, md: 5 }}>
                     <Grid item xs={12} md={6} lg={4} style={{ margin: `0px auto` }}>
                         <TotalProfit />
