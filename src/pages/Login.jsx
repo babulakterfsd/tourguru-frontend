@@ -93,7 +93,7 @@ function Login() {
         Swal.fire({
           position: 'center',
           icon: 'error',
-          title: `Login Failed!`,
+          title: `${error?.message.split(' ')[2]}`,
           showConfirmButton: false,
           timer: 2500,
         });
@@ -108,7 +108,7 @@ function Login() {
         Swal.fire(`Login Successfull !`);
         saveUser(result?.user?.email, result?.user?.displayName);
         setActiveStep(0);
-        navigate(targetURL);
+        // navigate(targetURL);
       })
       .catch((error) => {
         // console.log(error);

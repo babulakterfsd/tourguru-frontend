@@ -110,6 +110,7 @@ function Profile(props) {
             .then((data) => {
               if (data.deletedCount > 0) {
                 Swal.fire(`Account deleted successfully`);
+                localStorage.removeItem('accessToken');
               }
             });
         })

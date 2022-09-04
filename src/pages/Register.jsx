@@ -14,22 +14,25 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import ScrollToTop from '../components/ScrollToTop';
 import useAuth from '../hooks/useAuth';
+import useToken from '../hooks/useToken';
 import Styles from '../styles/Login.module.css';
 
 function Register() {
     const { mobile, tablet, handleGoogleLogin,userEmail, userPassword, setUserEmail, setUserPassword, registerWithEmail, setUser, setResponse,name, setName, updateUser, response, user } = useAuth();
-
+    const [token] = useToken(user);
     const location = useLocation();
-    const targetURL = location.state || '/';
+    const targetURL = location?.state || '/';
     const navigate = useNavigate()
 
     useEffect(() => {
         document.title = 'Tourguru | Register'
     })
 
-    if(user) {
-        return navigate('/')
-      }
+    useEffect(() => {
+        if (token) {
+          navigate(targetURL, { replace: true });
+        }
+      }, [navigate, targetURL, token]);
 
       // save user data to the mongodb database
   const saveUser = (email, displayName) => {
@@ -65,18 +68,17 @@ function Register() {
           setResponse("");
         //   setTimeout(() => navigate('/'), 3000);
            saveUser(userEmail, name)
-           navigate(targetURL)
+        //    navigate(targetURL)
         })
         .catch((error) => {
           setResponse(error.message);
           Swal.fire({
             position: 'center',
             icon: 'error',
-            title: `Something Error Happened, Try Again!`,
+            title: error?.message,
             showConfirmButton: false,
             timer: 2500
           })
-          console.log(error);
         });
     };
 
