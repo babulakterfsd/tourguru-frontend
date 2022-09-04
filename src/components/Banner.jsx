@@ -41,7 +41,8 @@ function Banner() {
                             process of planning, exploring, and returning from a trip is important.
                             When you realise how the benefits of travelling can do wonders for you,
                             you definitely will have the motivation to pack your bag and start
-                            travelling more.
+                            travelling more. you definitely will have the motivation to pack your
+                            bag and start travelling more.
                         </Typography>
                         <br />
                         <div
