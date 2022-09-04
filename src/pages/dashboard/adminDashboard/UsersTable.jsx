@@ -67,24 +67,42 @@ export default function StickyHeadTable() {
     };
 
     const handleMakeAdmin = (id) => {
-        const url = `https://rocky-inlet-29740.herokuapp.com/users/${id}`;
-        fetch(url, {
-            method: 'PUT',
-            headers: {
-                'content-type': 'application/json',
-            },
-            body: JSON.stringify(allUsers),
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.modifiedCount > 0) {
-                    setStatus(!status);
-                    Swal.fire('Made Admin Successfully');
-                    axios.get(getAllUsersURL).then((result) => setAllUsers(result?.data));
-                } else {
-                    setStatus(false);
-                }
-            });
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'This user will be an admin!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Make Admin!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const url = `https://rocky-inlet-29740.herokuapp.com/users/${id}`;
+                fetch(url, {
+                    method: 'PUT',
+                    headers: {
+                        'content-type': 'application/json',
+                    },
+                    body: JSON.stringify(allUsers),
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        if (data.modifiedCount > 0) {
+                            setStatus(!status);
+                            Swal.fire(
+                                'Congratulations!',
+                                'The user has been promoted to admin',
+                                'success'
+                            );
+                            axios.get(getAllUsersURL).then((res) => setAllUsers(res?.data));
+                        } else {
+                            setStatus(false);
+                        }
+                    });
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire('Cancelled', 'The user has not been promoted :)', 'error');
+            }
+        });
     };
 
     return (

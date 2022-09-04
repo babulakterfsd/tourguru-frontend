@@ -68,29 +68,41 @@ export default function MyOrderTable() {
     };
 
     const handleCancelOrder = (id) => {
-        const url = `https://rocky-inlet-29740.herokuapp.com/allorder/${id}`;
-
-        fetch(url, {
-            method: 'DELETE',
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.deletedCount > 0) {
-                    Swal.fire('Order Canceled !');
-                    const options = {
-                        url: `https://rocky-inlet-29740.herokuapp.com/myorders/${user?.email}`,
-                        method: 'GET',
-                        headers: {
-                            'Content-Type': 'application/json;charset=UTF-8',
-                            authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-                        },
-                    };
-
-                    axios(options).then((response) => {
-                        setMyOrders(response.data);
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't get your money back!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, cancel it!',
+            cancelButtonText: 'No, go back!',
+            reverseButtons: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const url = `https://rocky-inlet-29740.herokuapp.com/allorder/${id}`;
+                fetch(url, {
+                    method: 'DELETE',
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        if (data.deletedCount > 0) {
+                            Swal.fire('Cancelled!', 'Your order has been deleted.', 'success');
+                            const options = {
+                                url: `https://rocky-inlet-29740.herokuapp.com/myorders/${user?.email}`,
+                                method: 'GET',
+                                headers: {
+                                    'Content-Type': 'application/json;charset=UTF-8',
+                                    authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+                                },
+                            };
+                            axios(options).then((response) => {
+                                setMyOrders(response.data);
+                            });
+                        }
                     });
-                }
-            });
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire('cancellation stopped!', 'Your Order is in the list :)', 'error');
+            }
+        });
     };
 
     return (

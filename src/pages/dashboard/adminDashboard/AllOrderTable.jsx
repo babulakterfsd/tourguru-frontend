@@ -69,37 +69,65 @@ export default function StickyHeadTable() {
     };
 
     const handleDeleteOrder = (id) => {
-        const url = `https://rocky-inlet-29740.herokuapp.com/allorder/${id}`;
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'The order will be deleted permanently!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const url = `https://rocky-inlet-29740.herokuapp.com/allorder/${id}`;
 
-        fetch(url, {
-            method: 'DELETE',
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.deletedCount > 0) {
-                    Swal.fire('Order Deleted Successfully !');
-                    axios.get(getAllOrdersURL).then((result) => setAllOrders(result?.data));
-                }
-            });
+                fetch(url, {
+                    method: 'DELETE',
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        if (data.deletedCount > 0) {
+                            Swal.fire('Success', 'Order Deleted Successfully !', 'success');
+                            axios.get(getAllOrdersURL).then((res) => setAllOrders(res?.data));
+                        }
+                    });
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire('Cancelled', 'The order has not been deleted :)', 'error');
+            }
+        });
     };
 
     const handleOrderStatus = (id) => {
-        const url = `https://rocky-inlet-29740.herokuapp.com/allorder/${id}`;
+        Swal.fire({
+            title: 'Have you checked everything?',
+            text: 'The order will be approved!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, approve it!',
+            cancelButtonText: 'No, keep pending!',
+            reverseButtons: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const url = `https://rocky-inlet-29740.herokuapp.com/allorder/${id}`;
 
-        fetch(url, {
-            method: 'PUT',
-            headers: {
-                'content-type': 'application/json',
-            },
-            body: JSON.stringify(),
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.modifiedCount > 0) {
-                    Swal.fire('Tour package approved !');
-                    axios.get(getAllOrdersURL).then((result) => setAllOrders(result?.data));
-                }
-            });
+                fetch(url, {
+                    method: 'PUT',
+                    headers: {
+                        'content-type': 'application/json',
+                    },
+                    body: JSON.stringify(),
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        if (data.modifiedCount > 0) {
+                            Swal.fire('Success', 'Tour package approved !', 'success');
+                            axios.get(getAllOrdersURL).then((res) => setAllOrders(res?.data));
+                        }
+                    });
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire('Cancelled', 'The order is still pending :)', 'error');
+            }
+        });
     };
 
     return (

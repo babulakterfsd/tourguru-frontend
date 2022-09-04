@@ -28,7 +28,7 @@ import Classes from '../../../styles/Profile.module.css';
 import ProfileDetails from '../adminDashboard/ProfileDetails';
 
 function Profile(props) {
-    const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
   const {
     user,
     userImageURL,
@@ -44,8 +44,8 @@ function Profile(props) {
 
   const handleUserImageUpload = (e) => {
     const image = e.target.files[0];
-    if(image) {
-        setSelectedImage('')
+    if (image) {
+      setSelectedImage('');
     }
     const formData = new FormData();
     formData.set('image', image);
@@ -62,8 +62,7 @@ function Profile(props) {
       });
   };
 
-  useEffect(() => {
-  }, [userInfoInDatabase, userImageURL]);
+  useEffect(() => {}, [userInfoInDatabase, userImageURL]);
 
   const saveUserProfilePhoto = (email, photoURL) => {
     const myUser = { email, img: photoURL };
@@ -82,13 +81,13 @@ function Profile(props) {
             url: `https://rocky-inlet-29740.herokuapp.com/user/${user?.email}`,
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json;charset=UTF-8',
-                authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+              'Content-Type': 'application/json;charset=UTF-8',
+              authorization: `Bearer ${localStorage.getItem('accessToken')}`,
             },
-        };
-        axios(options).then((response) => {
-          setUserInfoInDatabase(response.data);
-      });
+          };
+          axios(options).then((response) => {
+            setUserInfoInDatabase(response.data);
+          });
           Swal.fire(`Profile photo updated successfully`);
           setSelectedImage(null);
         }
@@ -98,26 +97,44 @@ function Profile(props) {
 
   const handleDeleteAccount = () => {
     if (user?.email === 'babulakterfsd@gmail.com') {
-      Swal.fire('You can not delete Head Admin account');
+      Swal.fire('Forbidden!','You can not delete Head Admin account', 'error');
     } else {
-      deleteUser(user)
-        .then(() => {
-          const url = `https://rocky-inlet-29740.herokuapp.com/deleteuser/${user?.email}`;
-          fetch(url, {
-            method: 'DELETE',
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              if (data.deletedCount > 0) {
-                Swal.fire(`Account deleted successfully`);
-                localStorage.removeItem('accessToken');
-              }
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
+        reverseButtons: true,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          deleteUser(user)
+            .then(() => {
+              const url = `https://rocky-inlet-29740.herokuapp.com/deleteuser/${user?.email}`;
+              fetch(url, {
+                method: 'DELETE',
+              })
+                .then((res) => res.json())
+                .then((data) => {
+                  if (data.deletedCount > 0) {
+                    Swal.fire(
+                      'Deleted!',
+                      'Your account has been deleted.',
+                      'success'
+                    );
+                    localStorage.removeItem('accessToken');
+                    navigate('/', { replace: true });
+                  }
+                });
+            })
+            .catch((error) => {
+              Swal.fire(`Something went wrong when deleting account`);
             });
-        })
-        .catch((error) => {
-          console.log(error.message);
-          Swal.fire(`Something went wrong when deleting account`);
-        });
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          Swal.fire('Cancelled', 'Your account is safe :)', 'error');
+        }
+      });
     }
   };
 
@@ -190,6 +207,7 @@ function Profile(props) {
                     position: 'absolute',
                     top: '0px',
                     right: '0px',
+                    background: '#ebd6d6',
                   }}
                   onClick={() => handleDeleteAccount()}
                 >
@@ -247,15 +265,18 @@ function Profile(props) {
                 >
                   Choose Photo
                 </Button>
-              ) : ( selectedImage === '' ? (<Button
-                color="primary"
-                variant="contained"
-                disabled
-                fullWidth
-                style={{ textTransform: `none` }}
-              >
-                Processing Photo
-              </Button>) : (<Button
+              ) : selectedImage === '' ? (
+                <Button
+                  color="primary"
+                  variant="contained"
+                  disabled
+                  fullWidth
+                  style={{ textTransform: `none` }}
+                >
+                  Processing Photo
+                </Button>
+              ) : (
+                <Button
                   color="primary"
                   variant="contained"
                   fullWidth
@@ -265,7 +286,7 @@ function Profile(props) {
                   }
                 >
                   Upload Photo
-                </Button>)
+                </Button>
               )}
             </CardActions>
           </Card>

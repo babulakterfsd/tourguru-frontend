@@ -68,22 +68,46 @@ export default function StickyHeadTable() {
     };
 
     const handleDeletePackage = (id) => {
-        if (allPackages?.length <= 19) {
-            Swal.fire("Sorry, you can't delete a package when total package is below 19");
-        } else {
-            const url = `https://rocky-inlet-29740.herokuapp.com/packages/${id}`;
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'This package will be deleted permanently!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                if (allPackages?.length <= 19) {
+                    Swal.fire(
+                        'Failed',
+                        "Sorry, you can't delete a package when total package is below 19",
+                        'error'
+                    );
+                } else {
+                    const url = `https://rocky-inlet-29740.herokuapp.com/packages/${id}`;
 
-            fetch(url, {
-                method: 'DELETE',
-            })
-                .then((res) => res.json())
-                .then((data) => {
-                    if (data?.deletedCount > 0) {
-                        Swal.fire('Successfully Deleted !');
-                        axios.get(getAllPackagesURL).then((result) => setAllPackages(result?.data));
-                    }
-                });
-        }
+                    fetch(url, {
+                        method: 'DELETE',
+                    })
+                        .then((res) => res.json())
+                        .then((data) => {
+                            if (data?.deletedCount > 0) {
+                                Swal.fire(
+                                    'Success',
+                                    'The package has been deleted successfully',
+                                    'success'
+                                );
+                                axios
+                                    .get(getAllPackagesURL)
+                                    .then((res) => setAllPackages(res?.data));
+                            }
+                        });
+                }
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire('Cancelled', 'The package has not been deleted :)', 'error');
+            }
+        });
     };
 
     return (

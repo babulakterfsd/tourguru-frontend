@@ -45,7 +45,7 @@ const handleImageUpload = (e) => {
             setImageURL(res?.data?.data?.display_url)
         }).catch((error) => {
             // console.log(error);
-            Swal.fire(`Something went wrong when choosing image`)
+            Swal.fire(`Something went wrong when processing image`)
         })
 }
 
@@ -71,8 +71,10 @@ const handleImageUpload = (e) => {
        .then(data => {
            if(data.insertedId) {
             Swal.fire(
-              'Package Added Successfully !'
-            )
+                'Success',
+                'The package has been added successfully',
+                'success'
+            );
             setTimeout(() => {
                 navigate('/dashboard/summary')
             }, 1500)

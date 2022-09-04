@@ -6,7 +6,6 @@ import Contact from '../pages/Contact';
 import AddNewpackage from '../pages/dashboard/adminDashboard/AddNewpackage';
 import AllOrders from '../pages/dashboard/adminDashboard/AllOrders';
 import AllPackages from '../pages/dashboard/adminDashboard/AllPackages';
-import SingleUserDetails from '../pages/dashboard/adminDashboard/SingleUserDetails';
 import Summary from '../pages/dashboard/adminDashboard/Summary';
 import Users from '../pages/dashboard/adminDashboard/Users';
 import NotFoundInDashboard from '../pages/dashboard/commonDashboard/NotFoundInDashboard';
@@ -38,9 +37,7 @@ function AllRoutes() {
             <Route path="/dashboard" element={<PrivateOutlet />}>
                 <Route path="" element={<Dashboard />}>
                     <Route path="summary" element={<Summary />} />
-                    <Route path="allusers" element={<Users />}>
-                        <Route path="singleuserdetails" element={<SingleUserDetails />} />
-                    </Route>
+                    <Route path="allusers" element={<Users />} />
                     <Route path="allpackages" element={<AllPackages />} />
                     <Route path="addnewpackage" element={<AddNewpackage />} />
                     <Route path="allorders" element={<AllOrders />} />

@@ -18,7 +18,6 @@ import Classes from '../../styles/Dashboard.module.css';
 import AddNewpackage from './adminDashboard/AddNewpackage';
 import AllOrders from './adminDashboard/AllOrders';
 import AllPackages from './adminDashboard/AllPackages';
-import SingleUserDetails from './adminDashboard/SingleUserDetails';
 import Summary from './adminDashboard/Summary';
 import Users from './adminDashboard/Users';
 import NotFoundInDashboard from './commonDashboard/NotFoundInDashboard';
@@ -214,8 +213,6 @@ function DashboardContent() {
                     <Summary />
                 ) : pathname === `/dashboard/allusers` && isAdmin ? (
                     <Users />
-                ) : pathname === `/dashboard/allusers/singleuserdetails` && isAdmin ? (
-                    <SingleUserDetails />
                 ) : pathname === `/dashboard/allpackages` && isAdmin ? (
                     <AllPackages />
                 ) : pathname === `/dashboard/addnewpackage` && isAdmin ? (
