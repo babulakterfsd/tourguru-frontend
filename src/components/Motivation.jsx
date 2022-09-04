@@ -56,7 +56,7 @@ function Motivation() {
                             >
                                 Lets Go Travel with Us
                             </Typography>
-                            <Typography variant="p" style={{ color: `#7a9dc0` }}>
+                            <Typography variant="p">
                                 Tourism is travel for pleasure or business; also the theory and
                                 practice of touring, the business of attracting, accommodating, and
                                 entertaining tourists, and the business of operating tours.Tourism
