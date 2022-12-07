@@ -40,11 +40,11 @@ const AllStates = () => {
     } = useFirebase();
 
     // variables
-    const getAllPackageURL = `https://tourguru-backend.vercel.app/packages`;
-    const getPopularPackageURL = `https://tourguru-backend.vercel.app/packages?limit=6`;
-    const checkAdminURL = `https://tourguru-backend.vercel.app/users/${user?.email}`;
-    const getIndividualUserFromdatabse = `https://tourguru-backend.vercel.app/user/${user?.email}`;
-    const getAllReviewsURL = `https://tourguru-backend.vercel.app/review`;
+    const getAllPackageURL = `https://tourguru.onrender.com/packages`;
+    const getPopularPackageURL = `https://tourguru.onrender.com/packages?limit=6`;
+    const checkAdminURL = `https://tourguru.onrender.com/users/${user?.email}`;
+    const getIndividualUserFromdatabse = `https://tourguru.onrender.com/user/${user?.email}`;
+    const getAllReviewsURL = `https://tourguru.onrender.com/review`;
 
     // function calls
     useEffect(() => {
@@ -68,7 +68,7 @@ const AllStates = () => {
     useEffect(() => {
         setTimeout(() => {
             if (user) {
-                fetch(`https://tourguru-backend.vercel.app/user/${user?.email}`, {
+                fetch(`https://tourguru.onrender.com/user/${user?.email}`, {
                     headers: {
                         authorization: `Bearer ${localStorage.getItem('accessToken')}`,
                     },

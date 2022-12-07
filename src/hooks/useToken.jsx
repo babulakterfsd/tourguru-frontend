@@ -7,7 +7,7 @@ const useToken = (user) => {
         const getToken = async () => {
             if (user?.email) {
                 const userEmail = user?.email;
-                fetch('https://tourguru-backend.vercel.app/getaccesstoken', {
+                fetch('https://tourguru.onrender.com/getaccesstoken', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

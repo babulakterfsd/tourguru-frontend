@@ -16,14 +16,14 @@ function Packages() {
 
     useEffect(() => {
         const delayDebounceFn = setTimeout(() => {
-            const url = `https://tourguru-backend.vercel.app/packages?location=${searchTerm}`;
+            const url = `https://tourguru.onrender.com/packages?location=${searchTerm}`;
             axios.get(url).then((result) => {
                 setAllPackage(result?.data);
             });
         }, 500);
 
         if (searchTerm === '') {
-            const url = `https://tourguru-backend.vercel.app/packages`;
+            const url = `https://tourguru.onrender.com/packages`;
             axios.get(url).then((result) => {
                 setAllPackage(result?.data);
             });
@@ -42,7 +42,7 @@ function Packages() {
 
     useEffect(() => {
         axios
-            .get(`https://tourguru-backend.vercel.app/packages`)
+            .get(`https://tourguru.onrender.com/packages`)
             .then((result) => setAllPackage(result?.data));
     }, []);
 

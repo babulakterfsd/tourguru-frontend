@@ -11,7 +11,7 @@ function AllOrders() {
     const { user, allUsers, mobile } = useAuth();
     const [allOrders, setAllOrders] = useState(null);
 
-    const getAllOrdersURL = `https://tourguru-backend.vercel.app/allorder`;
+    const getAllOrdersURL = `https://tourguru.onrender.com/allorder`;
     useEffect(() => {
         axios.get(getAllOrdersURL).then((result) => setAllOrders(result?.data));
     }, [getAllOrdersURL]);

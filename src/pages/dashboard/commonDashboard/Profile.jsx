@@ -5,16 +5,16 @@
 // import userImage from '../../../assests/images/userdefault.png';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import {
-  Box,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  Container,
-  Divider,
-  Grid,
-  TextField,
-  Typography
+    Box,
+    Button,
+    Card,
+    CardActions,
+    CardContent,
+    Container,
+    Divider,
+    Grid,
+    TextField,
+    Typography
 } from '@mui/material';
 import axios from 'axios';
 import { deleteUser } from 'firebase/auth';
@@ -66,7 +66,7 @@ function Profile(props) {
 
   const saveUserProfilePhoto = (email, photoURL) => {
     const myUser = { email, img: photoURL };
-    fetch('https://tourguru-backend.vercel.app/users', {
+    fetch('https://tourguru.onrender.com/users', {
       method: 'PUT',
       headers: {
         'content-type': 'application/json',
@@ -78,7 +78,7 @@ function Profile(props) {
         if (data?.modifiedCount > 0) {
           setUserImageURL('');
           const options = {
-            url: `https://tourguru-backend.vercel.app/user/${user?.email}`,
+            url: `https://tourguru.onrender.com/user/${user?.email}`,
             method: 'GET',
             headers: {
               'Content-Type': 'application/json;charset=UTF-8',
@@ -111,7 +111,7 @@ function Profile(props) {
         if (result.isConfirmed) {
           deleteUser(user)
             .then(() => {
-              const url = `https://tourguru-backend.vercel.app/deleteuser/${user?.email}`;
+              const url = `https://tourguru.onrender.com/deleteuser/${user?.email}`;
               fetch(url, {
                 method: 'DELETE',
               })

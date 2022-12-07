@@ -60,7 +60,7 @@ const handleImageUpload = (e) => {
     packageDetails = {...packageDetails, img: imageURL}
       
     if(imageURL !== '') {
-        fetch('https://tourguru-backend.vercel.app/addpackage', {
+        fetch('https://tourguru.onrender.com/addpackage', {
         method: 'POST',
         headers: {
             'content-type': 'application/json'

@@ -29,8 +29,8 @@ export default function Review() {
     const navigate = useNavigate();
     const [buyingPackage, setBuyingPackage] = useState({});
     const { packageid } = useParams();
-    const buyingPackageURL = `https://tourguru-backend.vercel.app/packages/${packageid}`;
-    const placeOrderURL = `https://tourguru-backend.vercel.app/placeorder`;
+    const buyingPackageURL = `https://tourguru.onrender.com/packages/${packageid}`;
+    const placeOrderURL = `https://tourguru.onrender.com/placeorder`;
 
     const placeOrder = () => {
         const options = {

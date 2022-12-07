@@ -10,7 +10,7 @@ function Users() {
     const [allUsers, setAllUsers] = useState(null);
 
     useEffect(() => {
-        fetch(`https://tourguru-backend.vercel.app/users`)
+        fetch(`https://tourguru.onrender.com/users`)
             .then((response) => response.json())
             .then((data) => {
                 setAllUsers(data);

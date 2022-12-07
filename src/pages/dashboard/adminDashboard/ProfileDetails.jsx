@@ -3,15 +3,15 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react/jsx-props-no-spreading */
 import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  CardHeader,
-  Divider,
-  Grid,
-  MenuItem,
-  TextField
+    Box,
+    Button,
+    Card,
+    CardContent,
+    CardHeader,
+    Divider,
+    Grid,
+    MenuItem,
+    TextField
 } from '@mui/material';
 import axios from 'axios';
 import { sendEmailVerification } from 'firebase/auth';
@@ -43,7 +43,7 @@ export default function ProfileDetails(props) {
 
   const updateProfile = (data) => {
     const myUser = { email, ...data };
-    fetch(`https://tourguru-backend.vercel.app/updateuser/${email}`, {
+    fetch(`https://tourguru.onrender.com/updateuser/${email}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json',
@@ -54,7 +54,7 @@ export default function ProfileDetails(props) {
       .then((myData) => {
         if (myData?.modifiedCount > 0) {
           const options = {
-            url: `https://tourguru-backend.vercel.app/user/${user?.email}`,
+            url: `https://tourguru.onrender.com/user/${user?.email}`,
             method: 'GET',
             headers: {
               'Content-Type': 'application/json;charset=UTF-8',
