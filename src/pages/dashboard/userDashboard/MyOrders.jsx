@@ -13,7 +13,7 @@ function MyOrders() {
     const [myOrders, setMyOrders] = useState(null);
     useEffect(() => {
         const options = {
-            url: `https://rocky-inlet-29740.herokuapp.com/myorders/${user?.email}`,
+            url: `https://tourguru-backend.vercel.app/myorders/${user?.email}`,
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json;charset=UTF-8',

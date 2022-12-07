@@ -58,7 +58,7 @@ function Login() {
 
   const saveUser = (email, displayName) => {
     const myUser = { email, displayName };
-    fetch('https://rocky-inlet-29740.herokuapp.com/users', {
+    fetch('https://tourguru-backend.vercel.app/users', {
       method: 'PUT',
       headers: {
         'content-type': 'application/json',

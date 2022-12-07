@@ -66,7 +66,7 @@ function Profile(props) {
 
   const saveUserProfilePhoto = (email, photoURL) => {
     const myUser = { email, img: photoURL };
-    fetch('https://rocky-inlet-29740.herokuapp.com/users', {
+    fetch('https://tourguru-backend.vercel.app/users', {
       method: 'PUT',
       headers: {
         'content-type': 'application/json',
@@ -78,7 +78,7 @@ function Profile(props) {
         if (data?.modifiedCount > 0) {
           setUserImageURL('');
           const options = {
-            url: `https://rocky-inlet-29740.herokuapp.com/user/${user?.email}`,
+            url: `https://tourguru-backend.vercel.app/user/${user?.email}`,
             method: 'GET',
             headers: {
               'Content-Type': 'application/json;charset=UTF-8',
@@ -111,7 +111,7 @@ function Profile(props) {
         if (result.isConfirmed) {
           deleteUser(user)
             .then(() => {
-              const url = `https://rocky-inlet-29740.herokuapp.com/deleteuser/${user?.email}`;
+              const url = `https://tourguru-backend.vercel.app/deleteuser/${user?.email}`;
               fetch(url, {
                 method: 'DELETE',
               })

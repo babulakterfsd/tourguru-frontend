@@ -33,7 +33,7 @@ function AddReview() {
 
     const reviewDetails = review
 
-    fetch(`https://rocky-inlet-29740.herokuapp.com/review/${user?.email}`, {
+    fetch(`https://tourguru-backend.vercel.app/review/${user?.email}`, {
         method: 'POST',
         headers: {
             'content-type': 'application/json',

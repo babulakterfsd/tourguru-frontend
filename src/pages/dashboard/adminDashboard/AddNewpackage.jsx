@@ -60,7 +60,7 @@ const handleImageUpload = (e) => {
     packageDetails = {...packageDetails, img: imageURL}
       
     if(imageURL !== '') {
-        fetch('https://rocky-inlet-29740.herokuapp.com/addpackage', {
+        fetch('https://tourguru-backend.vercel.app/addpackage', {
         method: 'POST',
         headers: {
             'content-type': 'application/json'

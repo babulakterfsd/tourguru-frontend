@@ -40,11 +40,11 @@ const AllStates = () => {
     } = useFirebase();
 
     // variables
-    const getAllPackageURL = `https://rocky-inlet-29740.herokuapp.com/packages`;
-    const getPopularPackageURL = `https://rocky-inlet-29740.herokuapp.com/packages?limit=6`;
-    const checkAdminURL = `https://rocky-inlet-29740.herokuapp.com/users/${user?.email}`;
-    const getIndividualUserFromdatabse = `https://rocky-inlet-29740.herokuapp.com/user/${user?.email}`;
-    const getAllReviewsURL = `https://rocky-inlet-29740.herokuapp.com/review`;
+    const getAllPackageURL = `https://tourguru-backend.vercel.app/packages`;
+    const getPopularPackageURL = `https://tourguru-backend.vercel.app/packages?limit=6`;
+    const checkAdminURL = `https://tourguru-backend.vercel.app/users/${user?.email}`;
+    const getIndividualUserFromdatabse = `https://tourguru-backend.vercel.app/user/${user?.email}`;
+    const getAllReviewsURL = `https://tourguru-backend.vercel.app/review`;
 
     // function calls
     useEffect(() => {
@@ -68,7 +68,7 @@ const AllStates = () => {
     useEffect(() => {
         setTimeout(() => {
             if (user) {
-                fetch(`https://rocky-inlet-29740.herokuapp.com/user/${user?.email}`, {
+                fetch(`https://tourguru-backend.vercel.app/user/${user?.email}`, {
                     headers: {
                         authorization: `Bearer ${localStorage.getItem('accessToken')}`,
                     },

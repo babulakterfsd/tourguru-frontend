@@ -31,7 +31,7 @@ export default function StickyHeadTable() {
     const [allUsers, setAllUsers] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
 
-    const getAllUsersURL = `https://rocky-inlet-29740.herokuapp.com/users`;
+    const getAllUsersURL = `https://tourguru-backend.vercel.app/users`;
 
     useEffect(() => {
         axios.get(getAllUsersURL).then((result) => setAllUsers(result?.data));
@@ -39,7 +39,7 @@ export default function StickyHeadTable() {
 
     useEffect(() => {
         const delayDebounceFn = setTimeout(() => {
-            const url = `https://rocky-inlet-29740.herokuapp.com/users?name=${searchTerm}`;
+            const url = `https://tourguru-backend.vercel.app/users?name=${searchTerm}`;
             axios.get(url).then((result) => {
                 setAllUsers(result?.data);
             });
@@ -77,7 +77,7 @@ export default function StickyHeadTable() {
             reverseButtons: true,
         }).then((result) => {
             if (result.isConfirmed) {
-                const url = `https://rocky-inlet-29740.herokuapp.com/users/${id}`;
+                const url = `https://tourguru-backend.vercel.app/users/${id}`;
                 fetch(url, {
                     method: 'PUT',
                     headers: {

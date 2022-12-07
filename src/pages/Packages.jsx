@@ -16,14 +16,14 @@ function Packages() {
 
     useEffect(() => {
         const delayDebounceFn = setTimeout(() => {
-            const url = `https://rocky-inlet-29740.herokuapp.com/packages?location=${searchTerm}`;
+            const url = `https://tourguru-backend.vercel.app/packages?location=${searchTerm}`;
             axios.get(url).then((result) => {
                 setAllPackage(result?.data);
             });
         }, 500);
 
         if (searchTerm === '') {
-            const url = `https://rocky-inlet-29740.herokuapp.com/packages`;
+            const url = `https://tourguru-backend.vercel.app/packages`;
             axios.get(url).then((result) => {
                 setAllPackage(result?.data);
             });
@@ -42,7 +42,7 @@ function Packages() {
 
     useEffect(() => {
         axios
-            .get(`https://rocky-inlet-29740.herokuapp.com/packages`)
+            .get(`https://tourguru-backend.vercel.app/packages`)
             .then((result) => setAllPackage(result?.data));
     }, []);
 

@@ -43,7 +43,7 @@ export default function ProfileDetails(props) {
 
   const updateProfile = (data) => {
     const myUser = { email, ...data };
-    fetch(`https://rocky-inlet-29740.herokuapp.com/updateuser/${email}`, {
+    fetch(`https://tourguru-backend.vercel.app/updateuser/${email}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json',
@@ -54,7 +54,7 @@ export default function ProfileDetails(props) {
       .then((myData) => {
         if (myData?.modifiedCount > 0) {
           const options = {
-            url: `https://rocky-inlet-29740.herokuapp.com/user/${user?.email}`,
+            url: `https://tourguru-backend.vercel.app/user/${user?.email}`,
             method: 'GET',
             headers: {
               'Content-Type': 'application/json;charset=UTF-8',

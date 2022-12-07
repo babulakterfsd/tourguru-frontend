@@ -32,7 +32,7 @@ export default function StickyHeadTable() {
     const [allPackages, setAllPackages] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
 
-    const getAllPackagesURL = `https://rocky-inlet-29740.herokuapp.com/packages`;
+    const getAllPackagesURL = `https://tourguru-backend.vercel.app/packages`;
 
     useEffect(() => {
         axios.get(getAllPackagesURL).then((result) => setAllPackages(result?.data));
@@ -40,7 +40,7 @@ export default function StickyHeadTable() {
 
     useEffect(() => {
         const delayDebounceFn = setTimeout(() => {
-            const url = `https://rocky-inlet-29740.herokuapp.com/packages?location=${searchTerm}`;
+            const url = `https://tourguru-backend.vercel.app/packages?location=${searchTerm}`;
             axios.get(url).then((result) => {
                 setAllPackages(result?.data);
             });
@@ -85,7 +85,7 @@ export default function StickyHeadTable() {
                         'error'
                     );
                 } else {
-                    const url = `https://rocky-inlet-29740.herokuapp.com/packages/${id}`;
+                    const url = `https://tourguru-backend.vercel.app/packages/${id}`;
 
                     fetch(url, {
                         method: 'DELETE',

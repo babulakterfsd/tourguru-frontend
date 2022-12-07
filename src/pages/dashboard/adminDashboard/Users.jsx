@@ -10,7 +10,7 @@ function Users() {
     const [allUsers, setAllUsers] = useState(null);
 
     useEffect(() => {
-        fetch(`https://rocky-inlet-29740.herokuapp.com/users`)
+        fetch(`https://tourguru-backend.vercel.app/users`)
             .then((response) => response.json())
             .then((data) => {
                 setAllUsers(data);

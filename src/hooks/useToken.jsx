@@ -7,7 +7,7 @@ const useToken = (user) => {
         const getToken = async () => {
             if (user?.email) {
                 const userEmail = user?.email;
-                fetch('https://rocky-inlet-29740.herokuapp.com/getaccesstoken', {
+                fetch('https://tourguru-backend.vercel.app/getaccesstoken', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

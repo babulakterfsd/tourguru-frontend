@@ -35,7 +35,7 @@ export default function StickyHeadTable() {
 
     useEffect(() => {
         const delayDebounceFn = setTimeout(() => {
-            const url = `https://rocky-inlet-29740.herokuapp.com/allorder?email=${searchTerm}`;
+            const url = `https://tourguru-backend.vercel.app/allorder?email=${searchTerm}`;
             axios.get(url).then((result) => {
                 setAllOrders(result?.data);
             });
@@ -44,7 +44,7 @@ export default function StickyHeadTable() {
         return () => clearTimeout(delayDebounceFn);
     }, [searchTerm]);
 
-    const getAllOrdersURL = `https://rocky-inlet-29740.herokuapp.com/allorder`;
+    const getAllOrdersURL = `https://tourguru-backend.vercel.app/allorder`;
 
     useEffect(() => {
         axios.get(getAllOrdersURL).then((result) => setAllOrders(result?.data));
@@ -79,7 +79,7 @@ export default function StickyHeadTable() {
             reverseButtons: true,
         }).then((result) => {
             if (result.isConfirmed) {
-                const url = `https://rocky-inlet-29740.herokuapp.com/allorder/${id}`;
+                const url = `https://tourguru-backend.vercel.app/allorder/${id}`;
 
                 fetch(url, {
                     method: 'DELETE',
@@ -108,7 +108,7 @@ export default function StickyHeadTable() {
             reverseButtons: true,
         }).then((result) => {
             if (result.isConfirmed) {
-                const url = `https://rocky-inlet-29740.herokuapp.com/allorder/${id}`;
+                const url = `https://tourguru-backend.vercel.app/allorder/${id}`;
 
                 fetch(url, {
                     method: 'PUT',
@@ -228,6 +228,7 @@ export default function StickyHeadTable() {
                                                 style={{
                                                     textTransform: `none`,
                                                     marginRight: `4px`,
+                                                    marginBottom: `4px`,
                                                 }}
                                                 onClick={() => handleOrderStatus(row?._id)}
                                                 disabled
@@ -241,6 +242,7 @@ export default function StickyHeadTable() {
                                                 style={{
                                                     textTransform: `none`,
                                                     marginRight: `4px`,
+                                                    marginBottom: `4px`,
                                                 }}
                                                 onClick={() => handleOrderStatus(row?._id)}
                                             >

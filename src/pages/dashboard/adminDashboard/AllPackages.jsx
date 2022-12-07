@@ -11,7 +11,7 @@ function AllPackages() {
     const { user, allUsers, mobile } = useAuth();
     const [allPackages, setAllPackages] = useState(null);
 
-    const getAllPackagesURL = `https://rocky-inlet-29740.herokuapp.com/packages`;
+    const getAllPackagesURL = `https://tourguru-backend.vercel.app/packages`;
 
     useEffect(() => {
         axios.get(getAllPackagesURL).then((result) => setAllPackages(result?.data));
