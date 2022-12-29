@@ -43,7 +43,7 @@ export default function ProfileDetails(props) {
 
   const updateProfile = (data) => {
     const myUser = { email, ...data };
-    fetch(`https://tourguruapi.itbangla24.xyz/updateuser/${email}`, {
+    fetch(`https://tourguru-backend-production.up.railway.app/updateuser/${email}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json',
@@ -54,7 +54,7 @@ export default function ProfileDetails(props) {
       .then((myData) => {
         if (myData?.modifiedCount > 0) {
           const options = {
-            url: `https://tourguruapi.itbangla24.xyz/user/${user?.email}`,
+            url: `https://tourguru-backend-production.up.railway.app/user/${user?.email}`,
             method: 'GET',
             headers: {
               'Content-Type': 'application/json;charset=UTF-8',

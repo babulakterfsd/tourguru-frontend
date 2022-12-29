@@ -29,8 +29,8 @@ export default function Review() {
     const navigate = useNavigate();
     const [buyingPackage, setBuyingPackage] = useState({});
     const { packageid } = useParams();
-    const buyingPackageURL = `https://tourguruapi.itbangla24.xyz/packages/${packageid}`;
-    const placeOrderURL = `https://tourguruapi.itbangla24.xyz/placeorder`;
+    const buyingPackageURL = `https://tourguru-backend-production.up.railway.app/packages/${packageid}`;
+    const placeOrderURL = `https://tourguru-backend-production.up.railway.app/placeorder`;
 
     const placeOrder = () => {
         const options = {

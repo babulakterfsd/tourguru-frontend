@@ -11,7 +11,7 @@ function AllPackages() {
     const { user, allUsers, mobile } = useAuth();
     const [allPackages, setAllPackages] = useState(null);
 
-    const getAllPackagesURL = `https://tourguruapi.itbangla24.xyz/packages`;
+    const getAllPackagesURL = `https://tourguru-backend-production.up.railway.app/packages`;
 
     useEffect(() => {
         axios.get(getAllPackagesURL).then((result) => setAllPackages(result?.data));

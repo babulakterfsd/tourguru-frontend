@@ -32,7 +32,7 @@ export default function MyOrderTable() {
     const { mobile, user } = useAuth();
     const [status, setStatus] = useState(null);
     const [myOrders, setMyOrders] = useState([]);
-    const getMyOrdersURL = `https://tourguruapi.itbangla24.xyz/myorders/${user?.email}`;
+    const getMyOrdersURL = `https://tourguru-backend-production.up.railway.app/myorders/${user?.email}`;
 
     useEffect(() => {
         const options = {
@@ -78,7 +78,7 @@ export default function MyOrderTable() {
             reverseButtons: true,
         }).then((result) => {
             if (result.isConfirmed) {
-                const url = `https://tourguruapi.itbangla24.xyz/allorder/${id}`;
+                const url = `https://tourguru-backend-production.up.railway.app/allorder/${id}`;
                 fetch(url, {
                     method: 'DELETE',
                 })
@@ -87,7 +87,7 @@ export default function MyOrderTable() {
                         if (data.deletedCount > 0) {
                             Swal.fire('Cancelled!', 'Your order has been deleted.', 'success');
                             const options = {
-                                url: `https://tourguruapi.itbangla24.xyz/myorders/${user?.email}`,
+                                url: `https://tourguru-backend-production.up.railway.app/myorders/${user?.email}`,
                                 method: 'GET',
                                 headers: {
                                     'Content-Type': 'application/json;charset=UTF-8',

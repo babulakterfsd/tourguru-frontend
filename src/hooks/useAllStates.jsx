@@ -40,11 +40,11 @@ const AllStates = () => {
     } = useFirebase();
 
     // variables
-    const getAllPackageURL = `https://tourguruapi.itbangla24.xyz/packages`;
-    const getPopularPackageURL = `https://tourguruapi.itbangla24.xyz/packages?limit=6`;
-    const checkAdminURL = `https://tourguruapi.itbangla24.xyz/users/${user?.email}`;
-    const getIndividualUserFromdatabse = `https://tourguruapi.itbangla24.xyz/user/${user?.email}`;
-    const getAllReviewsURL = `https://tourguruapi.itbangla24.xyz/review`;
+    const getAllPackageURL = `https://tourguru-backend-production.up.railway.app/packages`;
+    const getPopularPackageURL = `https://tourguru-backend-production.up.railway.app/packages?limit=6`;
+    const checkAdminURL = `https://tourguru-backend-production.up.railway.app/users/${user?.email}`;
+    const getIndividualUserFromdatabse = `https://tourguru-backend-production.up.railway.app/user/${user?.email}`;
+    const getAllReviewsURL = `https://tourguru-backend-production.up.railway.app/review`;
 
     // function calls
     useEffect(() => {
@@ -68,7 +68,7 @@ const AllStates = () => {
     useEffect(() => {
         setTimeout(() => {
             if (user) {
-                fetch(`https://tourguruapi.itbangla24.xyz/user/${user?.email}`, {
+                fetch(`https://tourguru-backend-production.up.railway.app/user/${user?.email}`, {
                     headers: {
                         authorization: `Bearer ${localStorage.getItem('accessToken')}`,
                     },

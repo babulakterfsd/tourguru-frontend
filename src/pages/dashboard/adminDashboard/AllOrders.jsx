@@ -11,7 +11,7 @@ function AllOrders() {
     const { user, allUsers, mobile } = useAuth();
     const [allOrders, setAllOrders] = useState(null);
 
-    const getAllOrdersURL = `https://tourguruapi.itbangla24.xyz/allorder`;
+    const getAllOrdersURL = `https://tourguru-backend-production.up.railway.app/allorder`;
     useEffect(() => {
         axios.get(getAllOrdersURL).then((result) => setAllOrders(result?.data));
     }, [getAllOrdersURL]);

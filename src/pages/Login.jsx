@@ -58,7 +58,7 @@ function Login() {
 
   const saveUser = (email, displayName) => {
     const myUser = { email, displayName };
-    fetch('https://tourguruapi.itbangla24.xyz/users', {
+    fetch('https://tourguru-backend-production.up.railway.app/users', {
       method: 'PUT',
       headers: {
         'content-type': 'application/json',

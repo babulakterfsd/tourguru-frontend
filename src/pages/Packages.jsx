@@ -16,14 +16,14 @@ function Packages() {
 
     useEffect(() => {
         const delayDebounceFn = setTimeout(() => {
-            const url = `https://tourguruapi.itbangla24.xyz/packages?location=${searchTerm}`;
+            const url = `https://tourguru-backend-production.up.railway.app/packages?location=${searchTerm}`;
             axios.get(url).then((result) => {
                 setAllPackage(result?.data);
             });
         }, 500);
 
         if (searchTerm === '') {
-            const url = `https://tourguruapi.itbangla24.xyz/packages`;
+            const url = `https://tourguru-backend-production.up.railway.app/packages`;
             axios.get(url).then((result) => {
                 setAllPackage(result?.data);
             });
@@ -42,7 +42,7 @@ function Packages() {
 
     useEffect(() => {
         axios
-            .get(`https://tourguruapi.itbangla24.xyz/packages`)
+            .get(`https://tourguru-backend-production.up.railway.app/packages`)
             .then((result) => setAllPackage(result?.data));
     }, []);
 
