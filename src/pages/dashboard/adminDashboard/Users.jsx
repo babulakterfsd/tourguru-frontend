@@ -10,7 +10,7 @@ function Users() {
     const [allUsers, setAllUsers] = useState(null);
 
     useEffect(() => {
-        fetch(`https://tourguru.onrender.com/users`)
+        fetch(`https://tourguruapi.itbangla24.xyz/users`)
             .then((response) => response.json())
             .then((data) => {
                 setAllUsers(data);

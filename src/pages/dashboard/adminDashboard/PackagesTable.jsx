@@ -32,7 +32,7 @@ export default function StickyHeadTable() {
     const [allPackages, setAllPackages] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
 
-    const getAllPackagesURL = `https://tourguru.onrender.com/packages`;
+    const getAllPackagesURL = `https://tourguruapi.itbangla24.xyz/packages`;
 
     useEffect(() => {
         axios.get(getAllPackagesURL).then((result) => setAllPackages(result?.data));
@@ -40,7 +40,7 @@ export default function StickyHeadTable() {
 
     useEffect(() => {
         const delayDebounceFn = setTimeout(() => {
-            const url = `https://tourguru.onrender.com/packages?location=${searchTerm}`;
+            const url = `https://tourguruapi.itbangla24.xyz/packages?location=${searchTerm}`;
             axios.get(url).then((result) => {
                 setAllPackages(result?.data);
             });
@@ -85,7 +85,7 @@ export default function StickyHeadTable() {
                         'error'
                     );
                 } else {
-                    const url = `https://tourguru.onrender.com/packages/${id}`;
+                    const url = `https://tourguruapi.itbangla24.xyz/packages/${id}`;
 
                     fetch(url, {
                         method: 'DELETE',

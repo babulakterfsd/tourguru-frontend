@@ -31,7 +31,7 @@ export default function StickyHeadTable() {
     const [allUsers, setAllUsers] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
 
-    const getAllUsersURL = `https://tourguru.onrender.com/users`;
+    const getAllUsersURL = `https://tourguruapi.itbangla24.xyz/users`;
 
     useEffect(() => {
         axios.get(getAllUsersURL).then((result) => setAllUsers(result?.data));
@@ -39,7 +39,7 @@ export default function StickyHeadTable() {
 
     useEffect(() => {
         const delayDebounceFn = setTimeout(() => {
-            const url = `https://tourguru.onrender.com/users?name=${searchTerm}`;
+            const url = `https://tourguruapi.itbangla24.xyz/users?name=${searchTerm}`;
             axios.get(url).then((result) => {
                 setAllUsers(result?.data);
             });
@@ -77,7 +77,7 @@ export default function StickyHeadTable() {
             reverseButtons: true,
         }).then((result) => {
             if (result.isConfirmed) {
-                const url = `https://tourguru.onrender.com/users/${id}`;
+                const url = `https://tourguruapi.itbangla24.xyz/users/${id}`;
                 fetch(url, {
                     method: 'PUT',
                     headers: {

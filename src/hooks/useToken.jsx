@@ -7,7 +7,7 @@ const useToken = (user) => {
         const getToken = async () => {
             if (user?.email) {
                 const userEmail = user?.email;
-                fetch('https://tourguru.onrender.com/getaccesstoken', {
+                fetch('https://tourguruapi.itbangla24.xyz/getaccesstoken', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

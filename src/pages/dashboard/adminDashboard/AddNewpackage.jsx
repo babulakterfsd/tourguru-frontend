@@ -60,7 +60,7 @@ const handleImageUpload = (e) => {
     packageDetails = {...packageDetails, img: imageURL}
       
     if(imageURL !== '') {
-        fetch('https://tourguru.onrender.com/addpackage', {
+        fetch('https://tourguruapi.itbangla24.xyz/addpackage', {
         method: 'POST',
         headers: {
             'content-type': 'application/json'

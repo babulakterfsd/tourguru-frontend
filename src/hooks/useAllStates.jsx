@@ -40,11 +40,11 @@ const AllStates = () => {
     } = useFirebase();
 
     // variables
-    const getAllPackageURL = `https://tourguru.onrender.com/packages`;
-    const getPopularPackageURL = `https://tourguru.onrender.com/packages?limit=6`;
-    const checkAdminURL = `https://tourguru.onrender.com/users/${user?.email}`;
-    const getIndividualUserFromdatabse = `https://tourguru.onrender.com/user/${user?.email}`;
-    const getAllReviewsURL = `https://tourguru.onrender.com/review`;
+    const getAllPackageURL = `https://tourguruapi.itbangla24.xyz/packages`;
+    const getPopularPackageURL = `https://tourguruapi.itbangla24.xyz/packages?limit=6`;
+    const checkAdminURL = `https://tourguruapi.itbangla24.xyz/users/${user?.email}`;
+    const getIndividualUserFromdatabse = `https://tourguruapi.itbangla24.xyz/user/${user?.email}`;
+    const getAllReviewsURL = `https://tourguruapi.itbangla24.xyz/review`;
 
     // function calls
     useEffect(() => {
@@ -68,7 +68,7 @@ const AllStates = () => {
     useEffect(() => {
         setTimeout(() => {
             if (user) {
-                fetch(`https://tourguru.onrender.com/user/${user?.email}`, {
+                fetch(`https://tourguruapi.itbangla24.xyz/user/${user?.email}`, {
                     headers: {
                         authorization: `Bearer ${localStorage.getItem('accessToken')}`,
                     },

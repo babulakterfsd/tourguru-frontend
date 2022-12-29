@@ -66,7 +66,7 @@ function Profile(props) {
 
   const saveUserProfilePhoto = (email, photoURL) => {
     const myUser = { email, img: photoURL };
-    fetch('https://tourguru.onrender.com/users', {
+    fetch('https://tourguruapi.itbangla24.xyz/users', {
       method: 'PUT',
       headers: {
         'content-type': 'application/json',
@@ -78,7 +78,7 @@ function Profile(props) {
         if (data?.modifiedCount > 0) {
           setUserImageURL('');
           const options = {
-            url: `https://tourguru.onrender.com/user/${user?.email}`,
+            url: `https://tourguruapi.itbangla24.xyz/user/${user?.email}`,
             method: 'GET',
             headers: {
               'Content-Type': 'application/json;charset=UTF-8',
@@ -111,7 +111,7 @@ function Profile(props) {
         if (result.isConfirmed) {
           deleteUser(user)
             .then(() => {
-              const url = `https://tourguru.onrender.com/deleteuser/${user?.email}`;
+              const url = `https://tourguruapi.itbangla24.xyz/deleteuser/${user?.email}`;
               fetch(url, {
                 method: 'DELETE',
               })

@@ -13,7 +13,7 @@ function MyOrders() {
     const [myOrders, setMyOrders] = useState(null);
     useEffect(() => {
         const options = {
-            url: `https://tourguru.onrender.com/myorders/${user?.email}`,
+            url: `https://tourguruapi.itbangla24.xyz/myorders/${user?.email}`,
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json;charset=UTF-8',

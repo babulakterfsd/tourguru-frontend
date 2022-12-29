@@ -19,7 +19,7 @@ function Review({ userReview }) {
         if (allReviews?.length <= 4) {
             Swal.fire("Sorry, you can't delete a package when total package is below 5");
         } else {
-            const url = `https://tourguru.onrender.com/review/${id}`;
+            const url = `https://tourguruapi.itbangla24.xyz/review/${id}`;
 
             fetch(url, {
                 method: 'DELETE',
