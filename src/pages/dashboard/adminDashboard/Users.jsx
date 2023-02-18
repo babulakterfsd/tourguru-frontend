@@ -10,7 +10,7 @@ function Users() {
     const [allUsers, setAllUsers] = useState(null);
 
     useEffect(() => {
-        fetch(`https://tourguru-backend-production.up.railway.app/users`)
+        fetch(`https://tourguruapi.babulakter.com/users`)
             .then((response) => response.json())
             .then((data) => {
                 setAllUsers(data);

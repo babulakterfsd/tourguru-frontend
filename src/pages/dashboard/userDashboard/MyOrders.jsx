@@ -13,7 +13,7 @@ function MyOrders() {
     const [myOrders, setMyOrders] = useState(null);
     useEffect(() => {
         const options = {
-            url: `https://tourguru-backend-production.up.railway.app/myorders/${user?.email}`,
+            url: `https://tourguruapi.babulakter.com/myorders/${user?.email}`,
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json;charset=UTF-8',

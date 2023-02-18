@@ -16,14 +16,14 @@ function Packages() {
 
     useEffect(() => {
         const delayDebounceFn = setTimeout(() => {
-            const url = `https://tourguru-backend-production.up.railway.app/packages?location=${searchTerm}`;
+            const url = `https://tourguruapi.babulakter.com/packages?location=${searchTerm}`;
             axios.get(url).then((result) => {
                 setAllPackage(result?.data);
             });
         }, 500);
 
         if (searchTerm === '') {
-            const url = `https://tourguru-backend-production.up.railway.app/packages`;
+            const url = `https://tourguruapi.babulakter.com/packages`;
             axios.get(url).then((result) => {
                 setAllPackage(result?.data);
             });
@@ -42,7 +42,7 @@ function Packages() {
 
     useEffect(() => {
         axios
-            .get(`https://tourguru-backend-production.up.railway.app/packages`)
+            .get(`https://tourguruapi.babulakter.com/packages`)
             .then((result) => setAllPackage(result?.data));
     }, []);
 

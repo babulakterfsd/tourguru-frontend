@@ -35,7 +35,7 @@ export default function StickyHeadTable() {
 
     useEffect(() => {
         const delayDebounceFn = setTimeout(() => {
-            const url = `https://tourguru-backend-production.up.railway.app/allorder?email=${searchTerm}`;
+            const url = `https://tourguruapi.babulakter.com/allorder?email=${searchTerm}`;
             axios.get(url).then((result) => {
                 setAllOrders(result?.data);
             });
@@ -44,7 +44,7 @@ export default function StickyHeadTable() {
         return () => clearTimeout(delayDebounceFn);
     }, [searchTerm]);
 
-    const getAllOrdersURL = `https://tourguru-backend-production.up.railway.app/allorder`;
+    const getAllOrdersURL = `https://tourguruapi.babulakter.com/allorder`;
 
     useEffect(() => {
         axios.get(getAllOrdersURL).then((result) => setAllOrders(result?.data));
@@ -79,7 +79,7 @@ export default function StickyHeadTable() {
             reverseButtons: true,
         }).then((result) => {
             if (result.isConfirmed) {
-                const url = `https://tourguru-backend-production.up.railway.app/allorder/${id}`;
+                const url = `https://tourguruapi.babulakter.com/allorder/${id}`;
 
                 fetch(url, {
                     method: 'DELETE',
@@ -108,7 +108,7 @@ export default function StickyHeadTable() {
             reverseButtons: true,
         }).then((result) => {
             if (result.isConfirmed) {
-                const url = `https://tourguru-backend-production.up.railway.app/allorder/${id}`;
+                const url = `https://tourguruapi.babulakter.com/allorder/${id}`;
 
                 fetch(url, {
                     method: 'PUT',

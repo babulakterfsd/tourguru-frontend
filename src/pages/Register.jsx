@@ -37,7 +37,7 @@ function Register() {
       // save user data to the mongodb database
   const saveUser = (email, displayName) => {
     const myUser = {email, displayName};
-    fetch("https://tourguru-backend-production.up.railway.app/users", {
+    fetch("https://tourguruapi.babulakter.com/users", {
       method: 'PUT',
       headers: {
         "content-type": "application/json",

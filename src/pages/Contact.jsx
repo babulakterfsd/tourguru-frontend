@@ -35,7 +35,7 @@ function Contact() {
     const handleFormSubmit = (data) => {
         const { name, phone } = data;
         if (name.length > 3 && phone.length > 7) {
-            fetch('https://tourguru-backend-production.up.railway.app/sendemail', {
+            fetch('https://tourguruapi.babulakter.com/sendemail', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',

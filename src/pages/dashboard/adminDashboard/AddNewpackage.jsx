@@ -60,7 +60,7 @@ const handleImageUpload = (e) => {
     packageDetails = {...packageDetails, img: imageURL}
       
     if(imageURL !== '') {
-        fetch('https://tourguru-backend-production.up.railway.app/addpackage', {
+        fetch('https://tourguruapi.babulakter.com/addpackage', {
         method: 'POST',
         headers: {
             'content-type': 'application/json'

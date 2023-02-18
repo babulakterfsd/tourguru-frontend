@@ -40,11 +40,11 @@ const AllStates = () => {
     } = useFirebase();
 
     // variables
-    const getAllPackageURL = `https://tourguru-backend-production.up.railway.app/packages`;
-    const getPopularPackageURL = `https://tourguru-backend-production.up.railway.app/packages?limit=6`;
-    const checkAdminURL = `https://tourguru-backend-production.up.railway.app/users/${user?.email}`;
-    const getIndividualUserFromdatabse = `https://tourguru-backend-production.up.railway.app/user/${user?.email}`;
-    const getAllReviewsURL = `https://tourguru-backend-production.up.railway.app/review`;
+    const getAllPackageURL = `https://tourguruapi.babulakter.com/packages`;
+    const getPopularPackageURL = `https://tourguruapi.babulakter.com/packages?limit=6`;
+    const checkAdminURL = `https://tourguruapi.babulakter.com/users/${user?.email}`;
+    const getIndividualUserFromdatabse = `https://tourguruapi.babulakter.com/user/${user?.email}`;
+    const getAllReviewsURL = `https://tourguruapi.babulakter.com/review`;
 
     // function calls
     useEffect(() => {
@@ -68,7 +68,7 @@ const AllStates = () => {
     useEffect(() => {
         setTimeout(() => {
             if (user) {
-                fetch(`https://tourguru-backend-production.up.railway.app/user/${user?.email}`, {
+                fetch(`https://tourguruapi.babulakter.com/user/${user?.email}`, {
                     headers: {
                         authorization: `Bearer ${localStorage.getItem('accessToken')}`,
                     },

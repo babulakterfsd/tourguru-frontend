@@ -25,7 +25,7 @@ function StripeForm() {
     const navigate = useNavigate();
     const [buyingPackage, setBuyingPackage] = useState({});
     const { packageid } = useParams();
-    const buyingPackageURL = `https://tourguru-backend-production.up.railway.app/packages/${packageid}`;
+    const buyingPackageURL = `https://tourguruapi.babulakter.com/packages/${packageid}`;
 
     useEffect(() => {
         axios.get(buyingPackageURL).then((result) => setBuyingPackage(result?.data));
@@ -78,7 +78,7 @@ function StripeForm() {
 
     useEffect(() => {
         if (price !== undefined && typeof price === 'number' && price > 0) {
-            fetch('https://tourguru-backend-production.up.railway.app/create-payment-intent', {
+            fetch('https://tourguruapi.babulakter.com/create-payment-intent', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
