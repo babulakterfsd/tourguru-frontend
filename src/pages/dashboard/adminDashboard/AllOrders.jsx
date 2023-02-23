@@ -8,7 +8,7 @@ import useAuth from '../../../hooks/useAuth';
 import AllOrderTable from './AllOrderTable';
 
 function AllOrders() {
-    const { user, allUsers, mobile } = useAuth();
+    const { mobile } = useAuth();
     const [allOrders, setAllOrders] = useState(null);
 
     const getAllOrdersURL = `https://tourguruapi.babulakter.com/allorder`;

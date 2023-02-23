@@ -1,23 +1,23 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import axios from 'axios';
 import React from 'react';
 import Swal from 'sweetalert2';
 import useAuth from '../../hooks/useAuth';
 import Classes from '../../styles/Review.module.css';
 import Rating from './Rating';
 
-function Review({ userReview }) {
+function Review({ userReview, allReviews, setAllReviews }) {
     const { name, comment, rating, _id } = userReview;
-    const { mobile, user, isAdmin, allReviews, setAllReviews, getAllReviewsURL } = useAuth();
+    const { mobile, user, isAdmin } = useAuth();
 
     const handleDeleteReview = (id) => {
-        if (allReviews?.length <= 4) {
-            Swal.fire("Sorry, you can't delete a package when total package is below 5");
+        if (allReviews?.length <= 5) {
+            Swal.fire("Sorry, you can't delete a review when total review is below 5");
         } else {
             const url = `https://tourguruapi.babulakter.com/review/${id}`;
 
@@ -28,7 +28,8 @@ function Review({ userReview }) {
                 .then((data) => {
                     if (data?.deletedCount > 0) {
                         Swal.fire('Review Deleted !');
-                        axios.get(getAllReviewsURL).then((result) => setAllReviews(result?.data));
+                        const deletedReview = allReviews?.filter((review) => review._id !== id);
+                        setAllReviews(deletedReview);
                     }
                 });
         }

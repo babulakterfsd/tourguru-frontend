@@ -6,12 +6,9 @@ import useFirebase from './useFirebase';
 
 const AllStates = () => {
     // states
-    const [allPackages, setAllPackages] = useState([]);
-    const [popularPackages, setPopularPackages] = useState([]);
     const [orderData, setOrderData] = useState({});
     const [activeStep, setActiveStep] = useState(0);
     const [isAdmin, setIsAdmin] = useState(false);
-    const [allReviews, setAllReviews] = useState([]);
     const [userImageURL, setUserImageURL] = useState('');
     const [paymentIntentStatus, setPaymentIntentStatus] = useState('');
     const [paymentTrxID, setPaymentTrxID] = useState('');
@@ -39,32 +36,14 @@ const AllStates = () => {
         signOut,
     } = useFirebase();
 
-    // variables
-    const getAllPackageURL = `https://tourguruapi.babulakter.com/packages`;
-    const getPopularPackageURL = `https://tourguruapi.babulakter.com/packages?limit=6`;
-    const checkAdminURL = `https://tourguruapi.babulakter.com/users/${user?.email}`;
-    const getIndividualUserFromdatabse = `https://tourguruapi.babulakter.com/user/${user?.email}`;
-    const getAllReviewsURL = `https://tourguruapi.babulakter.com/review`;
-
-    // function calls
+    // checking admin
     useEffect(() => {
-        axios.get(getPopularPackageURL).then((result) => setPopularPackages(result?.data));
-    }, [getPopularPackageURL]);
-
-    useEffect(() => {
-        axios.get(getAllPackageURL).then((result) => setAllPackages(result?.data));
-    }, [getAllPackageURL]);
-
-    useEffect(() => {
-        axios.get(getAllReviewsURL).then((result) => setAllReviews(result?.data));
-    }, [getAllReviewsURL]);
-
-    useEffect(() => {
-        axios.get(checkAdminURL).then((result) => {
+        axios.get(`https://tourguruapi.babulakter.com/users/${user?.email}`).then((result) => {
             setIsAdmin(result?.data?.admin);
         });
-    }, [checkAdminURL]);
+    }, [user?.email]);
 
+    // setting user info
     useEffect(() => {
         setTimeout(() => {
             if (user) {
@@ -108,17 +87,12 @@ const AllStates = () => {
         signInWithEmailAndPassword,
         response,
         signInUsingGoogle,
-        allPackages,
-        popularPackages,
         orderData,
         setOrderData,
         activeStep,
         setActiveStep,
         isAdmin,
         signOut,
-        allReviews,
-        setAllReviews,
-        getAllReviewsURL,
         userImageURL,
         setUserImageURL,
         userInfoInDatabase,

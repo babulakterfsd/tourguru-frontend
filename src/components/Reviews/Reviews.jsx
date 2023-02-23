@@ -2,7 +2,8 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable react/jsx-props-no-spreading */
 import { Box, Container, Typography } from '@mui/material';
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
@@ -10,7 +11,14 @@ import useAuth from '../../hooks/useAuth';
 import Review from './Review';
 
 function Reviews() {
-    const { mobile, allReviews } = useAuth();
+    const [allReviews, setAllReviews] = useState([]);
+    const { mobile } = useAuth();
+
+    useEffect(() => {
+        axios
+            .get(`https://tourguruapi.babulakter.com/review`)
+            .then((result) => setAllReviews(result?.data));
+    }, []);
 
     const settings = {
         dots: false,
@@ -88,7 +96,12 @@ function Reviews() {
                 >
                     <Slider {...settings}>
                         {allReviews?.map((singlereview) => (
-                            <Review key={singlereview?._id} userReview={singlereview} />
+                            <Review
+                                key={singlereview?._id}
+                                userReview={singlereview}
+                                allReviews={allReviews}
+                                setAllReviews={setAllReviews}
+                            />
                         ))}
                     </Slider>
                 </Box>

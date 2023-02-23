@@ -4,13 +4,21 @@
 import { Button, Container, Skeleton, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 import SinglePackageCard from './SinglePackageCard';
 
 function Packages() {
-    const { mobile, tablet, desktop, popularPackages } = useAuth();
+    const [popularPackages, setPopularPackages] = useState([]);
+    const { mobile, tablet, desktop } = useAuth();
+
+    const getPopularPackageURL = `https://tourguruapi.babulakter.com/packages?limit=6`;
+
+    useEffect(() => {
+        axios.get(getPopularPackageURL).then((result) => setPopularPackages(result?.data));
+    }, [getPopularPackageURL]);
 
     if (popularPackages?.length === 0) {
         return (
