@@ -10,7 +10,7 @@ import Classes from '../styles/Contact.module.css';
 
 function Home() {
     useEffect(() => {
-        document.title = 'Tourguru | your trusted tour partner.';
+        document.title = 'Tourguru | your trusted tour partner';
     });
     return (
         <div className={Classes.controller}>
