@@ -2,7 +2,6 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable react/jsx-props-no-spreading */
 import { Box, Container, Typography } from '@mui/material';
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
@@ -15,9 +14,9 @@ function Reviews() {
     const { mobile } = useAuth();
 
     useEffect(() => {
-        axios
-            .get(`https://tourguruapi.babulakter.com/review`)
-            .then((result) => setAllReviews(result?.data));
+        fetch(`https://tourguruapi.babulakter.com/review`)
+            .then((res) => res.json())
+            .then((data) => setAllReviews(data));
     }, []);
 
     const settings = {
