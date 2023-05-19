@@ -20,4 +20,4 @@
 - after registering a new user, all his info gets saved in the database (mongodb)
 - user can cancel his/her order before it gets approved by an admin.
 - admin can manage all pending orders, see all users, add new package, delete running package and a lot in admin dashboard
-- user dashbaord and admin dashboard are totally secured. no one can access private routes.
+- user dashbaord and admin dashboard are totally secured. no one can access private routes..
