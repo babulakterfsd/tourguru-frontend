@@ -13,7 +13,7 @@ function Packages() {
     const [popularPackages, setPopularPackages] = useState([]);
     const { mobile, tablet, desktop } = useAuth();
 
-    const getPopularPackageURL = `https://tourguruapi.babulakter.com/packages?limit=6`;
+    const getPopularPackageURL = `https://tourguru.onrender.com/packages?limit=6`;
 
     useEffect(() => {
         fetch(getPopularPackageURL)

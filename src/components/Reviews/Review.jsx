@@ -19,7 +19,7 @@ function Review({ userReview, allReviews, setAllReviews }) {
         if (allReviews?.length <= 5) {
             Swal.fire("Sorry, you can't delete a review when total review is below 5");
         } else {
-            const url = `https://tourguruapi.babulakter.com/review/${id}`;
+            const url = `https://tourguru.onrender.com/review/${id}`;
 
             fetch(url, {
                 method: 'DELETE',

@@ -35,7 +35,7 @@ function Contact() {
     const handleFormSubmit = (data) => {
         const { name, phone } = data;
         if (name.length > 3 && phone.length > 7) {
-            fetch('https://tourguruapi.babulakter.com/sendemail', {
+            fetch('https://tourguru.onrender.com/sendemail', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',

@@ -16,14 +16,14 @@ function Packages() {
 
     useEffect(() => {
         const delayDebounceFn = setTimeout(() => {
-            const url = `https://tourguruapi.babulakter.com/packages?location=${searchTerm}`;
+            const url = `https://tourguru.onrender.com/packages?location=${searchTerm}`;
             axios.get(url).then((result) => {
                 setAllPackage(result?.data);
             });
         }, 500);
 
         if (searchTerm === '') {
-            const url = `https://tourguruapi.babulakter.com/packages`;
+            const url = `https://tourguru.onrender.com/packages`;
             axios.get(url).then((result) => {
                 setAllPackage(result?.data);
             });
@@ -42,7 +42,7 @@ function Packages() {
 
     useEffect(() => {
         axios
-            .get(`https://tourguruapi.babulakter.com/packages`)
+            .get(`https://tourguru.onrender.com/packages`)
             .then((result) => setAllPackage(result?.data));
     }, []);
 

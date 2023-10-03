@@ -38,7 +38,7 @@ const AllStates = () => {
 
     // checking admin
     useEffect(() => {
-        axios.get(`https://tourguruapi.babulakter.com/users/${user?.email}`).then((result) => {
+        axios.get(`https://tourguru.onrender.com/users/${user?.email}`).then((result) => {
             setIsAdmin(result?.data?.admin);
         });
     }, [user?.email]);
@@ -47,7 +47,7 @@ const AllStates = () => {
     useEffect(() => {
         setTimeout(() => {
             if (user) {
-                fetch(`https://tourguruapi.babulakter.com/user/${user?.email}`, {
+                fetch(`https://tourguru.onrender.com/user/${user?.email}`, {
                     headers: {
                         authorization: `Bearer ${localStorage.getItem('accessToken')}`,
                     },

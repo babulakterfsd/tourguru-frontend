@@ -33,7 +33,7 @@ function AddReview() {
 
     const reviewDetails = review
 
-    fetch(`https://tourguruapi.babulakter.com/review/${user?.email}`, {
+    fetch(`https://tourguru.onrender.com/review/${user?.email}`, {
         method: 'POST',
         headers: {
             'content-type': 'application/json',

@@ -14,7 +14,7 @@ function Reviews() {
     const { mobile } = useAuth();
 
     useEffect(() => {
-        fetch(`https://tourguruapi.babulakter.com/review`)
+        fetch(`https://tourguru.onrender.com/review`)
             .then((res) => res.json())
             .then((data) => setAllReviews(data));
     }, []);
