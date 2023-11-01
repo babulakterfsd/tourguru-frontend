@@ -6,12 +6,24 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import useAuth from '../hooks/useAuth';
 import SinglePackageCard from './SinglePackageCard';
 
 function Packages() {
     const [popularPackages, setPopularPackages] = useState([]);
     const { mobile, tablet, desktop } = useAuth();
+
+    function shouldInvalidate(timestamp) {
+        if (!timestamp) {
+            return true;
+        }
+        const currentTime = new Date().getTime();
+        const storedTime = parseInt(timestamp, 10);
+        const hoursElapsed = (currentTime - storedTime) / (1000 * 60 * 60);
+
+        return hoursElapsed >= 1;
+    }
 
     const getPopularPackageURL = `https://tourguru.onrender.com/packages?limit=6`;
 
@@ -20,6 +32,21 @@ function Packages() {
             .then((res) => res.json())
             .then((data) => setPopularPackages(data));
     }, [getPopularPackageURL]);
+
+    useEffect(() => {
+        const hasVisitedBefore = localStorage.getItem('hasVisitedBefore');
+        const timestamp = localStorage.getItem('timestamp');
+
+        setTimeout(() => {
+            if (!hasVisitedBefore || shouldInvalidate(timestamp)) {
+                Swal.fire(
+                    `I am using render free plan for hosting. sometimes it takes some time to load the backend. If you see packages are loading for long time, please refresh the page after 25-30 seconds. Once it gets connected, there will be no problem. Sorry for the bad experience 😔.`
+                );
+                localStorage.setItem('hasVisitedBefore', 'true');
+                localStorage.setItem('timestamp', new Date().getTime().toString());
+            }
+        }, 20000);
+    }, [popularPackages]);
 
     if (popularPackages?.length === 0) {
         return (
